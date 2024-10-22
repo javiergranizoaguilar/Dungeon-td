@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Torre
+  - Buton basic
   layers:
   - Default
   - TransparentFX
