@@ -252,13 +252,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1945242844883677745, guid: f3d0dc63bcb256e4cae590ea6977a9ae, type: 3}
-  firePoint: {fileID: 0}
   rotationSpeed: 2000
   enemyTag: Enemy
   enemies: []
   listado: []
-  mono: 
-  targetEnemy: {fileID: 0}
+  mono: Basic
+  targetEnemy: {fileID: 7018574789418169021, guid: 2cc8f1a02d581594a88ac4128ee4d260, type: 3}
+  towerDragHandler: {fileID: 0}
   fireRate: 1
   fireDistance: 10
   segments: 50

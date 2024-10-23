@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Disparo_base : MonoBehaviour
 {
     public GameObject projectilePrefab; // Prefab del proyectil
-    public Transform firePoint; // Punto de origen del disparo
+    private Transform firePoint; // Punto de origen del disparo
     public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
     public string enemyTag = "Enemy"; // Etiqueta del enemigo a apuntar
 
@@ -16,6 +16,8 @@ public class Disparo_base : MonoBehaviour
     public string mono;
 
     public GameObject targetEnemy; // Referencia al objeto enemigo actualmente en la mira
+
+    public TowerDragHandler towerDragHandler;
 
     private Coroutine shootingCoroutine;
 
@@ -51,11 +53,21 @@ public class Disparo_base : MonoBehaviour
     void Update()
     {
 
+        if (towerDragHandler != null)
+        {
+            Controlcrilcle();
+            enemigos();
+            StartShooting();
+        }
+        else
+        {
+            GameObject buttonObject = GameObject.Find(mono);
+            if (buttonObject != null)
+            {
+                towerDragHandler = (TowerDragHandler)buttonObject.GetComponent("TowerDragHandler");
 
-        Controlcrilcle();
-        enemigos();
-        StartShooting();
-
+            }
+        }
     }
     public void enemigos()
     {
@@ -81,8 +93,8 @@ public class Disparo_base : MonoBehaviour
 
     public void StartShooting()
     {
-        // Si la torre no hay una corutina de disparo activa
-        if (shootingCoroutine == null)
+        // Si la torre no está siendo arrastrada (isDragging es false) y no hay una corutina de disparo activa
+        if (!towerDragHandler.isDragging && shootingCoroutine == null)
         {
             HideCircle();
             isCircleVisible = false;
@@ -178,6 +190,5 @@ public class Disparo_base : MonoBehaviour
             }
         }
     }
-
 
 }

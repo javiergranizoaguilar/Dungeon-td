@@ -5807,6 +5807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 7018574789418169021, guid: 2cc8f1a02d581594a88ac4128ee4d260, type: 3}
   spawnPoint: {fileID: 1051412246}
+  controlJuego: {fileID: 334397734}
   spawnPointToGO:
   - {fileID: 434424163}
   - {fileID: 1762882326}
@@ -39664,7 +39665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 8464511325329308580, guid: d744c67f9ac7cd147bc2d10c0a3763e9, type: 3}
   isDragging: 0
-  precio: 0
+  precio: 100
   controlJuego: {fileID: 334397734}
   allowedZonesTilemap: {fileID: 368783077}
   blockedTile: {fileID: 11400000, guid: 9fc679570b894134e8187d4dbd5ffcfb, type: 2}

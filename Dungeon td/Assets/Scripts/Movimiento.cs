@@ -7,11 +7,14 @@ public class Movimiento : MonoBehaviour
     public float speed = 5.0f;     // Velocidad de movimiento del objeto
     private int currentWaypoint = 0;
     private string bala = "Bala";
+    public int dar=20;
+    public ControlJuego controlJuego;
     // Start is called before the first frame update
     void Start()
     {
-    
+        GameObject gameObject = GameObject.Find("GameManager");
 
+        controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class Movimiento : MonoBehaviour
         if (other.gameObject.CompareTag(bala))
         {
             // Destroy both the object that this script is attached to and the object that it triggered
+            controlJuego.dinero += dar;
             Destroy(other.gameObject);
             Destroy(gameObject);
         }

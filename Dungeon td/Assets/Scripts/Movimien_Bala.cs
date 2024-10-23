@@ -7,12 +7,17 @@ public class Movimien_Bala : MonoBehaviour
     public float speed = 5f;
     public Transform target;
     private Vector3 direction;
-
+    public int dar = 20;
+    public ControlJuego controlJuego;
     // Start is called before the first frame update
     void Start()
     {
         // Calculate the direction to the enemy
         direction = (target.position - transform.position).normalized;
+        GameObject gameObject = GameObject.Find("GameManager");
+
+        controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
+
 
     }
 
@@ -34,6 +39,7 @@ public class Movimien_Bala : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy 1"))
         {
+            controlJuego.dinero += dar;
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
