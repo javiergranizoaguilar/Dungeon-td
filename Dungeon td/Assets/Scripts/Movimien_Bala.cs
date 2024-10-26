@@ -8,7 +8,10 @@ public class Movimien_Bala : MonoBehaviour
     public Transform target;
     private Vector3 direction;
     public int dar = 20;
+    public int danio;
+    public int vida;
     public ControlJuego controlJuego;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,7 @@ public class Movimien_Bala : MonoBehaviour
         GameObject gameObject = GameObject.Find("GameManager");
 
         controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
-
+        vida = danio;
 
     }
 
@@ -39,9 +42,18 @@ public class Movimien_Bala : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy 1"))
         {
-            controlJuego.dinero += dar;
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            Movement movement = (Movement)other.gameObject.GetComponent("Movement");
+            vida-=movement.vida;
+            movement.vida -= danio;
+            if (vida <= 0)
+            {
+                Destroy(gameObject);
+            }
+            if (movement.vida <= 0)
+            {
+                controlJuego.dinero += dar;
+                Destroy(other.gameObject);
+            }
         }
     }
 }

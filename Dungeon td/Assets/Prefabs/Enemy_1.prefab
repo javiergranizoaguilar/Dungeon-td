@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5390556894875643761}
   - component: {fileID: 2955919999598441110}
-  - component: {fileID: 3036493817948658392}
   - component: {fileID: -8113301926362864476}
   - component: {fileID: 3375005609021700111}
   - component: {fileID: -7419862900770628510}
+  - component: {fileID: 8089363975472800786}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Enemy 1
@@ -88,27 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3036493817948658392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4684475162263849889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 1
-  dar: 20
-  controlJuego: {fileID: 0}
 --- !u!58 &-8113301926362864476
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -183,3 +162,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44142419377a54a888bc02a1d67e01f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8089363975472800786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684475162263849889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  speed: 1
+  dar: 20
+  vida: 1
+  controlJuego: {fileID: 0}

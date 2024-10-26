@@ -102,6 +102,8 @@ MonoBehaviour:
   speed: 3
   target: {fileID: 0}
   dar: 20
+  danio: 100
+  vida: 0
   controlJuego: {fileID: 0}
 --- !u!60 &7075213432030076966
 PolygonCollider2D:

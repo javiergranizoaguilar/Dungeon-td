@@ -46,7 +46,7 @@ public class oleadas : MonoBehaviour
     {
         // Instancia el prefab en la posición del spawnPoint y sin rotación (identidad)
         GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
-        spawnedObject.GetComponent<Nivel1_movement>().waypoints = spawnPointToSpawn;
+        spawnedObject.GetComponent<Movement>().waypoints = spawnPointToSpawn;
     }
     IEnumerator ronda1()
     {

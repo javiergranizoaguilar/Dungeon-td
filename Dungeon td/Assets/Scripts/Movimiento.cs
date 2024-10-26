@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
-public class Nivel1_movement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
 
     public Transform[] waypoints;  // Array de waypoints que definen el camino
     public float speed = 5.0f;     // Velocidad de movimiento del objeto
     private int currentWaypoint = 0;
     private string bala = "Bala";
-    public int dar=20;
+    public int dar = 20;
+    public int vida;
     public ControlJuego controlJuego;
     // Start is called before the first frame update
     void Start()
@@ -44,10 +45,19 @@ public class Nivel1_movement : MonoBehaviour
     {
         if (other.gameObject.CompareTag(bala))
         {
-            // Destroy both the object that this script is attached to and the object that it triggered
-            controlJuego.dinero += dar;
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            vida -= other.GetComponent<Movimien_Bala>().danio;
+            Movimien_Bala movement_bala = (Movimien_Bala)other.gameObject.GetComponent("Movimien_Bala");
+            movement_bala.vida-=vida;
+            if (movement_bala.vida <= 0)
+            {
+                Destroy(other.gameObject);
+            }
+            if (vida <= 0)
+            {
+                // Destroy both the object that this script is attached to and the object that it triggered
+                controlJuego.dinero += dar;
+                Destroy(gameObject);
+            }
         }
     }
 }
