@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Torre
-  - Buton basic
+  - Enemy 1
+  - Personaje
   - Bala
+  - Buton Basic
   layers:
   - Default
   - TransparentFX

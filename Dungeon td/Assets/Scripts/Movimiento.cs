@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
-public class Movimiento : MonoBehaviour
+public class Nivel1_movement : MonoBehaviour
 {
 
     public Transform[] waypoints;  // Array de waypoints que definen el camino

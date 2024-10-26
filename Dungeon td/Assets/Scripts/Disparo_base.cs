@@ -7,9 +7,9 @@ using UnityEngine.UIElements;
 public class Disparo_base : MonoBehaviour
 {
     public GameObject projectilePrefab; // Prefab del proyectil
-    private Transform firePoint; // Punto de origen del disparo
+    public Transform firePoint; // Punto de origen del disparo
     public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
-    public string enemyTag = "Enemy"; // Etiqueta del enemigo a apuntar
+    public string enemyTag = "Enemy 1"; // Etiqueta del enemigo a apuntar
 
     public GameObject[] enemies;
     public List<GameObject> listado;
@@ -129,13 +129,12 @@ public class Disparo_base : MonoBehaviour
 
                     // Instanciar un proyectil
                     GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-                    Movimien_Bala movimien_Bala = projectile.GetComponent<Movimien_Bala>();
-                    if (movimien_Bala != null)
-                    {
-                        movimien_Bala.target = targetEnemy.transform;
+                    Movimien_Bala movimien_Bala=projectile.GetComponent<Movimien_Bala>();
+                    if(movimien_Bala!=null){
+                        movimien_Bala.target=targetEnemy.transform;
 
                     }
-
+                    
                     // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
                     //yield return new proboca una espera dependiendo de cietos parametros ya sa una condicion se cunpla o pase un tiempo
                     yield return new WaitForSeconds(fireRate);
@@ -190,5 +189,6 @@ public class Disparo_base : MonoBehaviour
             }
         }
     }
+
 
 }
