@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  vida: 5
   speed: 1
   dar: 20
-  vida: 1
   controlJuego: {fileID: 0}

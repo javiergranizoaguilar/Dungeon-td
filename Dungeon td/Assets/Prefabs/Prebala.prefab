@@ -102,7 +102,7 @@ MonoBehaviour:
   speed: 3
   target: {fileID: 0}
   dar: 20
-  danio: 100
+  danio: 1
   vida: 0
   controlJuego: {fileID: 0}
 --- !u!60 &7075213432030076966
