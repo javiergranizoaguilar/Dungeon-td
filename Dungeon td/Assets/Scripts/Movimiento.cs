@@ -8,18 +8,25 @@ public class Movement : MonoBehaviour
 
     public Transform[] waypoints;  // Array de waypoints que definen el camino
     public int vida;
-    static float iSpeed=1;
-    public float speed =iSpeed;     // Velocidad de movimiento del objeto
+    public int vidb;
+    static float iSpeed = 1;
+    public float speed = iSpeed;     // Velocidad de movimiento del objeto
     private int currentWaypoint = 0;
     private string bala = "Bala";
     public double dar = 16;
-    
+
+    public bool Grande = false;
+    public bool invisible = false;
+    public bool regenerable = false;
+
     public ControlJuego controlJuego;
     // Start is called before the first frame update
     void Start()
     {
-        speed*=vida;
-        dar*= vida*1.25;
+        if(!Grande){speed *= vida;}
+        vidb = vida;
+        speed *= vida;
+        dar *= vida * 1.25;
         GameObject gameObject = GameObject.Find("GameManager");
 
         controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
@@ -41,7 +48,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            controlJuego.vidas-=vida;
+            controlJuego.vidas -= vida;
             // Si alcanza el final del camino (fuera de los waypoints)
             Destroy(gameObject); // Destruye el GameObject actual
         }
@@ -52,8 +59,8 @@ public class Movement : MonoBehaviour
         {
             vida -= other.GetComponent<Movimien_Bala>().danio;
             Movimien_Bala movement_bala = (Movimien_Bala)other.gameObject.GetComponent("Movimien_Bala");
-            movement_bala.vida-=vida;
-            speed-= other.GetComponent<Movimien_Bala>().danio*iSpeed;
+            movement_bala.vida -= vidb;
+            speed -= other.GetComponent<Movimien_Bala>().danio * iSpeed;
             if (movement_bala.vida <= 0)
             {
                 Destroy(other.gameObject);
