@@ -9,13 +9,14 @@ public class Movement : MonoBehaviour
     public Transform[] waypoints;  // Array de waypoints que definen el camino
     public int vida;
     public int vidb;
-    static float iSpeed = 1;
-    public float speed = iSpeed;     // Velocidad de movimiento del objeto
+    private static float iSpeed = 2;
+    private float speed = iSpeed;     // Velocidad de movimiento del objeto
     private int currentWaypoint = 0;
     private string bala = "Bala";
     public double dar = 16;
-
-    public bool Grande = false;
+    private float tregener = 5;
+    public bool acorazado = false;
+    public bool grande = false;
     public bool invisible = false;
     public bool regenerable = false;
 
@@ -23,17 +24,21 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!Grande){speed *= vida;}
+        if (!grande) { speed *= vida; }
+        if (acorazado) { vida *= 8; }
         vidb = vida;
-        speed *= vida;
         dar *= vida * 1.25;
         GameObject gameObject = GameObject.Find("GameManager");
 
         controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
     }
-
     // Update is called once per frame
     void Update()
+    {
+        movimiento();
+        regenerar();
+    }
+    public void movimiento()
     {
         if (currentWaypoint < waypoints.Length)
         {
@@ -51,6 +56,19 @@ public class Movement : MonoBehaviour
             controlJuego.vidas -= vida;
             // Si alcanza el final del camino (fuera de los waypoints)
             Destroy(gameObject); // Destruye el GameObject actual
+        }
+    }
+    public void regenerar()
+    {
+        if (regenerable)
+        {
+            if (vidb > vida)
+            {
+                regenerable = false;
+                new WaitForSeconds(tregener);
+                vida += 1;
+                regenerable = true;
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

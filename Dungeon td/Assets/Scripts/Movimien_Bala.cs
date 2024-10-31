@@ -10,6 +10,7 @@ public class Movimien_Bala : MonoBehaviour
     public int dar = 20;
     public int danio;
     public int vida;
+    public bool antiA = false;
     public ControlJuego controlJuego;
 
     // Start is called before the first frame update
@@ -43,8 +44,12 @@ public class Movimien_Bala : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy 1"))
         {
             Movement movement = (Movement)other.gameObject.GetComponent("Movement");
-            vida-=movement.vida;
-            movement.vida -= danio;
+            vida -= movement.vida;
+            if(antiA&&movement.acorazado){
+                movement.vida -= danio*8;
+            }
+            
+            
             if (vida <= 0)
             {
                 Destroy(gameObject);

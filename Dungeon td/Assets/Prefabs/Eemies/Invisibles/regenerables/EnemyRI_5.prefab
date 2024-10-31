@@ -130,7 +130,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833639129043638850}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -166,6 +166,8 @@ MonoBehaviour:
   vidb: 0
   speed: 1
   dar: 16
+  acorazado: 0
+  grande: 0
   invisible: 1
   regenerable: 1
   controlJuego: {fileID: 0}

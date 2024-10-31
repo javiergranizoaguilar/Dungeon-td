@@ -8,28 +8,22 @@ public class Disparo_base : MonoBehaviour
 {
     public GameObject projectilePrefab; // Prefab del proyectil
     public Transform firePoint; // Punto de origen del disparo
-    public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
-    public string enemyTag = "Enemy 1"; // Etiqueta del enemigo a apuntar
-
     public GameObject[] enemies;
     public List<GameObject> listado;
-    public string mono;
-
     public GameObject targetEnemy; // Referencia al objeto enemigo actualmente en la mira
-
     public TowerDragHandler towerDragHandler;
-
     private Coroutine shootingCoroutine;
-
-    float distance;
+    public Color circleColor = Color.red; // Color de la línea
+    private LineRenderer lineRenderer;
+    public string enemyTag = "Enemy 1"; // Etiqueta del enemigo a apuntar
+    public string mono;
+    public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
+    public float distance;
     public float fireRate = 1f;
-
     public float fireDistance = 10.0f;
     public int segments = 50;          // Número de segmentos (cuanto más alto, más suave será el círculo)
-    public Color circleColor = Color.red; // Color de la línea
-
-    private LineRenderer lineRenderer;
     private bool isCircleVisible = false;
+    public bool verIn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +73,10 @@ public class Disparo_base : MonoBehaviour
             float distances = Vector2.Distance(firePoint.transform.position, e.transform.position);
             if (distances <= fireDistance)
             {
-                listado.Add(e);
+                if (!(e.GetComponent<Movement>().invisible && !verIn))
+                {
+                    listado.Add(e);
+                }
             }
         }
 
@@ -129,12 +126,13 @@ public class Disparo_base : MonoBehaviour
 
                     // Instanciar un proyectil
                     GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-                    Movimien_Bala movimien_Bala=projectile.GetComponent<Movimien_Bala>();
-                    if(movimien_Bala!=null){
-                        movimien_Bala.target=targetEnemy.transform;
+                    Movimien_Bala movimien_Bala = projectile.GetComponent<Movimien_Bala>();
+                    if (movimien_Bala != null)
+                    {
+                        movimien_Bala.target = targetEnemy.transform;
 
                     }
-                    
+
                     // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
                     //yield return new proboca una espera dependiendo de cietos parametros ya sa una condicion se cunpla o pase un tiempo
                     yield return new WaitForSeconds(fireRate);
