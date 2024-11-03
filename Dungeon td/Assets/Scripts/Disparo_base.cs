@@ -9,8 +9,9 @@ public class Disparo_base : MonoBehaviour
     public GameObject projectilePrefab; // Prefab del proyectil
     public Transform firePoint; // Punto de origen del disparo
     public GameObject[] enemies;
+    GameObject stop;
+    public GameObject targetEnemy; // Referencia al objeto enemigo actualmente en la mira 
     public List<GameObject> listado;
-    public GameObject targetEnemy; // Referencia al objeto enemigo actualmente en la mira
     public TowerDragHandler towerDragHandler;
     private Coroutine shootingCoroutine;
     public Color circleColor = Color.red; // Color de la línea
@@ -113,38 +114,46 @@ public class Disparo_base : MonoBehaviour
     //el IEnumerator define una corrutina 
     IEnumerator Shoot()
     {
+        stop = GameObject.Find("Stop");
         while (true)
         {
-
-            // busca si hay enemigos en pantalla
-            if (targetEnemy != null)
+            if (!stop.GetComponent<Stoper>().stoped)
             {
-                //si los hay busca la distancia si es menor a la indicada dispara si es mallor no 
 
-                if (distance <= fireDistance)
+                // busca si hay enemigos en pantalla
+                if (targetEnemy != null)
                 {
+                    //si los hay busca la distancia si es menor a la indicada dispara si es mallor no 
 
-                    // Instanciar un proyectil
-                    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-                    Movimien_Bala movimien_Bala = projectile.GetComponent<Movimien_Bala>();
-                    if (movimien_Bala != null)
+                    if (distance <= fireDistance)
                     {
-                        movimien_Bala.target = targetEnemy.transform;
 
+                        // Instanciar un proyectil
+                        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+                        Movimien_Bala movimien_Bala = projectile.GetComponent<Movimien_Bala>();
+                        if (movimien_Bala != null)
+                        {
+                            movimien_Bala.target = targetEnemy.transform;
+
+                        }
+
+                        // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
+                        //yield return new proboca una espera dependiendo de cietos parametros ya sa una condicion se cunpla o pase un tiempo
+                        yield return new WaitForSeconds(fireRate);
                     }
-
-                    // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
-                    //yield return new proboca una espera dependiendo de cietos parametros ya sa una condicion se cunpla o pase un tiempo
-                    yield return new WaitForSeconds(fireRate);
+                    else
+                    {
+                        yield return new WaitUntil(() => (distance <= fireDistance));
+                    }
                 }
                 else
                 {
-                    yield return new WaitUntil(() => (distance <= fireDistance));
+                    yield return new WaitUntil(() => (targetEnemy != null));
                 }
             }
             else
             {
-                yield return new WaitUntil(() => (targetEnemy != null));
+                yield return new WaitUntil(() => (stop.GetComponent<Stoper>().stoped == false));
             }
         }
     }

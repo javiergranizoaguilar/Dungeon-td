@@ -162,17 +162,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2170817789205473844, guid: 74b792e1ed7e6dc4183cf40a54162197, type: 3}
   firePoint: {fileID: 0}
-  rotationSpeed: 2000
-  enemyTag: Enemy 1
   enemies: []
-  listado: []
-  mono: Basic
   targetEnemy: {fileID: 0}
+  listado: []
   towerDragHandler: {fileID: 0}
+  circleColor: {r: 1, g: 0, b: 0, a: 1}
+  enemyTag: Enemy 1
+  mono: Basic
+  rotationSpeed: 2000
+  distance: 0
   fireRate: 1
   fireDistance: 10
   segments: 50
-  circleColor: {r: 1, g: 0, b: 0, a: 1}
+  verIn: 0
 --- !u!120 &5499263214056331586
 LineRenderer:
   serializedVersion: 2

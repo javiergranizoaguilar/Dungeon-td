@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Movimien_Bala : MonoBehaviour
 {
-    public float speed = 5f;
+    public static float speeds=5;
+    public float speed;
     public Transform target;
     private Vector3 direction;
     public int dar = 20;
@@ -14,8 +15,12 @@ public class Movimien_Bala : MonoBehaviour
     public ControlJuego controlJuego;
 
     // Start is called before the first frame update
+    public void putSpeeds(){
+        speed = speeds;
+    }
     void Start()
     {
+        putSpeeds();
         // Calculate the direction to the enemy
         direction = (target.position - transform.position).normalized;
         GameObject gameObject = GameObject.Find("GameManager");

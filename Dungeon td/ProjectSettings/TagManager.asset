@@ -8,6 +8,7 @@ TagManager:
   - Personaje
   - Bala
   - Buton Basic
+  - Stop
   layers:
   - Default
   - TransparentFX

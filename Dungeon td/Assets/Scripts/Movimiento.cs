@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     public int vida;
     public int vidb;
     private static float iSpeed = 2;
-    private float speed = iSpeed;     // Velocidad de movimiento del objeto
+    public float speed = iSpeed;     // Velocidad de movimiento del objeto
     private int currentWaypoint = 0;
     private string bala = "Bala";
     public double dar = 16;
@@ -22,9 +22,12 @@ public class Movement : MonoBehaviour
 
     public ControlJuego controlJuego;
     // Start is called before the first frame update
+    public void putSpeeds(){
+        speed*=vida;
+    }
     void Start()
     {
-        if (!grande) { speed *= vida; }
+        if (!grande) { putSpeeds(); }
         if (acorazado) { vida *= 8; }
         vidb = vida;
         dar *= vida * 1.25;
