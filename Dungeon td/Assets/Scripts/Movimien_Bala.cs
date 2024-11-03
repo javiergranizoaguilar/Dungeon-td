@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Movimien_Bala : MonoBehaviour
 {
-    public static float speeds=5;
+    public float speeds;
     public float speed;
     public Transform target;
     private Vector3 direction;
     public int dar = 20;
-    public int danio;
+    public int danio=1;
     public int vida;
     public bool antiA = false;
     public ControlJuego controlJuego;
-
     // Start is called before the first frame update
-    public void putSpeeds(){
+    public void putSpeeds()
+    {
         speed = speeds;
     }
     void Start()
@@ -50,11 +50,12 @@ public class Movimien_Bala : MonoBehaviour
         {
             Movement movement = (Movement)other.gameObject.GetComponent("Movement");
             vida -= movement.vida;
-            if(antiA&&movement.acorazado){
-                movement.vida -= danio*8;
+            if (antiA && movement.acorazado)
+            {
+                movement.vida -= danio * 8;
             }
-            
-            
+
+
             if (vida <= 0)
             {
                 Destroy(gameObject);

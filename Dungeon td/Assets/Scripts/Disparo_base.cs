@@ -20,12 +20,17 @@ public class Disparo_base : MonoBehaviour
     public string mono;
     public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
     public float distance;
-    public float fireRate = 1f;
-    public float fireDistance = 10.0f;
+    public float fireRate = 4f;
+    public float speedB =5;
+    public float fireDistance =3;
+    public int danio=1;
     public int segments = 50;          // Número de segmentos (cuanto más alto, más suave será el círculo)
     private bool isCircleVisible = false;
     public bool verIn = false;
+    public bool antiA=false;
     // Start is called before the first frame update
+    public int mejoraA = 0;
+    public int mejoraB = 0;
     void Start()
     {
         firePoint = gameObject.transform;
@@ -134,7 +139,9 @@ public class Disparo_base : MonoBehaviour
                         if (movimien_Bala != null)
                         {
                             movimien_Bala.target = targetEnemy.transform;
-
+                            movimien_Bala.speeds=speedB;
+                            movimien_Bala.danio=danio;
+                            movimien_Bala.antiA=antiA;
                         }
 
                         // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
@@ -196,6 +203,6 @@ public class Disparo_base : MonoBehaviour
             }
         }
     }
-
-
 }
+
+

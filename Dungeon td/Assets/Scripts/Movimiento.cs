@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     public int vida;
     public int vidb;
     private static float iSpeed = 2;
-    public float speed = iSpeed;     // Velocidad de movimiento del objeto
+    public float speed;     // Velocidad de movimiento del objeto
     private int currentWaypoint = 0;
     private string bala = "Bala";
     public double dar = 16;
@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     public ControlJuego controlJuego;
     // Start is called before the first frame update
     public void putSpeeds(){
-        speed*=vida;
+        speed=iSpeed*vida;
     }
     void Start()
     {
