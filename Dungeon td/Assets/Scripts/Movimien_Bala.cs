@@ -12,6 +12,7 @@ public class Movimien_Bala : MonoBehaviour
     public int danio=1;
     public int vida;
     public bool antiA = false;
+    public bool verIn= false;
     public ControlJuego controlJuego;
     // Start is called before the first frame update
     public void putSpeeds()
@@ -27,7 +28,7 @@ public class Movimien_Bala : MonoBehaviour
 
         controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
         vida = danio;
-
+        
     }
 
     // Update is called once per frame

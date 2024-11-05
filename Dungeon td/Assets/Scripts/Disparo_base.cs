@@ -142,6 +142,7 @@ public class Disparo_base : MonoBehaviour
                             movimien_Bala.speeds=speedB;
                             movimien_Bala.danio=danio;
                             movimien_Bala.antiA=antiA;
+                            movimien_Bala.verIn=verIn;
                         }
 
                         // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 

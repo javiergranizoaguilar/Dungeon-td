@@ -1128,7 +1128,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 246718818}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230333870}
+        m_TargetAssemblyTypeName: Mejorasbasicas, Assembly-CSharp
+        m_MethodName: ButonB2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &246718818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2057,7 +2069,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 809258691}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230333870}
+        m_TargetAssemblyTypeName: Mejorasbasicas, Assembly-CSharp
+        m_MethodName: ButonA3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &809258691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,7 +2202,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 810781408}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230333870}
+        m_TargetAssemblyTypeName: Mejorasbasicas, Assembly-CSharp
+        m_MethodName: ButonA2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &810781408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,7 +2528,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 894273250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230333870}
+        m_TargetAssemblyTypeName: Mejorasbasicas, Assembly-CSharp
+        m_MethodName: ButonB3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &894273250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7712,7 +7760,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 979930090}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230333870}
+        m_TargetAssemblyTypeName: Mejorasbasicas, Assembly-CSharp
+        m_MethodName: ButonB1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &979930090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8038,6 +8098,7 @@ MonoBehaviour:
   - {fileID: 4143726098768750426, guid: d776bb4e8a97e8a49875b3fc5a78bdc7, type: 3}
   - {fileID: 3951100463903333537, guid: 3ddfe1c4af596d843bc3f5d8d7830284, type: 3}
   - {fileID: 6714084487393325696, guid: c6e9f4122fda21b45a4520202e4b7186, type: 3}
+  - {fileID: 7106119866763602464, guid: f99f21437372f1b48a2c508f35534fdb, type: 3}
   - {fileID: 3777747498576236306, guid: ebdd3b0ca90239547a19f118c16e31cd, type: 3}
   - {fileID: 7565074552707600675, guid: 1c3a107b0f5f53e4bb06da363d6f739c, type: 3}
   spawnPoint: {fileID: 1179896145}
