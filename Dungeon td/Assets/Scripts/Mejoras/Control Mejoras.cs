@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Control_mejoras : MonoBehaviour
 {
@@ -9,14 +10,16 @@ public class Control_mejoras : MonoBehaviour
     public GameObject torre;
     public Disparo_base db;
     public GameObject[] butons;
+    private Color colorOriginal= Color.white;
     // Start is called before the first frame update
     void Start()
     {
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
+
         MejoraShow();
     }
     public void MejoraShow()
@@ -31,7 +34,7 @@ public class Control_mejoras : MonoBehaviour
                 if (hit.collider != null && hit.collider.gameObject == GameObject.FindGameObjectWithTag("Personaje"))
                 {
                     torre = hit.collider.gameObject;
-                    db=torre.GetComponent<Disparo_base>();
+                    db = torre.GetComponent<Disparo_base>();
                     canvas.SetActive(true);
                 }
             }
@@ -48,10 +51,12 @@ public class Control_mejoras : MonoBehaviour
         foreach (GameObject b in butons)
         {
             b.SetActive(false);
+            b.GetComponent<Image>().color = colorOriginal;
         }
         if (db.mejoraB >= 2)
         {
             butons[0].SetActive(true);
+            butons[0].GetComponent<Image>().color = Color.red;
         }
         else
         {
@@ -74,6 +79,7 @@ public class Control_mejoras : MonoBehaviour
         if (db.mejoraA >= 2)
         {
             butons[5].SetActive(true);
+            butons[5].GetComponent<Image>().color = Color.red;
         }
         else
         {

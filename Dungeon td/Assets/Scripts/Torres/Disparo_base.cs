@@ -31,6 +31,10 @@ public class Disparo_base : MonoBehaviour
     // Start is called before the first frame update
     public int mejoraA = 0;
     public int mejoraB = 0;
+    public int[] DmejoraA;
+    public int[] DmejoraB;
+    public string[] InfoA;
+    public string[] InfoB;
     void Start()
     {
         firePoint = gameObject.transform;
@@ -48,7 +52,6 @@ public class Disparo_base : MonoBehaviour
         DrawCircle();
 
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -93,7 +96,6 @@ public class Disparo_base : MonoBehaviour
             listado.Clear();
         }
     }
-
     public void StartShooting()
     {
         // Si la torre no está siendo arrastrada (isDragging es false) y no hay una corutina de disparo activa
@@ -105,7 +107,6 @@ public class Disparo_base : MonoBehaviour
             shootingCoroutine = StartCoroutine(Shoot());
         }
     }
-
     public void StopShooting()
     {
         // Detener el disparo cuando la torre es desactivada o eliminada
@@ -115,7 +116,6 @@ public class Disparo_base : MonoBehaviour
             shootingCoroutine = null;
         }
     }
-
     //el IEnumerator define una corrutina 
     IEnumerator Shoot()
     {

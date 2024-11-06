@@ -39,7 +39,7 @@ public class oleadas : MonoBehaviour
             }
 
             // Esperar hasta que todos los enemigos sean destruidos
-            new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
+            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
 
             // Incrementar la ronda o agregar lógica para iniciar la siguiente
             controlJuego.rondas++;

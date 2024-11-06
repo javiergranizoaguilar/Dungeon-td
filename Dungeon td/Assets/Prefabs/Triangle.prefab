@@ -175,10 +175,18 @@ MonoBehaviour:
   fireRate: 1
   speedB: 5
   fireDistance: 3
+  danio: 1
   segments: 50
   verIn: 0
+  antiA: 0
   mejoraA: 0
   mejoraB: 0
+  DmejoraA: e8030000a00f0000401f0000
+  DmejoraB: e8030000a00f0000401f0000
+  InfoA:
+  - si
+  InfoB:
+  - si
 --- !u!120 &5499263214056331586
 LineRenderer:
   serializedVersion: 2
