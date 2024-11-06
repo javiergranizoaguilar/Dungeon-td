@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     public int vidb;
     private static float iSpeed = 2;
     public float speed;     // Velocidad de movimiento del objeto
-    private int currentWaypoint = 0;
+    public int currentWaypoint = 0;
     private string bala = "Bala";
     public double dar = 16;
     private float tregener = 5;
@@ -19,11 +19,12 @@ public class Movement : MonoBehaviour
     public bool grande = false;
     public bool invisible = false;
     public bool regenerable = false;
-
+    public float puntoC=0;
     public ControlJuego controlJuego;
     // Start is called before the first frame update
-    public void putSpeeds(){
-        speed=iSpeed*vida;
+    public void putSpeeds()
+    {
+        speed = iSpeed * vida;
     }
     void Start()
     {
@@ -51,6 +52,7 @@ public class Movement : MonoBehaviour
             // Si el objeto alcanza el waypoint actual, pasa al siguiente
             if (Vector2.Distance(transform.position, waypoints[currentWaypoint].position) < 0.1f)
             {
+                puntoC=Vector2.Distance(transform.position, waypoints[currentWaypoint].position);
                 currentWaypoint++;
             }
         }

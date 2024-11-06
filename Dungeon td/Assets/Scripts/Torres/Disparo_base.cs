@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(LineRenderer))]
@@ -21,13 +22,13 @@ public class Disparo_base : MonoBehaviour
     public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
     public float distance;
     public float fireRate = 4f;
-    public float speedB =5;
-    public float fireDistance =3;
-    public int danio=1;
+    public float speedB = 5;
+    public float fireDistance = 3;
+    public int danio = 1;
     public int segments = 50;          // Número de segmentos (cuanto más alto, más suave será el círculo)
     private bool isCircleVisible = false;
     public bool verIn = false;
-    public bool antiA=false;
+    public bool antiA = false;
     // Start is called before the first frame update
     public int mejoraA = 0;
     public int mejoraB = 0;
@@ -35,6 +36,7 @@ public class Disparo_base : MonoBehaviour
     public int[] DmejoraB;
     public string[] InfoA;
     public string[] InfoB;
+    private List<GameObject> listadores;
     void Start()
     {
         firePoint = gameObject.transform;
@@ -76,7 +78,6 @@ public class Disparo_base : MonoBehaviour
     {
         // Buscar el objeto enemigo con la etiqueta especificada
         enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-
         foreach (GameObject e in enemies)
         {
             float distances = Vector2.Distance(firePoint.transform.position, e.transform.position);
@@ -88,13 +89,31 @@ public class Disparo_base : MonoBehaviour
                 }
             }
         }
-
+        listado= ordenaMayorMenos(listado);
         if (listado.Count > 0)
         {
             targetEnemy = listado[0]; // Seleccionar el primer objeto enemigo encontrado
             distance = Vector2.Distance(firePoint.transform.position, targetEnemy.transform.position);
             listado.Clear();
         }
+    }
+    public List<GameObject> ordenaMayorMenos(List<GameObject> listador)
+    {
+        listador.OrderByDescending(e => e.GetComponent<Movement>().currentWaypoint).ToList();
+
+        foreach (GameObject e in listador)
+        {
+            if (listador[0].GetComponent<Movement>().currentWaypoint == e.GetComponent<Movement>().currentWaypoint)
+            {
+                listadores.Add(e);
+            }
+        }
+        if (listadores.Count > 1)
+        {
+            listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC);
+        }
+        return listadores;
+
     }
     public void StartShooting()
     {
@@ -107,6 +126,7 @@ public class Disparo_base : MonoBehaviour
             shootingCoroutine = StartCoroutine(Shoot());
         }
     }
+
     public void StopShooting()
     {
         // Detener el disparo cuando la torre es desactivada o eliminada
@@ -139,10 +159,10 @@ public class Disparo_base : MonoBehaviour
                         if (movimien_Bala != null)
                         {
                             movimien_Bala.target = targetEnemy.transform;
-                            movimien_Bala.speeds=speedB;
-                            movimien_Bala.danio=danio;
-                            movimien_Bala.antiA=antiA;
-                            movimien_Bala.verIn=verIn;
+                            movimien_Bala.speeds = speedB;
+                            movimien_Bala.danio = danio;
+                            movimien_Bala.antiA = antiA;
+                            movimien_Bala.verIn = verIn;
                         }
 
                         // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
