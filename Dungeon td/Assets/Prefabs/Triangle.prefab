@@ -164,19 +164,17 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2170817789205473844, guid: 74b792e1ed7e6dc4183cf40a54162197, type: 3}
   firePoint: {fileID: 0}
   enemies: []
+  stop: {fileID: 0}
   targetEnemy: {fileID: 0}
   listado: []
   towerDragHandler: {fileID: 0}
-  circleColor: {r: 1, g: 0, b: 0, a: 1}
   enemyTag: Enemy 1
   mono: Basic
-  rotationSpeed: 2000
   distance: 0
   fireRate: 1
   speedB: 5
   fireDistance: 3
   danio: 1
-  segments: 50
   verIn: 0
   antiA: 0
   mejoraA: 0
@@ -185,7 +183,11 @@ MonoBehaviour:
   DmejoraB: e8030000a00f0000401f0000
   InfoA:
   - si
+  - si
+  - si
   InfoB:
+  - si
+  - si
   - si
 --- !u!120 &5499263214056331586
 LineRenderer:

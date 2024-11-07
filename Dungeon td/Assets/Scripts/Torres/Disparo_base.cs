@@ -10,22 +10,21 @@ public class Disparo_base : MonoBehaviour
     public GameObject projectilePrefab; // Prefab del proyectil
     public Transform firePoint; // Punto de origen del disparo
     public GameObject[] enemies;
-    GameObject stop;
+    public GameObject stop;
     public GameObject targetEnemy; // Referencia al objeto enemigo actualmente en la mira 
     public List<GameObject> listado;
     public TowerDragHandler towerDragHandler;
     private Coroutine shootingCoroutine;
-    public Color circleColor = Color.red; // Color de la línea
+    private Color circleColor = Color.red; // Color de la línea
     private LineRenderer lineRenderer;
     public string enemyTag = "Enemy 1"; // Etiqueta del enemigo a apuntar
     public string mono;
-    public float rotationSpeed = 2000f; // Velocidad de rotación hacia el objetivo
     public float distance;
     public float fireRate = 4f;
     public float speedB = 5;
     public float fireDistance = 3;
     public int danio = 1;
-    public int segments = 50;          // Número de segmentos (cuanto más alto, más suave será el círculo)
+    private int segments = 50;          // Número de segmentos (cuanto más alto, más suave será el círculo)
     private bool isCircleVisible = false;
     public bool verIn = false;
     public bool antiA = false;
@@ -36,7 +35,7 @@ public class Disparo_base : MonoBehaviour
     public int[] DmejoraB;
     public string[] InfoA;
     public string[] InfoB;
-    private List<GameObject> listadores= new List<GameObject>();
+    private List<GameObject> listadores = new List<GameObject>();
     void Start()
     {
         firePoint = gameObject.transform;
@@ -89,7 +88,7 @@ public class Disparo_base : MonoBehaviour
                 }
             }
         }
-        listado= ordenaMayorMenos(listado);
+        listado = ordenaMayorMenos(listado);
         if (listado.Count > 0)
         {
             targetEnemy = listado[0]; // Seleccionar el primer objeto enemigo encontrado
@@ -99,7 +98,7 @@ public class Disparo_base : MonoBehaviour
     }
     public List<GameObject> ordenaMayorMenos(List<GameObject> listador)
     {
-        listador=listador.OrderByDescending(e => e.GetComponent<Movement>().currentWaypoint).ToList();
+        listador = listador.OrderByDescending(e => e.GetComponent<Movement>().currentWaypoint).ToList();
 
         foreach (GameObject e in listador)
         {
@@ -110,7 +109,7 @@ public class Disparo_base : MonoBehaviour
         }
         if (listadores.Count > 1)
         {
-            listadores=listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC).ToList();
+            listadores = listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC).ToList();
         }
         return listadores;
 
