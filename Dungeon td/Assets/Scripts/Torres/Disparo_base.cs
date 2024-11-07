@@ -36,7 +36,7 @@ public class Disparo_base : MonoBehaviour
     public int[] DmejoraB;
     public string[] InfoA;
     public string[] InfoB;
-    private List<GameObject> listadores;
+    private List<GameObject> listadores= new List<GameObject>();
     void Start()
     {
         firePoint = gameObject.transform;
@@ -99,7 +99,7 @@ public class Disparo_base : MonoBehaviour
     }
     public List<GameObject> ordenaMayorMenos(List<GameObject> listador)
     {
-        listador.OrderByDescending(e => e.GetComponent<Movement>().currentWaypoint).ToList();
+        listador=listador.OrderByDescending(e => e.GetComponent<Movement>().currentWaypoint).ToList();
 
         foreach (GameObject e in listador)
         {
@@ -110,7 +110,7 @@ public class Disparo_base : MonoBehaviour
         }
         if (listadores.Count > 1)
         {
-            listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC);
+            listadores=listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC).ToList();
         }
         return listadores;
 

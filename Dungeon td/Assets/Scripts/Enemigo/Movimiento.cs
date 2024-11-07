@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     public int currentWaypoint = 0;
     private string bala = "Bala";
     public double dar = 16;
-    private float tregener = 5;
+    private float TRegener = 5;
     public bool acorazado = false;
     public bool grande = false;
     public bool invisible = false;
@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
             if (vidb > vida)
             {
                 regenerable = false;
-                new WaitForSeconds(tregener);
+                new WaitForSeconds(TRegener);
                 vida += 1;
                 regenerable = true;
             }
