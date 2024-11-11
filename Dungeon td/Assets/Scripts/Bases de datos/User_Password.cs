@@ -9,12 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class User_Password : MonoBehaviour
 {
+    public static int IdNombre;
     private SQLiteConnection db;
-    public InputField User;
-    public InputField Password;
-    public GameObject BotonVerificar;
-    public GameObject BotonCrear;
-    public GameObject TextNoUser;
+
 
     void Start()
     {
@@ -34,7 +31,7 @@ public class User_Password : MonoBehaviour
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
+        public int nivel { get; set; }
         public int Dificultad { get; set; }
         public bool Desbloqueado { get; set; }
         public int Puntos { get; set; }
@@ -53,14 +50,14 @@ public class User_Password : MonoBehaviour
         var usuario = db.Table<Usuario>().FirstOrDefault(u => u.Nombre == nombreUsuario && u.Contrasena == contrasena);
         return usuario != null;
     }
-    public void VerifyUser()
+    public void VerifyUser(string User, string Password)
     {
-        string nombreUsuario = User.text;
-        string contrasena = Password.text;
+        string nombreUsuario = User;
+        string contrasena = Password;
         bool loginExitoso = VerificarCredenciales(nombreUsuario, contrasena);
-
         if (loginExitoso)
         {
+            IdNombre = ObtenerUsuarioPorNombre(nombreUsuario).Id;
             SceneManager.LoadScene("Menu_Inicial");
         }
     }
@@ -104,10 +101,10 @@ public class User_Password : MonoBehaviour
             Debug.Log("La base de datos ya existe. Cargando datos existentes.");
         }
     }
-    public void CrearUser()
+    public void CrearUser(string user, string Password)
     {
-        Usuario usuarioEjemplo = new Usuario { Nombre = User.text, Contrasena = Password.text};
-        Nivel nivelEjemplo = new Nivel { Dificultad = 1, Desbloqueado = true, Puntos = 0 };
+        Usuario usuarioEjemplo = new Usuario { Nombre = user, Contrasena = Password };
+        Nivel nivelEjemplo = new Nivel { nivel=1,Dificultad = 1, Desbloqueado = true, Puntos = 0 };
 
         // Inserta ejemplos en las tablas
         db.Insert(usuarioEjemplo);
@@ -116,19 +113,47 @@ public class User_Password : MonoBehaviour
         // Inserta la relación de acceso
         Acceso accesoEjemplo = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo.Id };
         db.Insert(accesoEjemplo);
-
-        CambiarVerificar();
     }
-    public void CambiarCrear()
+    public Usuario ObtenerUsuarioPorNombre(string nombre)
     {
-        BotonCrear.SetActive(true);
-        BotonVerificar.SetActive(false);
-        TextNoUser.SetActive(false);
+        // Hacer una consulta para obtener el usuario con el nombre especificado
+        return db.Table<Usuario>().FirstOrDefault(u => u.Nombre == nombre);
     }
-    public void CambiarVerificar()
+    public Usuario ObtenerUsuarioPorId(int id)
     {
-        BotonCrear.SetActive(false);
-        BotonVerificar.SetActive(true);
-        TextNoUser.SetActive(true);
+        // Busca el usuario en la base de datos usando el Id
+        return db.Table<Usuario>().FirstOrDefault(u => u.Id == id);
+    }
+    public bool ChangePassword(String OldPassword, String NewPassword, String RepeatPassword)
+    {
+        Usuario usuarioEncontrado = ObtenerUsuarioPorId(IdNombre);
+        return (usuarioEncontrado.Contrasena.Equals(OldPassword)) && (NewPassword.Equals(RepeatPassword));
+    }
+    public void CambiarContrasenia(string nuevaContrasena)
+    {
+        // Busca el usuario por Id
+        Usuario usuario = ObtenerUsuarioPorId(IdNombre);
+        if (usuario != null)
+        {
+            // Si el usuario existe, actualiza la contraseña
+            usuario.Contrasena = nuevaContrasena;
+            db.Update(usuario); // Guarda los cambios en la base de datos
+        }
+    }
+    public void CambiarName(string nuevoNombre)
+    {
+        // Busca el usuario por Id
+        Usuario usuario = ObtenerUsuarioPorId(IdNombre);
+        if (usuario != null)
+        {
+            // Si el usuario existe, actualiza la contraseña
+            usuario.Nombre = nuevoNombre;
+            db.Update(usuario); // Guarda los cambios en la base de datos
+        }
+    }
+    public bool ChangeName(String NewPassword, String RepeatPassword)
+    {
+        Usuario usuarioEncontrado = ObtenerUsuarioPorId(IdNombre);
+        return NewPassword.Equals(RepeatPassword);
     }
 }

@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 109994866}
   - component: {fileID: 109994865}
+  - component: {fileID: 109994867}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -152,11 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf78de3298208a47a9c8cc72a683001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  User: {fileID: 156634675}
-  Password: {fileID: 1737295655}
-  BotonVerificar: {fileID: 1064157810}
-  BotonCrear: {fileID: 1967385281}
-  TextNoUser: {fileID: 791573482}
 --- !u!4 &109994866
 Transform:
   m_ObjectHideFlags: 0
@@ -172,6 +168,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &109994867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109994864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed82e1789ca07649aee9ecdd0975fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  User: {fileID: 156634675}
+  Password: {fileID: 1737295655}
+  BotonVerificar: {fileID: 1064157810}
+  BotonCrear: {fileID: 1967385281}
+  TextNoUser: {fileID: 791573482}
+  user_Password: {fileID: 109994865}
 --- !u!1 &144292561
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,8 +689,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 109994865}
-          m_TargetAssemblyTypeName: User_Password, Assembly-CSharp
+        - m_Target: {fileID: 109994867}
+          m_TargetAssemblyTypeName: Menu_User, Assembly-CSharp
           m_MethodName: CambiarCrear
           m_Mode: 1
           m_Arguments:
@@ -1020,9 +1034,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 109994865}
-        m_TargetAssemblyTypeName: User_Password, Assembly-CSharp
-        m_MethodName: VerifyUser
+      - m_Target: {fileID: 109994867}
+        m_TargetAssemblyTypeName: Menu_User, Assembly-CSharp
+        m_MethodName: Verifica
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1875,9 +1889,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 109994865}
-        m_TargetAssemblyTypeName: User_Password, Assembly-CSharp
-        m_MethodName: CrearUser
+      - m_Target: {fileID: 109994867}
+        m_TargetAssemblyTypeName: Menu_User, Assembly-CSharp
+        m_MethodName: CambiarVerificar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
