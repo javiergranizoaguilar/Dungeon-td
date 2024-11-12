@@ -10,11 +10,10 @@ public class Menu_User : MonoBehaviour
     public GameObject BotonVerificar;
     public GameObject BotonCrear;
     public GameObject TextNoUser;
-    public User_Password user_Password;
+    public BaseDatos user_Password;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame

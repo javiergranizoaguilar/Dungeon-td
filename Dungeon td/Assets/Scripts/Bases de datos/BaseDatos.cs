@@ -6,8 +6,9 @@ using System;
 using UnityEngine.UI;
 using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
-public class User_Password : MonoBehaviour
+public class BaseDatos : MonoBehaviour
 {
     public static int IdNombre;
     private SQLiteConnection db;
@@ -16,50 +17,6 @@ public class User_Password : MonoBehaviour
     void Start()
     {
         CrearDB();
-    }
-    public class Usuario
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        [Unique]
-        public string Nombre { get; set; }
-
-        public string Contrasena { get; set; }
-    }
-    public class Nivel
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public int nivel { get; set; }
-        public int Dificultad { get; set; }
-        public bool Desbloqueado { get; set; }
-        public int Puntos { get; set; }
-    }
-    public class Acceso
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        public int UsuarioId { get; set; } // Foreign Key a Usuario
-        public int NivelId { get; set; }   // Foreign Key a Nivel
-    }
-    // Función para verificar las credenciales
-    private bool VerificarCredenciales(string nombreUsuario, string contrasena)
-    {
-        var usuario = db.Table<Usuario>().FirstOrDefault(u => u.Nombre == nombreUsuario && u.Contrasena == contrasena);
-        return usuario != null;
-    }
-    public void VerifyUser(string User, string Password)
-    {
-        string nombreUsuario = User;
-        string contrasena = Password;
-        bool loginExitoso = VerificarCredenciales(nombreUsuario, contrasena);
-        if (loginExitoso)
-        {
-            IdNombre = ObtenerUsuarioPorNombre(nombreUsuario).Id;
-            SceneManager.LoadScene("Menu_Inicial");
-        }
     }
     public void CrearDB()
     {
@@ -101,10 +58,48 @@ public class User_Password : MonoBehaviour
             Debug.Log("La base de datos ya existe. Cargando datos existentes.");
         }
     }
+
+    public class Acceso
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        public int UsuarioId { get; set; } // Foreign Key a Usuario
+        public int NivelId { get; set; }   // Foreign Key a Nivel
+    }
+    // Función para verificar las credenciales
+    public class Usuario
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        [Unique]
+        public string Nombre { get; set; }
+
+        public string Contrasena { get; set; }
+    }
+
+    private bool VerificarCredenciales(string nombreUsuario, string contrasena)
+    {
+        var usuario = db.Table<Usuario>().FirstOrDefault(u => u.Nombre == nombreUsuario && u.Contrasena == contrasena);
+        return usuario != null;
+    }
+    public void VerifyUser(string User, string Password)
+    {
+        string nombreUsuario = User;
+        string contrasena = Password;
+        bool loginExitoso = VerificarCredenciales(nombreUsuario, contrasena);
+        if (loginExitoso)
+        {
+            IdNombre = ObtenerUsuarioPorNombre(nombreUsuario).Id;
+            SceneManager.LoadScene("Menu_Inicial");
+        }
+    }
+
     public void CrearUser(string user, string Password)
     {
         Usuario usuarioEjemplo = new Usuario { Nombre = user, Contrasena = Password };
-        Nivel nivelEjemplo = new Nivel { nivel=1,Dificultad = 1, Desbloqueado = true, Puntos = 0 };
+        Nivel nivelEjemplo = new Nivel { nivel = 1, Dificultad = 1, Desbloqueado = true, Puntos = 0 };
 
         // Inserta ejemplos en las tablas
         db.Insert(usuarioEjemplo);
@@ -156,4 +151,32 @@ public class User_Password : MonoBehaviour
         Usuario usuarioEncontrado = ObtenerUsuarioPorId(IdNombre);
         return NewPassword.Equals(RepeatPassword);
     }
+
+    public class Nivel
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public int nivel { get; set; }
+        public int Dificultad { get; set; }
+        public bool Desbloqueado { get; set; }
+        public int Puntos { get; set; }
+    }
+    public List<Nivel> ObtenerNivelesPorUsuario()
+    {
+        int idNombre=IdNombre;
+        var accesos = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
+        var niveles = new List<Nivel>();
+
+        foreach (var acceso in accesos)
+        {
+            var nivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == acceso.NivelId);
+            if (nivel != null)
+            {
+                niveles.Add(nivel);
+            }
+        }
+
+        return niveles;
+    }
+
 }

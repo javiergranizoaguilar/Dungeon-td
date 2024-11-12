@@ -17,7 +17,7 @@ public class Menu_Inicial : MonoBehaviour
     public InputField NewName;
     public InputField Password;
     public InputField RepeatPassword;
-    public User_Password user_Password;
+    public BaseDatos user_Password;
 
     // Start is called before the first frame update
     void Start()
