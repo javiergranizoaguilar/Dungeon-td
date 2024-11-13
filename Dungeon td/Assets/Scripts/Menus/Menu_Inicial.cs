@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class Menu_Inicial : MonoBehaviour
     public InputField NewName;
     public InputField Password;
     public InputField RepeatPassword;
+    public TextMeshProUGUI TextoErrorC;
+    public TextMeshProUGUI TextoErrorN;
     public BaseDatos user_Password;
 
     // Start is called before the first frame update
@@ -94,19 +97,43 @@ public class Menu_Inicial : MonoBehaviour
     }
     public void CambiarContrasenia()
     {
-        if (user_Password.ChangePassword(OldPassword.text, NewPassword.text, RepeatNewPassword.text))
+        
+        if (user_Password.ComprobarChangePassword(OldPassword.text, NewPassword.text, RepeatNewPassword.text))
         {
             user_Password.CambiarContrasenia(NewPassword.text);
             SalirUsuario();
         }
+        else
+        {
+            TextoErrorC.text = "Error la contraseña Nueva y La Contrasña que a repetido son diferentes";
+        }
+        Blanquear();
     }
     public void CambiarNombre()
     {
-        if (user_Password.ChangeName(Password.text,RepeatPassword.text))
+        
+        if (user_Password.ComprobarChangeName(Password.text, RepeatPassword.text))
         {
             user_Password.CambiarName(NewName.text);
+
             SalirUsuario();
         }
+        else
+        {
+            TextoErrorN.text = "Error la contraseña Nueva y La Contrasña que a repetido son diferentes";
+        }
+        Blanquear();
+    }
+    public void Blanquear()
+    {
+        OldPassword.text = "";
+        NewPassword.text = "";
+        RepeatNewPassword.text = "";
+        NewName.text = "";
+        Password.text = "";
+        RepeatPassword.text = ""; 
+        TextoErrorC.text = "";
+        TextoErrorN.text = "";
     }
 
 }

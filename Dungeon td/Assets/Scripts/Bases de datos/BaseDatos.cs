@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using TMPro;
 
 public class BaseDatos : MonoBehaviour
 {
@@ -41,21 +42,9 @@ public class BaseDatos : MonoBehaviour
 
             // Datos de ejemplo
             Usuario usuarioEjemplo = new Usuario { Nombre = "Juan", Contrasena = "1234" };
-            Nivel nivelEjemplo = new Nivel { Dificultad = 1, Desbloqueado = true, Puntos = 0 };
-
-            // Inserta ejemplos en las tablas
             db.Insert(usuarioEjemplo);
-            db.Insert(nivelEjemplo);
+            CrearDatabaseNiveles(usuarioEjemplo);
 
-            // Inserta la relación de acceso
-            Acceso accesoEjemplo = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo.Id };
-            db.Insert(accesoEjemplo);
-
-            Debug.Log("Datos de ejemplo creados.");
-        }
-        else
-        {
-            Debug.Log("La base de datos ya existe. Cargando datos existentes.");
         }
     }
 
@@ -84,30 +73,25 @@ public class BaseDatos : MonoBehaviour
         var usuario = db.Table<Usuario>().FirstOrDefault(u => u.Nombre == nombreUsuario && u.Contrasena == contrasena);
         return usuario != null;
     }
-    public void VerifyUser(string User, string Password)
+    public void VerifyUser(string User, string Password, TextMeshProUGUI textoError)
     {
-        string nombreUsuario = User;
-        string contrasena = Password;
-        bool loginExitoso = VerificarCredenciales(nombreUsuario, contrasena);
+        bool loginExitoso = VerificarCredenciales(User, Password);
         if (loginExitoso)
         {
-            IdNombre = ObtenerUsuarioPorNombre(nombreUsuario).Id;
+            IdNombre = ObtenerUsuarioPorNombre(User).Id;
             SceneManager.LoadScene("Menu_Inicial");
+        }
+        else
+        {
+            textoError.text = "No se Encontro el usuario /n La Contraseña y/o usuario son incorrectos";
         }
     }
 
     public void CrearUser(string user, string Password)
     {
         Usuario usuarioEjemplo = new Usuario { Nombre = user, Contrasena = Password };
-        Nivel nivelEjemplo = new Nivel { nivel = 1, Dificultad = 1, Desbloqueado = true, Puntos = 0 };
-
-        // Inserta ejemplos en las tablas
         db.Insert(usuarioEjemplo);
-        db.Insert(nivelEjemplo);
-
-        // Inserta la relación de acceso
-        Acceso accesoEjemplo = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo.Id };
-        db.Insert(accesoEjemplo);
+        CrearDatabaseNiveles(usuarioEjemplo);
     }
     public Usuario ObtenerUsuarioPorNombre(string nombre)
     {
@@ -119,7 +103,7 @@ public class BaseDatos : MonoBehaviour
         // Busca el usuario en la base de datos usando el Id
         return db.Table<Usuario>().FirstOrDefault(u => u.Id == id);
     }
-    public bool ChangePassword(String OldPassword, String NewPassword, String RepeatPassword)
+    public bool ComprobarChangePassword(String OldPassword, String NewPassword, String RepeatPassword)
     {
         Usuario usuarioEncontrado = ObtenerUsuarioPorId(IdNombre);
         return (usuarioEncontrado.Contrasena.Equals(OldPassword)) && (NewPassword.Equals(RepeatPassword));
@@ -146,10 +130,10 @@ public class BaseDatos : MonoBehaviour
             db.Update(usuario); // Guarda los cambios en la base de datos
         }
     }
-    public bool ChangeName(String NewPassword, String RepeatPassword)
+    public bool ComprobarChangeName(String Password, String RepeatPassword)
     {
         Usuario usuarioEncontrado = ObtenerUsuarioPorId(IdNombre);
-        return NewPassword.Equals(RepeatPassword);
+        return Password.Equals(RepeatPassword);
     }
 
     public class Nivel
@@ -163,13 +147,13 @@ public class BaseDatos : MonoBehaviour
     }
     public List<Nivel> ObtenerNivelesPorUsuario()
     {
-        int idNombre=IdNombre;
-        var accesos = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
-        var niveles = new List<Nivel>();
+        int idNombre = IdNombre;
+        List<Acceso> accesos = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
+        List<Nivel> niveles = new List<Nivel>();
 
         foreach (var acceso in accesos)
         {
-            var nivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == acceso.NivelId);
+            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == acceso.NivelId);
             if (nivel != null)
             {
                 niveles.Add(nivel);
@@ -178,5 +162,24 @@ public class BaseDatos : MonoBehaviour
 
         return niveles;
     }
+    public void Desbloqueado()
+    {
+        List<Nivel> n = new List<Nivel>();
+        n = db.Table<Nivel>().Where(u => u.Desbloqueado == true).ToList();
 
+    }
+
+    public void CrearDatabaseNiveles(Usuario usuarioEjemplo)
+    {
+        for (int n = 1; n <= 6; n++)
+        {
+            for (int d = 1; d <= 3; d++)
+            {
+                Nivel nivelEjemplo1 = new Nivel { nivel = n, Dificultad = d, Desbloqueado = true, Puntos = 0 };
+                db.Insert(nivelEjemplo1);
+                Acceso accesoEjemplo1 = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo1.Id };
+                db.Insert(accesoEjemplo1);
+            }
+        }
+    }
 }

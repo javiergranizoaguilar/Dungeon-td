@@ -3963,7 +3963,7 @@ GameObject:
   - component: {fileID: 770628687}
   - component: {fileID: 770628686}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Ejecutar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5318,7 +5318,7 @@ GameObject:
   - component: {fileID: 1346475735}
   - component: {fileID: 1346475734}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Ejecutar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7799,6 +7799,8 @@ MonoBehaviour:
   NewName: {fileID: 1416689389}
   Password: {fileID: 1250531370}
   RepeatPassword: {fileID: 2040977225}
+  TextoErrorC: {fileID: 0}
+  TextoErrorN: {fileID: 0}
   user_Password: {fileID: 2063682480}
 --- !u!114 &2063682480
 MonoBehaviour:
