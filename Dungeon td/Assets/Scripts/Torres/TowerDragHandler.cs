@@ -30,7 +30,7 @@ public class TowerDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        controlJuego.infot.text="Info: lo mas basico \nPrecio: 100";
+        controlJuego.infot.text = "Info: lo mas basico \nPrecio: 100";
         if (precio <= controlJuego.dinero)
         {
             // Instanciar la torre en la posición del mouse
@@ -98,9 +98,20 @@ public class TowerDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         // Verificar si el tile es el permitido para colocar el personaje
         if (tileAtPosition != blockedTile)
         {
+            // Verificar si hay otro objeto "Personaje" en la misma posición 
+            float radius = 0.5f; 
+            // Ajusta este valor según el tamaño de tu torre 
+            Collider2D[] collidersAtPosition = Physics2D.OverlapCircleAll(position, radius);
+            foreach (Collider2D collider in collidersAtPosition)
+            {
+                if (collider.gameObject.CompareTag("Personaje") && collider.gameObject != currentTower)
+                {
+                    return false; // Es una zona permitida
+                }
+            }
             return true; // Es una zona permitida
-        }
 
+        }
         return false; // No es una zona permitida
     }
 }

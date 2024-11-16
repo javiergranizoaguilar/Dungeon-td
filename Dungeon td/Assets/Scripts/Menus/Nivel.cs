@@ -16,13 +16,13 @@ public class Nivel : MonoBehaviour
     private TextMeshProUGUI textoM;
     private TextMeshProUGUI textoD;
 
-
+    private ControlNiveles controlNiveles;
     private Button button;
     private int nivel;
 
 
     // Start is called before the first frame update
-    void Awake()
+    public void Awake()
     {
 
         inicializarV();
@@ -42,6 +42,7 @@ public class Nivel : MonoBehaviour
         textoD = objetoEncontradoD.GetComponent<TextMeshProUGUI>();
         textoN = objetoEncontradoN.GetComponent<TextMeshProUGUI>();
         baseDatos = objetoEncontradoGameManager.GetComponent<BaseDatos>();
+        controlNiveles = objetoEncontradoGameManager.GetComponent<ControlNiveles>();
         back();
     }
     void Start()
@@ -65,6 +66,7 @@ public class Nivel : MonoBehaviour
         {
             if (int.TryParse(buttonName.Substring(6), out int result))
             {
+                controlNiveles.ControlNivelesDisponiblesDificultad(result);
                 nivel = result;
                 CanvasD.GetComponent<Canvas>().enabled = true;
                 textoN.text = "Nivel : " + nivel;
@@ -77,6 +79,7 @@ public class Nivel : MonoBehaviour
         }
         else { Debug.LogError("El nombre del botón no empieza con 'Nivel'."); }
     }
+    
     public void back()
     {
         CanvasD.GetComponent<Canvas>().enabled = false;

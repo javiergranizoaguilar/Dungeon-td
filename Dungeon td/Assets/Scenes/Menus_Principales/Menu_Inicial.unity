@@ -7799,8 +7799,8 @@ MonoBehaviour:
   NewName: {fileID: 1416689389}
   Password: {fileID: 1250531370}
   RepeatPassword: {fileID: 2040977225}
-  TextoErrorC: {fileID: 0}
-  TextoErrorN: {fileID: 0}
+  TextoErrorC: {fileID: 2130354358}
+  TextoErrorN: {fileID: 930212774}
   user_Password: {fileID: 2063682480}
 --- !u!114 &2063682480
 MonoBehaviour:

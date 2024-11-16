@@ -64,6 +64,7 @@ public class Movimien_Bala : MonoBehaviour
             if (movement.vida <= 0)
             {
                 controlJuego.dinero += dar;
+                controlJuego.dineroF += dar;
                 Destroy(other.gameObject);
             }
         }

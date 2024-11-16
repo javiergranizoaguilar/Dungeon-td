@@ -12,6 +12,7 @@ using TMPro;
 public class BaseDatos : MonoBehaviour
 {
     public static int IdNombre;
+    public static int Nivel_Juego;
     private SQLiteConnection db;
 
 
@@ -45,9 +46,9 @@ public class BaseDatos : MonoBehaviour
             db.Insert(usuarioEjemplo);
             CrearDatabaseNiveles(usuarioEjemplo);
 
+
         }
     }
-
     public class Acceso
     {
         [PrimaryKey, AutoIncrement]
@@ -67,7 +68,37 @@ public class BaseDatos : MonoBehaviour
 
         public string Contrasena { get; set; }
     }
+    public class Guardados
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
 
+        public int IdTorres { get; set; }
+        public int NivelId { get; set; }
+    }
+    public class Torres
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        public int PosX { get; set; }
+        public int PosY { get; set; }
+        public int MejoraA { get; set; }
+        public int MejoraB { get; set; }
+        public string Nombre { get; set; }
+
+    }
+    public class Nivel
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public int nivel { get; set; }
+        public int Dificultad { get; set; }
+        public bool Desbloqueado { get; set; }
+        public int Puntos { get; set; }
+        public int Dinero { get; set; }
+        public int Vidas { get; set; }
+    }
     private bool VerificarCredenciales(string nombreUsuario, string contrasena)
     {
         var usuario = db.Table<Usuario>().FirstOrDefault(u => u.Nombre == nombreUsuario && u.Contrasena == contrasena);
@@ -86,7 +117,6 @@ public class BaseDatos : MonoBehaviour
             textoError.text = "No se Encontro el usuario /n La Contraseña y/o usuario son incorrectos";
         }
     }
-
     public void CrearUser(string user, string Password)
     {
         Usuario usuarioEjemplo = new Usuario { Nombre = user, Contrasena = Password };
@@ -135,16 +165,6 @@ public class BaseDatos : MonoBehaviour
         Usuario usuarioEncontrado = ObtenerUsuarioPorId(IdNombre);
         return Password.Equals(RepeatPassword);
     }
-
-    public class Nivel
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public int nivel { get; set; }
-        public int Dificultad { get; set; }
-        public bool Desbloqueado { get; set; }
-        public int Puntos { get; set; }
-    }
     public List<Nivel> ObtenerNivelesPorUsuario()
     {
         int idNombre = IdNombre;
@@ -162,24 +182,96 @@ public class BaseDatos : MonoBehaviour
 
         return niveles;
     }
-    public void Desbloqueado()
-    {
-        List<Nivel> n = new List<Nivel>();
-        n = db.Table<Nivel>().Where(u => u.Desbloqueado == true).ToList();
-
-    }
-
     public void CrearDatabaseNiveles(Usuario usuarioEjemplo)
     {
         for (int n = 1; n <= 6; n++)
         {
             for (int d = 1; d <= 3; d++)
             {
-                Nivel nivelEjemplo1 = new Nivel { nivel = n, Dificultad = d, Desbloqueado = true, Puntos = 0 };
-                db.Insert(nivelEjemplo1);
-                Acceso accesoEjemplo1 = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo1.Id };
-                db.Insert(accesoEjemplo1);
+                if (n == 1 && d == 1)
+                {
+                    Nivel nivelEjemplo = new Nivel { nivel = n, Dificultad = d, Desbloqueado = true, Puntos = 0 };
+                    db.Insert(nivelEjemplo);
+                    Acceso accesoEjemplo = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo.Id };
+                    db.Insert(accesoEjemplo);
+                }
+                else
+                {
+                    Nivel nivelEjemplo1 = new Nivel { nivel = n, Dificultad = d, Desbloqueado = false, Puntos = 0 };
+                    db.Insert(nivelEjemplo1);
+                    Acceso accesoEjemplo1 = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo1.Id };
+                    db.Insert(accesoEjemplo1);
+                }
+
             }
         }
     }
+    public List<Nivel> ObtenerTodosLosNivelesPorUsuario()
+    {
+        int idNombre = IdNombre;
+        List<Acceso> accesos = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
+        List<Nivel> todosLosNiveles = new List<Nivel>();
+
+        foreach (var acceso in accesos)
+        {
+            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == acceso.NivelId);
+            if (nivel != null)
+            {
+                todosLosNiveles.Add(nivel);
+            }
+        }
+
+        return todosLosNiveles;
+    }
+    public List<Nivel> ObtenerTodosLosNivelesPorUsuarioNivel()
+    {
+        int idNombre = IdNombre;
+        List<Acceso> accesos = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
+        List<Nivel> todosLosNiveles = new List<Nivel>();
+
+        foreach (var acceso in accesos)
+        {
+            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == acceso.NivelId)&&(n.nivel==Nivel_Juego));
+            if (nivel != null)
+            {
+                todosLosNiveles.Add(nivel);
+            }
+        }
+
+        return todosLosNiveles;
+    }
+    public List<Nivel> ObtenerTodosLosNivelesPorUsuarioSigienteNivel()
+    {
+        int idNombre = IdNombre;
+        List<Acceso> accesos = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
+        List<Nivel> todosLosNiveles = new List<Nivel>();
+
+        foreach (var acceso in accesos)
+        {
+            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == acceso.NivelId)&&(n.nivel==Nivel_Juego+1));
+            if (nivel != null)
+            {
+                todosLosNiveles.Add(nivel);
+            }
+        }
+
+        return todosLosNiveles;
+    }
+    public void setNivel(int n){
+        Nivel_Juego=n;
+    }
+    public Nivel ObtenerPrimerNivelPorUsuario()
+    {
+        int idNombre = IdNombre;
+        Acceso primerAcceso = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).OrderBy(a => a.Id).FirstOrDefault();
+
+        if (primerAcceso != null)
+        {
+            Nivel primerNivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == primerAcceso.NivelId);
+            return primerNivel;
+        }
+
+        return null; // Si no se encuentra ningún nivel asociado
+    }
+    
 }

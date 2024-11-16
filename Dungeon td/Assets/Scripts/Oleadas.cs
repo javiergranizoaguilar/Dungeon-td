@@ -8,12 +8,12 @@ public class oleadas : MonoBehaviour
 {
     public GameObject[] prefabToSpawn;   // Referencia al prefab que quieres instanciar
     public Transform spawnPoint;        // Punto de origen donde se instanciará el prefab
-
+    public Stoper stoper;
     public Transform[] spawnPointToSpawn;
     public ControlJuego controlJuego;
     public string enemyTag = "Enemy 1";
     private float spawnDelay = 1f;
-
+    public BaseDatos baseDatos;
     // Start is called before the first frame update
     void Start()
     {
@@ -339,6 +339,18 @@ public class oleadas : MonoBehaviour
 
         yield return StartCoroutine(Ronda(1, 18)); // Instancia un enemigo
         yield return null;
+        if (controlJuego.Facil)
+        {
+            stoper.Stop();
+            List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioNivel();
+            foreach (BaseDatos.Nivel niv in n)
+            {
+                if (niv.Dificultad >= 2)
+                {
+                    niv.Desbloqueado = true;
+                }
+            }
+        }
     }
     IEnumerator ronda41()
     {
@@ -677,6 +689,18 @@ public class oleadas : MonoBehaviour
     {
         StartCoroutine(Ronda(1, 20)); // Instancia un enemigo
         yield return null;
+        if (controlJuego.Medio)
+        {
+            stoper.Stop();
+            List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioSigienteNivel();
+            foreach (BaseDatos.Nivel niv in n)
+            {
+                if (niv.Dificultad == 1)
+                {
+                    niv.Desbloqueado = true;
+                }
+            }
+        }
     }
     IEnumerator ronda81()
     {
@@ -854,6 +878,18 @@ public class oleadas : MonoBehaviour
     IEnumerator ronda100()
     {
         yield return StartCoroutine(Ronda(1, 22));
+        if (controlJuego.Dificil)
+        {
+            List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioSigienteNivel();
+            foreach (BaseDatos.Nivel niv in n)
+            {
+                if (niv.Dificultad == 1)
+                {
+                    niv.Desbloqueado = true;
+                }
+            }
+        }
+        controlJuego.final(true);
     }
     IEnumerator Ronda(int cantidadEnemigos, int tipoEnemigo)
     {

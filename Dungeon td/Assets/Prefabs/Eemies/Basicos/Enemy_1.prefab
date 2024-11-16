@@ -176,6 +176,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   vida: 1
+  vidb: 0
   speed: 1
+  currentWaypoint: 0
   dar: 20
-  controlJuego: {fileID: 0}
+  acorazado: 0
+  grande: 0
+  invisible: 0
+  regenerable: 0
+  puntoC: 0

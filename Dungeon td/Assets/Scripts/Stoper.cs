@@ -7,7 +7,6 @@ public class Stoper : MonoBehaviour
     public bool stoped = false;
     public GameObject[] enemies;
     public GameObject[] balas;
-    public GameObject[] torres;
     public GameObject canvas;
     // Start is called before the first frame update
     void Start()

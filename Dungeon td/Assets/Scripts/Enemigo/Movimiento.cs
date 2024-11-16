@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 public class Movement : MonoBehaviour
 {
@@ -19,22 +20,24 @@ public class Movement : MonoBehaviour
     public bool grande = false;
     public bool invisible = false;
     public bool regenerable = false;
-    public float puntoC=0;
-    public ControlJuego controlJuego;
+    public float puntoC = 0;
+    private ControlJuego controlJuego;
     // Start is called before the first frame update
+    public void Awake(){
+        GameObject objetoEncontradoF = GameObject.Find("GameManager");
+        controlJuego=objetoEncontradoF.GetComponent<ControlJuego>();
+    }
     public void putSpeeds()
     {
         speed = iSpeed * vida;
     }
     void Start()
     {
+        if (controlJuego.Medio) { dar *= vida * 1.1; }
+        if (controlJuego.Dificil) { dar *= vida; }
         if (!grande) { putSpeeds(); }
         if (acorazado) { vida *= 8; }
         vidb = vida;
-        dar *= vida * 1.25;
-        GameObject gameObject = GameObject.Find("GameManager");
-
-        controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
     }
     // Update is called once per frame
     void Update()
@@ -52,7 +55,7 @@ public class Movement : MonoBehaviour
             // Si el objeto alcanza el waypoint actual, pasa al siguiente
             if (Vector2.Distance(transform.position, waypoints[currentWaypoint].position) < 0.1f)
             {
-                puntoC=Vector2.Distance(transform.position, waypoints[currentWaypoint].position);
+                puntoC = Vector2.Distance(transform.position, waypoints[currentWaypoint].position);
                 currentWaypoint++;
             }
         }
@@ -92,6 +95,7 @@ public class Movement : MonoBehaviour
             {
                 // Destroy both the object that this script is attached to and the object that it triggered
                 controlJuego.dinero += (int)dar;
+                controlJuego.dineroF += (int)dar;
                 Destroy(gameObject);
             }
         }

@@ -2313,6 +2313,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: ControlNivelesDisponibles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &605665238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2982,6 +2994,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: ControlNivelesDisponibles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &860443882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3128,6 +3152,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: ControlNivelesDisponibles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &882823638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3265,6 +3301,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1097688351}
         m_TargetAssemblyTypeName: Nivel, Assembly-CSharp
         m_MethodName: NivelI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: ControlNivelesDisponibles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3679,6 +3727,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1354112186}
         m_TargetAssemblyTypeName: Nivel, Assembly-CSharp
         m_MethodName: NivelI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: ControlNivelesDisponibles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4407,6 +4467,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: ControlNivelesDisponibles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1783192186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4674,6 +4746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1836826962}
   - component: {fileID: 1836826963}
+  - component: {fileID: 1836826964}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4708,6 +4781,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf78de3298208a47a9c8cc72a683001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1836826964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836826960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3df6cbc68fc674f8d2a7b4f5f81e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDatos: {fileID: 1836826963}
+  Buttons:
+  - {fileID: 1835984123}
+  - {fileID: 265060492}
+  - {fileID: 735115826}
+  ButtonsG:
+  - {fileID: 882823635}
+  - {fileID: 1097688346}
+  - {fileID: 1783192183}
+  - {fileID: 1354112181}
+  - {fileID: 605665235}
+  - {fileID: 860443879}
 --- !u!1 &1934502709
 GameObject:
   m_ObjectHideFlags: 0
