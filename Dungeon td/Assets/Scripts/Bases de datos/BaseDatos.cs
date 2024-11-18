@@ -15,10 +15,12 @@ public class BaseDatos : MonoBehaviour
     public static int Nivel_Juego;
     private SQLiteConnection db;
 
-
+    void Awake(){
+        CrearDB();
+    }
     void Start()
     {
-        CrearDB();
+        
     }
     public void CrearDB()
     {
@@ -40,6 +42,8 @@ public class BaseDatos : MonoBehaviour
             db.CreateTable<Usuario>();
             db.CreateTable<Nivel>();
             db.CreateTable<Acceso>();
+            db.CreateTable<Guardados>();
+            db.CreateTable<Torres>();
 
             // Datos de ejemplo
             Usuario usuarioEjemplo = new Usuario { Nombre = "Juan", Contrasena = "1234" };
@@ -81,8 +85,8 @@ public class BaseDatos : MonoBehaviour
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        public int PosX { get; set; }
-        public int PosY { get; set; }
+        public float PosX { get; set; }
+        public float PosY { get; set; }
         public int MejoraA { get; set; }
         public int MejoraB { get; set; }
         public string Nombre { get; set; }
@@ -96,8 +100,10 @@ public class BaseDatos : MonoBehaviour
         public int Dificultad { get; set; }
         public bool Desbloqueado { get; set; }
         public int Puntos { get; set; }
+        public int PuntosM { get; set; }
         public int Dinero { get; set; }
         public int Vidas { get; set; }
+        public int Ronda { get; set; }
     }
     private bool VerificarCredenciales(string nombreUsuario, string contrasena)
     {
@@ -190,14 +196,34 @@ public class BaseDatos : MonoBehaviour
             {
                 if (n == 1 && d == 1)
                 {
-                    Nivel nivelEjemplo = new Nivel { nivel = n, Dificultad = d, Desbloqueado = true, Puntos = 0 };
+                    Nivel nivelEjemplo = new Nivel
+                    {
+                        nivel = n,
+                        Dificultad = d,
+                        Desbloqueado = true,
+                        Puntos = 0,
+                        PuntosM = 0,
+                        Dinero = 0,
+                        Vidas = 0,
+                        Ronda = 0
+                    };
                     db.Insert(nivelEjemplo);
                     Acceso accesoEjemplo = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo.Id };
                     db.Insert(accesoEjemplo);
                 }
                 else
                 {
-                    Nivel nivelEjemplo1 = new Nivel { nivel = n, Dificultad = d, Desbloqueado = false, Puntos = 0 };
+                    Nivel nivelEjemplo1 = new Nivel
+                    {
+                        nivel = n,
+                        Dificultad = d,
+                        Desbloqueado = false,
+                        Puntos = 0,
+                        PuntosM = 0,
+                        Dinero = 0,
+                        Vidas = 0,
+                        Ronda = 0
+                    };
                     db.Insert(nivelEjemplo1);
                     Acceso accesoEjemplo1 = new Acceso { UsuarioId = usuarioEjemplo.Id, NivelId = nivelEjemplo1.Id };
                     db.Insert(accesoEjemplo1);
@@ -231,7 +257,7 @@ public class BaseDatos : MonoBehaviour
 
         foreach (var acceso in accesos)
         {
-            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == acceso.NivelId)&&(n.nivel==Nivel_Juego));
+            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == acceso.NivelId) && (n.nivel == Nivel_Juego));
             if (nivel != null)
             {
                 todosLosNiveles.Add(nivel);
@@ -248,7 +274,7 @@ public class BaseDatos : MonoBehaviour
 
         foreach (var acceso in accesos)
         {
-            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == acceso.NivelId)&&(n.nivel==Nivel_Juego+1));
+            Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == acceso.NivelId) && (n.nivel == Nivel_Juego + 1));
             if (nivel != null)
             {
                 todosLosNiveles.Add(nivel);
@@ -257,8 +283,13 @@ public class BaseDatos : MonoBehaviour
 
         return todosLosNiveles;
     }
-    public void setNivel(int n){
-        Nivel_Juego=n;
+    public void setNivel(int n)
+    {
+        Nivel_Juego = n;
+    }
+    public int getIdNombre()
+    {
+        return IdNombre;
     }
     public Nivel ObtenerPrimerNivelPorUsuario()
     {
@@ -273,5 +304,156 @@ public class BaseDatos : MonoBehaviour
 
         return null; // Si no se encuentra ningún nivel asociado
     }
-    
+    public Nivel ObtenerPrimerNivelPorUsuarioNivelDificultad(int Dificultad)
+    {
+        int idNombre = IdNombre;
+        Acceso primerAcceso = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).OrderBy(a => a.Id).FirstOrDefault();
+        if (primerAcceso == null) { Debug.LogError("No se encontró ningún acceso para el usuario especificado."); return null; }
+        Nivel primerNivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == primerAcceso.NivelId) && (n.Dificultad == Dificultad));
+        if (primerNivel == null) { Debug.LogError("No se encontró ningún nivel para la dificultad especificada."); }
+        return primerNivel;
+    }
+    public void GuardarTorres(GameObject[] personaje, int Dificultad)
+    {
+        if (personaje == null || personaje.Length == 0)
+        {
+            Debug.LogError("El array de personajes es null o está vacío."); return;
+        }
+        // Obtener el ID del nivel correspondiente y verificar que no sea null 
+        Nivel nivel = ObtenerPrimerNivelPorUsuarioNivelDificultad(Dificultad);
+        if (nivel == null)
+        {
+            Debug.LogError("No se encontró el nivel para la dificultad especificada.");
+            return;
+        }
+        int id_nivel = nivel.Id;
+        foreach (GameObject p in personaje)
+        {
+            if (p == null)
+            {
+                Debug.LogError("Uno de los objetos en el array de personajes es null.");
+                continue;
+            }
+            Disparo_base disparoBase = p.GetComponent<Disparo_base>();
+            if (disparoBase == null)
+            {
+                Debug.LogError("El objeto " + p.name + " no tiene un componente Disparo_base.");
+                continue;
+            }
+            // Crear una nueva instancia de Torres 
+            Torres t = new Torres
+            {
+                PosX = p.transform.position.x,
+                PosY = p.transform.position.y,
+                MejoraA = disparoBase.mejoraA,
+                MejoraB = disparoBase.mejoraB,
+                Nombre = p.name
+            };
+            // Insertar la nueva torre en la base de datos y obtener el ID generado 
+            db.Insert(t);
+            // Crear una nueva instancia de Guardados con el ID de la torre recién insertada 
+            Guardados g = new Guardados { IdTorres = t.Id, NivelId = id_nivel };
+            // Insertar el registro de Guardados en la base de datos 
+            db.Insert(g);
+
+        }
+    }
+    public void Poner(int Dificultad, int Puntos, bool fin)
+    {
+        Nivel i = ObtenerPrimerNivelPorUsuarioNivelDificultad(Dificultad);
+        i.Puntos = Puntos;
+        if (fin)
+        {
+            if (i.PuntosM < Puntos)
+            {
+                i.PuntosM = Puntos;
+            }
+        }
+        db.Update(i);
+    }
+    public List<Torres> ObtenerTodosLasTorresPorUsuarioNivelDificultad(int Dificultad)
+    {
+        int idNombre = IdNombre;
+        List<Torres> torres = new List<Torres>();
+
+        // Verificar que la conexión a la base de datos está inicializada
+        if (db == null)
+        {
+            Debug.LogError("La conexión a la base de datos no está inicializada.");
+            return torres; // Retornar lista vacía
+        }
+
+        // Obtener el primer acceso para el usuario especificado
+        Acceso accesos = null;
+        try
+        {
+            accesos = db.Table<Acceso>().FirstOrDefault(a => a.UsuarioId == idNombre);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error al acceder a la tabla Acceso: " + ex.Message);
+            return torres; // Retornar lista vacía
+        }
+
+        if (accesos == null)
+        {
+            Debug.LogError("No se encontró ningún acceso para el usuario especificado.");
+            return torres; // Retornar lista vacía
+        }
+
+        // Obtener el primer nivel con la dificultad especificada
+        Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == accesos.NivelId && n.Dificultad == Dificultad);
+        if (nivel == null)
+        {
+            Debug.LogError("No se encontró ningún nivel con la dificultad especificada.");
+            return torres; // Retornar lista vacía
+        }
+
+        // Obtener los guardados para el nivel especificado
+        List<Guardados> guardados = db.Table<Guardados>().Where(g => g.NivelId == nivel.Id).ToList();
+        if (guardados == null || guardados.Count == 0)
+        {
+            Debug.LogError("No se encontraron guardados para el nivel especificado.");
+            return torres; // Retornar lista vacía
+        }
+
+        // Obtener las torres correspondientes a cada guardado
+        foreach (var guardado in guardados)
+        {
+            Torres torres1 = db.Table<Torres>().FirstOrDefault(t => t.Id == guardado.IdTorres);
+            if (torres1 != null)
+            {
+                torres.Add(torres1);
+            }
+        }
+
+        return torres;
+    }
+    public Boolean SaberLasTorresPorUsuarioNivelDificultad(int Dificultad)
+    {
+        bool a = false;
+        int idNombre = IdNombre;
+        Acceso accesos = db.Table<Acceso>().FirstOrDefault(a => a.UsuarioId == idNombre);
+        Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == accesos.NivelId) && (n.nivel == Nivel_Juego) && (n.Dificultad == Dificultad));
+        if (nivel != null)
+        {
+            List<Guardados> guardados = db.Table<Guardados>().Where(g => g.NivelId == nivel.Id).ToList();
+            if (guardados.Count != 0)
+            {
+                a = true;
+            }
+        }
+        return a;
+    }
+    public void guardarPartida(GameObject[] gameObjects, int Dificultad, int dinero, int vidas, int rondas)
+    {
+        GuardarTorres(gameObjects, Dificultad);
+        Poner(Dificultad, dinero, false);
+        Nivel n = ObtenerPrimerNivelPorUsuarioNivelDificultad(Dificultad);
+        n.Dinero = dinero;
+        n.Vidas = vidas;
+        n.Ronda = rondas;
+        db.Update(n);
+    }
+
 }

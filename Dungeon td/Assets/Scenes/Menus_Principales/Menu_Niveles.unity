@@ -931,7 +931,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 265060495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: NivelEleccionM
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &265060495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,7 +1332,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 366834313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: NivelEleccionMG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &366834313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2725,7 +2749,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 735115829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: NivelEleccionD
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &735115829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4697,7 +4733,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1835984126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: NivelEleccionF
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1835984126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4798,6 +4846,10 @@ MonoBehaviour:
   - {fileID: 1835984123}
   - {fileID: 265060492}
   - {fileID: 735115826}
+  ButtonsGuardado:
+  - {fileID: 1993781693}
+  - {fileID: 366834310}
+  - {fileID: 2092838475}
   ButtonsG:
   - {fileID: 882823635}
   - {fileID: 1097688346}
@@ -4805,6 +4857,7 @@ MonoBehaviour:
   - {fileID: 1354112181}
   - {fileID: 605665235}
   - {fileID: 860443879}
+  oleadas: {fileID: 0}
 --- !u!1 &1934502709
 GameObject:
   m_ObjectHideFlags: 0
@@ -5033,7 +5086,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1993781696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: NivelEleccionFG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1993781696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5422,7 +5487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2092838478}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1836826964}
+        m_TargetAssemblyTypeName: ControlNiveles, Assembly-CSharp
+        m_MethodName: NivelEleccionDG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2092838478
 MonoBehaviour:
   m_ObjectHideFlags: 0

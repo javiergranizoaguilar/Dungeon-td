@@ -24,13 +24,13 @@ public class Mejorasbasicas : MonoBehaviour
     {
         if (control.db.DmejoraA[0] <= controlJuego.dinero && control.db.mejoraA >= 0)
         {
-            
+
             controlJuego.dinero -= control.db.DmejoraA[0];
             control.db.mejoraA += 1;
             control.db.fireDistance = 5;
             control.db.speedB = 6;
             control.db.fireRate = 3;
-control.controlcanvas();
+            control.controlcanvas();
 
         }
 
@@ -39,7 +39,7 @@ control.controlcanvas();
     {
         if (control.db.DmejoraA[1] <= controlJuego.dinero)
         {
-            
+
             control.db.speedB = 7;
             control.db.fireRate = 2;
             control.db.mejoraA += 1;
@@ -53,7 +53,7 @@ control.controlcanvas();
     {
         if (control.db.DmejoraA[2] <= controlJuego.dinero)
         {
-            
+
             control.db.speedB = 8;
             control.db.fireRate = 1;
             control.db.mejoraA += 1;
@@ -66,7 +66,7 @@ control.controlcanvas();
     {
         if (control.db.DmejoraB[0] <= controlJuego.dinero && control.db.mejoraB == 0)
         {
-            
+
             control.db.fireRate = 4;
             control.db.mejoraB += 1;
             controlJuego.dinero -= control.db.DmejoraB[0];
@@ -79,7 +79,7 @@ control.controlcanvas();
     {
         if (control.db.DmejoraB[1] <= controlJuego.dinero)
         {
-            
+
             control.db.mejoraB += 1;
             control.db.fireDistance = 5;
             controlJuego.dinero -= control.db.DmejoraB[1];
@@ -92,7 +92,7 @@ control.controlcanvas();
     {
         if (control.db.DmejoraB[2] <= controlJuego.dinero)
         {
-            
+
             control.db.fireRate = 3;
             control.db.mejoraB += 1;
             control.db.fireDistance = 6;

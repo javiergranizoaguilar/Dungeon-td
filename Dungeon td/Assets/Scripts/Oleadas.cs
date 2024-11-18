@@ -13,40 +13,64 @@ public class oleadas : MonoBehaviour
     public ControlJuego controlJuego;
     public string enemyTag = "Enemy 1";
     private float spawnDelay = 1f;
+    public int Dificultad = 0;
     public BaseDatos baseDatos;
     // Start is called before the first frame update
+    void Awake()
+    {
+
+
+    }
     void Start()
     {
+        if (controlJuego.Facil)
+        {
+            Dificultad = 1;
+        }
+        if (controlJuego.Medio)
+        {
+            Dificultad = 2;
+        }
+        if (controlJuego.Dificil)
+        {
+            Dificultad = 3;
+        }
+        
         StartCoroutine(OleadaControl());
     }
-
+    public void Puntos()
+    {
+        baseDatos.Poner(Dificultad, controlJuego.dinero * controlJuego.vidas, true);
+    }
     // Update is called once per frame
     IEnumerator OleadaControl()
     {
+        if (controlJuego.Guardar)
+        {
+            Debug.Log(baseDatos.getIdNombre());
+            controlJuego.instanciarTorres(baseDatos.ObtenerTodosLasTorresPorUsuarioNivelDificultad(Dificultad));
+        }
         while (true)
         {
-
-
-            string nombreRonda = $"ronda{controlJuego.rondas}";
-
+            string nombreRonda = $"ronda{controlJuego.getRonda()}";
             // Obtiene el método usando Reflection
             MethodInfo metodoRonda = GetType().GetMethod(nombreRonda, BindingFlags.NonPublic | BindingFlags.Instance);
-
             // Verifica si el método existe y lo ejecuta como Coroutine
             if (metodoRonda != null)
             {
                 StartCoroutine((IEnumerator)metodoRonda.Invoke(this, null));
             }
-
             // Esperar hasta que todos los enemigos sean destruidos
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
-
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Personaje");
+            baseDatos.guardarPartida(gameObjects, Dificultad, controlJuego.dineroF, controlJuego.vidas, controlJuego.getRonda());
             // Incrementar la ronda o agregar lógica para iniciar la siguiente
-            controlJuego.rondas++;
+            controlJuego.MasRonda();
         }
     }
     IEnumerator ronda1()
     {
+        
         yield return StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
 
     }
@@ -886,6 +910,7 @@ public class oleadas : MonoBehaviour
                 if (niv.Dificultad == 1)
                 {
                     niv.Desbloqueado = true;
+                    baseDatos.Poner(Dificultad, controlJuego.dinero * controlJuego.vidas, true);
                 }
             }
         }

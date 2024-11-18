@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,10 @@ public class ControlNiveles : MonoBehaviour
 {
     public BaseDatos baseDatos;
     public GameObject[] Buttons;
+    public GameObject[] ButtonsGuardado;
     public GameObject[] ButtonsG;
     private long Nivel;
+    public oleadas oleadas;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,7 @@ public class ControlNiveles : MonoBehaviour
                 {
                     ResetColor(ButtonsG[l[i].nivel - 1].GetComponent<Button>());
                     ActivarBoton(ButtonsG[l[i].nivel - 1].GetComponent<Button>());
+
                 }
                 n += 3;
             }
@@ -57,12 +61,26 @@ public class ControlNiveles : MonoBehaviour
         {
             if (l[a].Desbloqueado == false)
             {
-                CambioColor(Buttons[a - n].GetComponent<Button>());
                 DesactivarBoton(Buttons[a - n].GetComponent<Button>());
+                CambioColor(Buttons[a - n].GetComponent<Button>());
+                if (baseDatos.SaberLasTorresPorUsuarioNivelDificultad((int)(a - n)))
+                {
+                    CambioColor(ButtonsGuardado[a - n].GetComponent<Button>());
+                    DesactivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
+                }
+
             }
             else
             {
                 ActivarBoton(Buttons[a - n].GetComponent<Button>());
+                ResetColor(Buttons[a - n].GetComponent<Button>());
+                ActivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
+                ResetColor(ButtonsGuardado[a - n].GetComponent<Button>());
+                if (baseDatos.SaberLasTorresPorUsuarioNivelDificultad((int)(a - n)))
+                {
+                    CambioColor(ButtonsGuardado[a - n].GetComponent<Button>());
+                    DesactivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
+                }
             }
         }
     }
@@ -94,7 +112,7 @@ public class ControlNiveles : MonoBehaviour
     }
     public void NivelEleccionF()
     {
-        SceneManager.LoadScene("Nivel_" + Nivel);
+        baseDatos.setNivel((int)Nivel);
         bool Facil = true;
         //es un if else mas corto si miBooleano es true pilla asta " : " si no pilla lo de detras
         PlayerPrefs.SetInt("Facil", Facil ? 1 : 0);
@@ -102,6 +120,7 @@ public class ControlNiveles : MonoBehaviour
     }
     public void NivelEleccionM()
     {
+        baseDatos.setNivel((int)Nivel);
         bool medio = true;
         //es un if else mas corto si miBooleano es true pilla asta " : " si no pilla lo de detras
         PlayerPrefs.SetInt("Medio", medio ? 1 : 0);
@@ -110,7 +129,39 @@ public class ControlNiveles : MonoBehaviour
 
     public void NivelEleccionD()
     {
+        baseDatos.setNivel((int)Nivel);
         bool dificil = true;
+        //es un if else mas corto si miBooleano es true pilla asta " : " si no pilla lo de detras
+        PlayerPrefs.SetInt("Dificil", dificil ? 1 : 0);
+        SceneManager.LoadScene("Nivel_" + Nivel);
+    }
+    public void NivelEleccionFG()
+    {
+        baseDatos.setNivel((int)Nivel);
+        bool Facil = true;
+        bool Guardado = true;
+        PlayerPrefs.SetInt("Guardado", Guardado ? 1 : 0);
+        //es un if else mas corto si miBooleano es true pilla asta " : " si no pilla lo de detras
+        PlayerPrefs.SetInt("Facil", Facil ? 1 : 0);
+        SceneManager.LoadScene("Nivel_" + Nivel);
+    }
+    public void NivelEleccionMG()
+    {
+        baseDatos.setNivel((int)Nivel);
+        bool medio = true;
+        bool Guardado = true;
+        PlayerPrefs.SetInt("Guardado", Guardado ? 1 : 0);
+        //es un if else mas corto si miBooleano es true pilla asta " : " si no pilla lo de detras
+        PlayerPrefs.SetInt("Medio", medio ? 1 : 0);
+        SceneManager.LoadScene("Nivel_" + Nivel);
+    }
+
+    public void NivelEleccionDG()
+    {
+        baseDatos.setNivel((int)Nivel);
+        bool dificil = true;
+        bool Guardado = true;
+        PlayerPrefs.SetInt("Guardado", Guardado ? 1 : 0);
         //es un if else mas corto si miBooleano es true pilla asta " : " si no pilla lo de detras
         PlayerPrefs.SetInt("Dificil", dificil ? 1 : 0);
         SceneManager.LoadScene("Nivel_" + Nivel);

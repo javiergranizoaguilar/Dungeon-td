@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -14,7 +17,7 @@ public class ControlJuego : MonoBehaviour
     public int vidas = 100;
     public int Puntos = 0;
     public Control_mejoras control;
-    public int rondas = 1;
+    private int rondas = 1;
     public TextMeshProUGUI dinerot;
     public TextMeshProUGUI vidast;
     public TextMeshProUGUI rondast;
@@ -26,11 +29,12 @@ public class ControlJuego : MonoBehaviour
     public bool Medio = false;
     public bool Dificil = false;
     public bool Facil = false;
+    public bool Guardar = false;
     public Stoper stoper;
     public GameObject ButtonSeguir;
     public TextMeshProUGUI TextoFin;
-
-
+    public oleadas oleadas;
+    public GameObject prefab;
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,6 +43,8 @@ public class ControlJuego : MonoBehaviour
         Medio = PlayerPrefs.GetInt("Medio", 0) == 1;
         Dificil = PlayerPrefs.GetInt("Dificil", 0) == 1;
         Facil = PlayerPrefs.GetInt("Facil", 0) == 1;
+        Guardar = PlayerPrefs.GetInt("Guardado", 0) == 1;
+        PlayerPrefs.SetInt("Guardado", 0);
         PlayerPrefs.SetInt("Facil", 0);
         PlayerPrefs.SetInt("Medio", 0);
         PlayerPrefs.SetInt("Dificil", 0);
@@ -47,12 +53,15 @@ public class ControlJuego : MonoBehaviour
     {
         dineroF = dinero;
 
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (vidas<=0){
+        if (vidas <= 0)
+        {
+            oleadas.Puntos();
             final(false);
         }
         vidast.text = "Vidas:" + vidas;
@@ -84,6 +93,33 @@ public class ControlJuego : MonoBehaviour
             }
         }
     }
+    public int getRonda(){
+        return rondas;
+    }
+    public void MasRonda(){
+        rondas++;
+    }
+    public void instanciarTorres(List<BaseDatos.Torres> torre)
+    {
+        foreach (var t in torre)
+        {
+            string resultado = t.Nombre.Substring(0, t.Nombre.Length - 7);
+            Debug.Log(resultado);
+            Vector3 posicion = new Vector3(t.PosX, t.PosY, 0.0f);
+            GameObject torreInstanciada = Instantiate(prefab, posicion, Quaternion.identity);
+            // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+            Disparo_base torreComponente = torreInstanciada.GetComponent<Disparo_base>();
+            if (torreComponente != null)
+            {
+                torreComponente.mejoraA=t.MejoraA;
+                torreComponente.mejoraB=t.MejoraB;
+                
+            }
+            else{
+                Debug.LogError("No se encontró el componente Disparo_base en la torre");
+            }
+        }
+    }
     public void final(bool g)
     {
         stoper.Stop();
@@ -96,5 +132,8 @@ public class ControlJuego : MonoBehaviour
         {
             TextoFin.text = "Perdiste /n Puntos:" + Puntos;
         }
+    }
+    public void SalirNivel(){
+        SceneManager.LoadScene("Menu_niveles");
     }
 }
