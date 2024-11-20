@@ -15,12 +15,13 @@ public class BaseDatos : MonoBehaviour
     public static int Nivel_Juego;
     private SQLiteConnection db;
 
-    void Awake(){
+    void Awake()
+    {
         CrearDB();
     }
     void Start()
     {
-        
+
     }
     public void CrearDB()
     {
@@ -313,6 +314,51 @@ public class BaseDatos : MonoBehaviour
         if (primerNivel == null) { Debug.LogError("No se encontró ningún nivel para la dificultad especificada."); }
         return primerNivel;
     }
+    public void EliminarTorresYGuardadosPorNivelYDificultad(int dificultad)
+    {
+        // Verificar que la conexión a la base de datos está inicializada
+        if (db == null)
+        {
+            Debug.LogError("La conexión a la base de datos no está inicializada.");
+            return;
+        }
+
+        // Obtener el nivel correspondiente por nivelJuego y dificultad
+        Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => n.nivel == Nivel_Juego && n.Dificultad == dificultad);
+        if (nivel == null)
+        {
+            Debug.LogError("No se encontró ningún nivel con el nivel de juego y la dificultad especificada.");
+            return;
+        }
+
+        int nivelId = nivel.Id;
+
+        // Obtener todos los registros de Guardados para el nivel especificado
+        List<Guardados> guardados = db.Table<Guardados>().Where(g => g.NivelId == nivelId).ToList();
+        if (guardados == null || guardados.Count == 0)
+        {
+            Debug.LogWarning("No se encontraron registros en Guardados para el nivel especificado.");
+            return;
+        }
+
+        // Iterar sobre los registros de Guardados
+        foreach (var guardado in guardados)
+        {
+            // Obtener la torre correspondiente a cada registro de Guardados
+            Torres torre = db.Table<Torres>().FirstOrDefault(t => t.Id == guardado.IdTorres);
+
+            // Eliminar la torre si existe
+            if (torre != null)
+            {
+                db.Delete(torre);
+            }
+
+            // Eliminar el registro de Guardados
+            db.Delete(guardado);
+        }
+
+        Debug.Log("Todas las torres y los registros de guardados asociados para el nivel con ID " + nivelId + " han sido eliminados.");
+    }
     public void GuardarTorres(GameObject[] personaje, int Dificultad)
     {
         if (personaje == null || personaje.Length == 0)
@@ -447,6 +493,7 @@ public class BaseDatos : MonoBehaviour
     }
     public void guardarPartida(GameObject[] gameObjects, int Dificultad, int dinero, int vidas, int rondas)
     {
+        EliminarTorresYGuardadosPorNivelYDificultad(Dificultad);
         GuardarTorres(gameObjects, Dificultad);
         Poner(Dificultad, dinero, false);
         Nivel n = ObtenerPrimerNivelPorUsuarioNivelDificultad(Dificultad);

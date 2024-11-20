@@ -8,6 +8,7 @@ public class Stoper : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] balas;
     public GameObject canvas;
+    public oleadas oleadas;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +26,14 @@ public class Stoper : MonoBehaviour
     public void Stop()
     {
         stoped = true;
+        oleadas.parado=false;
         foreach (GameObject enemy in enemies) { enemy.GetComponent<Movement>().speed = 0; }
         foreach (GameObject bala in balas){bala.GetComponent<Movimien_Bala>().speed=0;}
         canvas.SetActive(true);
     }
     public void unStop(){
         stoped=false;
+        oleadas.parado=true;
         foreach (GameObject enemy in enemies) { enemy.GetComponent<Movement>().putSpeeds(); }
         foreach (GameObject bala in balas){bala.GetComponent<Movimien_Bala>().putSpeeds();}
         canvas.SetActive(false);

@@ -14,6 +14,7 @@ public class oleadas : MonoBehaviour
     public string enemyTag = "Enemy 1";
     private float spawnDelay = 1f;
     public int Dificultad = 0;
+    public bool parado=true;
     public BaseDatos baseDatos;
     // Start is called before the first frame update
     void Awake()
@@ -63,9 +64,10 @@ public class oleadas : MonoBehaviour
             // Esperar hasta que todos los enemigos sean destruidos
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
             GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Personaje");
+            controlJuego.MasRonda();
             baseDatos.guardarPartida(gameObjects, Dificultad, controlJuego.dineroF, controlJuego.vidas, controlJuego.getRonda());
             // Incrementar la ronda o agregar lógica para iniciar la siguiente
-            controlJuego.MasRonda();
+            
         }
     }
     IEnumerator ronda1()
@@ -74,7 +76,6 @@ public class oleadas : MonoBehaviour
         yield return StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
 
     }
-
     IEnumerator ronda2()
     {
         yield return StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
@@ -922,7 +923,9 @@ public class oleadas : MonoBehaviour
         for (int i = 0; i < cantidadEnemigos; i++)
         {
             InstanciarEnemigo(tipoEnemigo); // Instancia un enemigo del tipo especificado
+            yield return new WaitUntil(()=>parado);
             yield return new WaitForSeconds(spawnDelay);
+            
         }
     }
 

@@ -54,34 +54,37 @@ public class ControlNiveles : MonoBehaviour
     }
     public void ControlNivelesDisponiblesDificultad(long i)
     {
+        
         Nivel = i;
+        baseDatos.setNivel((int)i);
         long n = (i - 1) * 3;
         BaseDatos.Nivel[] l = baseDatos.ObtenerNivelesPorUsuario().ToArray();
         for (long a = n; a < i * 3; a++)
         {
+            ActivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
+            ResetColor(ButtonsGuardado[a - n].GetComponent<Button>());
+            ActivarBoton(Buttons[a - n].GetComponent<Button>());
+            ResetColor(Buttons[a - n].GetComponent<Button>());
             if (l[a].Desbloqueado == false)
             {
                 DesactivarBoton(Buttons[a - n].GetComponent<Button>());
                 CambioColor(Buttons[a - n].GetComponent<Button>());
-                if (baseDatos.SaberLasTorresPorUsuarioNivelDificultad((int)(a - n)))
-                {
-                    CambioColor(ButtonsGuardado[a - n].GetComponent<Button>());
-                    DesactivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
-                }
 
+                CambioColor(ButtonsGuardado[a - n].GetComponent<Button>());
+                DesactivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
             }
             else
             {
-                ActivarBoton(Buttons[a - n].GetComponent<Button>());
-                ResetColor(Buttons[a - n].GetComponent<Button>());
-                ActivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
-                ResetColor(ButtonsGuardado[a - n].GetComponent<Button>());
-                if (baseDatos.SaberLasTorresPorUsuarioNivelDificultad((int)(a - n)))
+
+
+                if (!baseDatos.SaberLasTorresPorUsuarioNivelDificultad((int)(a - n) + 1))
                 {
                     CambioColor(ButtonsGuardado[a - n].GetComponent<Button>());
                     DesactivarBoton(ButtonsGuardado[a - n].GetComponent<Button>());
                 }
             }
+
+
         }
     }
     public void CambioColor(Button button)

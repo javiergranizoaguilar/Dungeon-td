@@ -13,7 +13,7 @@ public class ControlJuego : MonoBehaviour
 {
 
     public int dinero = 100;
-    public int dineroF;
+    public int dineroF=0;
     public int vidas = 100;
     public int Puntos = 0;
     public Control_mejoras control;
@@ -51,8 +51,16 @@ public class ControlJuego : MonoBehaviour
     }
     void Start()
     {
-        dineroF = dinero;
-
+        if (Guardar)
+        {
+            dinero = oleadas.baseDatos.ObtenerPrimerNivelPorUsuarioNivelDificultad(oleadas.Dificultad).Dinero;
+            vidas = oleadas.baseDatos.ObtenerPrimerNivelPorUsuarioNivelDificultad(oleadas.Dificultad).Vidas;
+            rondas = oleadas.baseDatos.ObtenerPrimerNivelPorUsuarioNivelDificultad(oleadas.Dificultad).Ronda;
+        }
+        else
+        {
+            dineroF = dinero;
+        }
 
     }
 
@@ -61,6 +69,7 @@ public class ControlJuego : MonoBehaviour
     {
         if (vidas <= 0)
         {
+
             oleadas.Puntos();
             final(false);
         }
@@ -68,7 +77,7 @@ public class ControlJuego : MonoBehaviour
         dinerot.text = "Dinero:" + dinero;
         rondast.text = "Rondas:" + rondas;
 
-        if (control.canvas.activeSelf)
+        if (control.canvas.activeSelf && control.db!=null)
         {
             if (control.db.mejoraA < 3)
             {
@@ -93,10 +102,12 @@ public class ControlJuego : MonoBehaviour
             }
         }
     }
-    public int getRonda(){
+    public int getRonda()
+    {
         return rondas;
     }
-    public void MasRonda(){
+    public void MasRonda()
+    {
         rondas++;
     }
     public void instanciarTorres(List<BaseDatos.Torres> torre)
@@ -111,17 +122,19 @@ public class ControlJuego : MonoBehaviour
             Disparo_base torreComponente = torreInstanciada.GetComponent<Disparo_base>();
             if (torreComponente != null)
             {
-                torreComponente.mejoraA=t.MejoraA;
-                torreComponente.mejoraB=t.MejoraB;
-                
+                torreComponente.mejoraA = t.MejoraA;
+                torreComponente.mejoraB = t.MejoraB;
+
             }
-            else{
+            else
+            {
                 Debug.LogError("No se encontró el componente Disparo_base en la torre");
             }
         }
     }
     public void final(bool g)
     {
+        oleadas.baseDatos.EliminarTorresYGuardadosPorNivelYDificultad(oleadas.Dificultad);
         stoper.Stop();
         ButtonSeguir.SetActive(false);
         if (g)

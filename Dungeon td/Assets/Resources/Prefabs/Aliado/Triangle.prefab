@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6873291486569642805}
   - component: {fileID: -7886234739557551621}
   - component: {fileID: 5499263214056331586}
-  - component: {fileID: 2542672196568222}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Personaje
@@ -171,7 +170,7 @@ MonoBehaviour:
   enemyTag: Enemy 1
   mono: Basic
   distance: 0
-  fireRate: 1
+  fireRate: 4
   speedB: 5
   fireDistance: 3
   danio: 1
@@ -293,19 +292,3 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &2542672196568222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5185285245041383390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1e1af5952ad4194882e474ccae35a27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  torre: {fileID: 0}
-  db: {fileID: 0}
-  butons: []
