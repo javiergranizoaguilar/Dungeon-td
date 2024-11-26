@@ -11,8 +11,14 @@ public class Movimien_Bala : MonoBehaviour
     public int dar = 20;
     public int danio=1;
     public int vida;
+    public bool conjelar = false;
     public bool antiA = false;
     public bool verIn= false;
+    public bool poison=false;
+    public float ralentiza=0.9f;
+    public int TiempoR=4;
+    public int TiempoPoison=5;
+    public int TiempoEntrePoison=4;
     public ControlJuego controlJuego;
     // Start is called before the first frame update
     public void putSpeeds()
@@ -30,17 +36,14 @@ public class Movimien_Bala : MonoBehaviour
         vida = danio;
         
     }
-
     // Update is called once per frame
-
-
     void Update()
     {
 
         // Move towards the enemy
         transform.Translate(direction * speed * Time.deltaTime);
 
-        if (transform.position.x <= -2 || transform.position.x >= 40 || transform.position.y <= -2 || transform.position.y >= 24)
+        if (transform.position.x <= -2 || transform.position.x >= 33 || transform.position.y <= -2 || transform.position.y >= 23)
         {
             Destroy(gameObject);
         }
@@ -55,8 +58,12 @@ public class Movimien_Bala : MonoBehaviour
             {
                 movement.vida -= danio * 8;
             }
-
-
+            if(conjelar){
+                movement.speedfreze(ralentiza,TiempoR);
+            }
+            if(poison){
+                movement.Veneno(danio,TiempoPoison,TiempoEntrePoison);
+            }
             if (vida <= 0)
             {
                 Destroy(gameObject);
@@ -69,4 +76,5 @@ public class Movimien_Bala : MonoBehaviour
             }
         }
     }
+
 }

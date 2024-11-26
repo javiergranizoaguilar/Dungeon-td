@@ -20,16 +20,14 @@ public class Movement : MonoBehaviour
     public bool grande = false;
     public bool invisible = false;
     public bool regenerable = false;
+    public bool pausa = false;
     public float puntoC = 0;
     private ControlJuego controlJuego;
     // Start is called before the first frame update
-    public void Awake(){
-        GameObject objetoEncontradoF = GameObject.Find("GameManager");
-        controlJuego=objetoEncontradoF.GetComponent<ControlJuego>();
-    }
-    public void putSpeeds()
+    public void Awake()
     {
-        speed = iSpeed * vida;
+        GameObject objetoEncontradoF = GameObject.Find("GameManager");
+        controlJuego = objetoEncontradoF.GetComponent<ControlJuego>();
     }
     void Start()
     {
@@ -81,23 +79,81 @@ public class Movement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.name == "Trampa(Clone)")
+        {
+            vida -= other.GetComponent<Trampa>().danio;
+            Trampa trampa = (Trampa)other.gameObject.GetComponent("Trampa");
+            trampa.vida -= vidb;
+            if (trampa.vida <= 0)
+            {
+                Destroy(other.gameObject);
+            }
+        }
         if (other.gameObject.CompareTag(bala))
         {
             vida -= other.GetComponent<Movimien_Bala>().danio;
             Movimien_Bala movement_bala = (Movimien_Bala)other.gameObject.GetComponent("Movimien_Bala");
             movement_bala.vida -= vidb;
-            speed -= other.GetComponent<Movimien_Bala>().danio * iSpeed;
             if (movement_bala.vida <= 0)
             {
                 Destroy(other.gameObject);
             }
-            if (vida <= 0)
+            speed -= other.GetComponent<Movimien_Bala>().danio * iSpeed;
+
+
+        }
+        if (vida <= 0)
+        {
+            // Destroy both the object that this script is attached to and the object that it triggered
+            controlJuego.dinero += (int)dar;
+            controlJuego.dineroF += (int)dar;
+            Destroy(gameObject);
+        }
+    }
+    public void putSpeeds()
+    {
+        speed = iSpeed * vida;
+    }
+    public void stop()
+    {
+        pausa = true;
+        speed = 0;
+    }
+    public void unStop()
+    {
+        pausa = false;
+        putSpeeds();
+    }
+    public IEnumerator speedfreze(float ralentiza, int tiempo)
+    {
+        speed *= ralentiza;
+        yield return StartCoroutine(ProcesoConEspera(tiempo));
+        putSpeeds();
+    }
+    public IEnumerator Veneno(int Danio, int tiempo, int tiempoentrepoison)
+    {
+        for (int i = 0; i <= tiempo; i++)
+            yield return StartCoroutine(ProcesoConEspera(tiempoentrepoison));
+        vida -= Danio;
+    }
+
+    IEnumerator ProcesoConEspera(float duracion)
+    {
+        float tiempoTranscurrido = 0f;
+        float tiempoRestante = duracion;
+        while (tiempoTranscurrido < duracion)
+        {
+            // Si la pausa es verdadera, guarda el tiempo restante y espera hasta que la pausa se termine 
+            if (pausa)
             {
-                // Destroy both the object that this script is attached to and the object that it triggered
-                controlJuego.dinero += (int)dar;
-                controlJuego.dineroF += (int)dar;
-                Destroy(gameObject);
+                tiempoRestante = duracion - tiempoTranscurrido;
+                yield return new WaitUntil(() => !pausa);
+                tiempoTranscurrido = duracion - tiempoRestante;
+                // Recalcula el tiempo transcurrido después de la pausa 
             }
+            // Incrementa el tiempo transcurrido 
+            tiempoTranscurrido += Time.deltaTime;
+            yield return null;
         }
     }
 }

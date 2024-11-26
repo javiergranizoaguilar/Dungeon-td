@@ -9,12 +9,13 @@ public class oleadas : MonoBehaviour
     public GameObject[] prefabToSpawn;   // Referencia al prefab que quieres instanciar
     public Transform spawnPoint;        // Punto de origen donde se instanciará el prefab
     public Stoper stoper;
-    public Transform[] spawnPointToSpawn;
+    public Transform[] spawnPointToSpawn1;
+    public Transform[] spawnPointToSpawn2;
     public ControlJuego controlJuego;
     public string enemyTag = "Enemy 1";
     private float spawnDelay = 1f;
     public int Dificultad = 0;
-    public bool parado=true;
+    public bool parado = true;
     public BaseDatos baseDatos;
     // Start is called before the first frame update
     void Awake()
@@ -36,7 +37,7 @@ public class oleadas : MonoBehaviour
         {
             Dificultad = 3;
         }
-        
+
         StartCoroutine(OleadaControl());
     }
     public void Puntos()
@@ -67,12 +68,12 @@ public class oleadas : MonoBehaviour
             controlJuego.MasRonda();
             baseDatos.guardarPartida(gameObjects, Dificultad, controlJuego.dineroF, controlJuego.vidas, controlJuego.getRonda());
             // Incrementar la ronda o agregar lógica para iniciar la siguiente
-            
+
         }
     }
     IEnumerator ronda1()
     {
-        
+
         yield return StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
 
     }
@@ -919,22 +920,52 @@ public class oleadas : MonoBehaviour
     }
     IEnumerator Ronda(int cantidadEnemigos, int tipoEnemigo)
     {
+        if (spawnPointToSpawn2.Length > 0)
+        {
+            yield return DosPath(cantidadEnemigos, tipoEnemigo);
+        }
+        else
+        {
+            yield return UnPath(cantidadEnemigos, tipoEnemigo);
+        }
         // Instanciar enemigos con un retraso entre ellos
+
+    }
+    IEnumerator UnPath(int cantidadEnemigos, int tipoEnemigo)
+    {
         for (int i = 0; i < cantidadEnemigos; i++)
         {
-            InstanciarEnemigo(tipoEnemigo); // Instancia un enemigo del tipo especificado
-            yield return new WaitUntil(()=>parado);
+            InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn1); // Instancia un enemigo del tipo especificado
+            yield return new WaitUntil(() => parado);
             yield return new WaitForSeconds(spawnDelay);
-            
+
         }
     }
+    IEnumerator DosPath(int cantidadEnemigos, int tipoEnemigo)
+    {
+        for (int i = 0; i < cantidadEnemigos; i++)
+        {
+            if (i % 2 == 0)
+            {
+                InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn2); // Instancia un enemigo del tipo especificado
+                yield return new WaitUntil(() => parado);
+                yield return new WaitForSeconds(spawnDelay);
+            }
+            else
+            {
+                InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn1); // Instancia un enemigo del tipo especificado
+                yield return new WaitUntil(() => parado);
+                yield return new WaitForSeconds(spawnDelay);
+            }
 
-    public void InstanciarEnemigo(int tipoEnemigo)
+        }
+    }
+    public void InstanciarEnemigo(int tipoEnemigo, Transform[] spawnPointToSpawn)
     {
         if (tipoEnemigo >= 0 && tipoEnemigo < prefabToSpawn.Length)
         {
             // Instanciar el prefab en el punto de spawn y asignar waypoints
-            GameObject spawnedObject = Instantiate(prefabToSpawn[tipoEnemigo], spawnPoint.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(prefabToSpawn[tipoEnemigo], spawnPointToSpawn[0].position, Quaternion.identity);
             spawnedObject.GetComponent<Movement>().waypoints = spawnPointToSpawn;
         }
         else

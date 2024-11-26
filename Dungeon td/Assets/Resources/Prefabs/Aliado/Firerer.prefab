@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7886234739557551621}
   - component: {fileID: 5499263214056331586}
   m_Layer: 0
-  m_Name: Frosti
+  m_Name: Firerer
   m_TagString: Personaje
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0, g: 0.9157293, b: 1, a: 1}
+  m_Color: {r: 0.0826962, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b6bc7195224cd418a7a51c35737e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2170817789205473844, guid: 08f95682feaa83f4181225951e71711e, type: 3}
+  projectilePrefab: {fileID: 2170817789205473844, guid: 74b792e1ed7e6dc4183cf40a54162197, type: 3}
   firePoint: {fileID: 0}
   enemies: []
   stop: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   listado: []
   towerDragHandler: {fileID: 0}
   enemyTag: Enemy 1
-  mono: Frost
+  mono: Basic
   distance: 0
   fireRate: 4
   speedB: 5
@@ -182,22 +182,22 @@ MonoBehaviour:
   DmejoraA: e8030000a00f0000401f0000
   DmejoraB: e8030000a00f0000401f0000
   InfoA:
-  - Ralenti
-  - Ralentiza y velocidad
-  - Ralentizacion enorme
+  - Aumento de velocidad de ataque
+  - Vision de invisibles
+  - Aumento de radio y velocidd
   InfoB:
-  - Aumenta el tiempo ralentizado
-  - Incrementa el tiempo ralentizado
-  - "Incrementa el tiempo ralentizado da\xF1o y rango"
+  - Aumento de fuerza
+  - Capacidad de AntiAcorazado
+  - Muy fuerza
   NombreMA:
-  - Frezeer
-  - Cooler
-  - MR.F
+  - Rapidtorre
+  - Excelertor
+  - The faster
   NombreMB:
-  - Hielito
-  - Ici
-  - Iceberg
-  informacion: Conjela el Fuego
+  - Forcer
+  - Hig hit
+  - Doom shoter
+  informacion: Un fuegpo sencillo pero increbrantable
 --- !u!120 &5499263214056331586
 LineRenderer:
   serializedVersion: 2

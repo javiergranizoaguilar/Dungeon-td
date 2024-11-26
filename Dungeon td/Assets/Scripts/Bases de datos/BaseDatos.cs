@@ -380,19 +380,34 @@ public class BaseDatos : MonoBehaviour
                 Debug.LogError("Uno de los objetos en el array de personajes es null.");
                 continue;
             }
-            Disparo_base disparoBase = p.GetComponent<Disparo_base>();
-            if (disparoBase == null)
+            int mejoraA = 0;
+            int mejoraB = 0;
+            switch (p.name)
             {
-                Debug.LogError("El objeto " + p.name + " no tiene un componente Disparo_base.");
-                continue;
+                case "Granja(Clone)":
+                    mejoraA = p.GetComponent<Granja>().mejoraA;
+                    mejoraB = p.GetComponent<Granja>().mejoraB;
+                    break;
+                case "Trampa(Clone)":
+                    mejoraA = 0;
+                    mejoraB = 0;
+                    break;
+                case "Psycokiller(Clone)":
+                    mejoraA = p.GetComponent<PsycoKiller>().mejoraA;
+                    mejoraB = p.GetComponent<PsycoKiller>().mejoraB;
+                    break;
+                default:
+                    mejoraA = p.GetComponent<Disparo_base>().mejoraA;
+                    mejoraA = p.GetComponent<Disparo_base>().mejoraB;
+                    break;
             }
             // Crear una nueva instancia de Torres 
             Torres t = new Torres
             {
                 PosX = p.transform.position.x,
                 PosY = p.transform.position.y,
-                MejoraA = disparoBase.mejoraA,
-                MejoraB = disparoBase.mejoraB,
+                MejoraA = mejoraA,
+                MejoraB = mejoraB,
                 Nombre = p.name
             };
             // Insertar la nueva torre en la base de datos y obtener el ID generado 

@@ -24,19 +24,29 @@ public class VenderTorres : MonoBehaviour
         Dineros = 0;
         switch (mejorasbasicas.control.torre.name)
         {
-            case "Triangle(Clone)":
-                VenderTorreBasica();
+            case "Granja(Clone)":
+                Granja g = mejorasbasicas.control.torre.GetComponent<Granja>();
+                VenderTorreBasica(g.mejoraA, g.mejoraB, g.DmejoraA, g.DmejoraB);
                 break;
+            case "Trampa":
+                break;
+            case "Psucokiller":
+                PsycoKiller p = mejorasbasicas.control.torre.GetComponent<PsycoKiller>();
+                VenderTorreBasica(p.mejoraA, p.mejoraB, p.DmejoraA, p.DmejoraB);
+                break;
+            default:
+                Disparo_base db = mejorasbasicas.control.db;
+                VenderTorreBasica(db.mejoraA, db.mejoraB, db.DmejoraA, db.DmejoraB);
+                break;
+
         }
         control_Mejoras.Sal();
         mejorasbasicas.controlJuego.dinero += Dineros;
 
     }
-    public void VenderTorreBasica()
+    public void VenderTorreBasica(int MejoraA, int MejoraB, int[] a, int[] b)
     {
-        int[] a = mejorasbasicas.control.db.DmejoraA;
-        int[] b = mejorasbasicas.control.db.DmejoraA;
-        switch (mejorasbasicas.control.db.mejoraA)
+        switch (MejoraA)
         {
             case 0:
                 Dineros += 40;
@@ -51,7 +61,7 @@ public class VenderTorres : MonoBehaviour
                 Dineros += (a[2] * 80) / 100;
                 break;
         }
-        switch (mejorasbasicas.control.db.mejoraB)
+        switch (MejoraB)
         {
             case 0:
                 Dineros += 40;

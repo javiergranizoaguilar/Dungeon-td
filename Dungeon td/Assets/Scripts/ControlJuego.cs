@@ -13,7 +13,7 @@ public class ControlJuego : MonoBehaviour
 {
 
     public int dinero = 100;
-    public int dineroF=0;
+    public int dineroF = 0;
     public int vidas = 100;
     public int Puntos = 0;
     public Control_mejoras control;
@@ -34,7 +34,7 @@ public class ControlJuego : MonoBehaviour
     public GameObject ButtonSeguir;
     public TextMeshProUGUI TextoFin;
     public oleadas oleadas;
-    public GameObject prefab;
+    public GameObject[] prefab;
     // Start is called before the first frame update
     void Awake()
     {
@@ -77,7 +77,7 @@ public class ControlJuego : MonoBehaviour
         dinerot.text = "Dinero:" + dinero;
         rondast.text = "Rondas:" + rondas;
 
-        if (control.canvas.activeSelf && control.db!=null)
+        if (control.canvas.activeSelf && control.db != null)
         {
             if (control.db.mejoraA < 3)
             {
@@ -115,20 +115,64 @@ public class ControlJuego : MonoBehaviour
         foreach (var t in torre)
         {
             string resultado = t.Nombre.Substring(0, t.Nombre.Length - 7);
-            Debug.Log(resultado);
-            Vector3 posicion = new Vector3(t.PosX, t.PosY, 0.0f);
-            GameObject torreInstanciada = Instantiate(prefab, posicion, Quaternion.identity);
-            // Acceder al componente Torre del objeto instanciado y asignar la información específica 
-            Disparo_base torreComponente = torreInstanciada.GetComponent<Disparo_base>();
-            if (torreComponente != null)
-            {
-                torreComponente.mejoraA = t.MejoraA;
-                torreComponente.mejoraB = t.MejoraB;
 
-            }
-            else
+            Vector3 posicion = new Vector3(t.PosX, t.PosY, 0.0f);
+            switch (resultado)
             {
-                Debug.LogError("No se encontró el componente Disparo_base en la torre");
+                case "Firerer":
+                    GameObject torreInstanciadaFirerer = Instantiate(prefab[0], posicion, Quaternion.identity);
+                    // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+                    Disparo_base torreComponenteFirerer = torreInstanciadaFirerer.GetComponent<Disparo_base>();
+                    if (torreComponenteFirerer != null)
+                    {
+                        torreComponenteFirerer.mejoraA = t.MejoraA;
+                        torreComponenteFirerer.mejoraB = t.MejoraB;
+                    }
+                    break;
+                case "Frosti":
+                    GameObject torreInstanciadaFrosti = Instantiate(prefab[1], posicion, Quaternion.identity);
+                    // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+                    Disparo_base torreComponenteFrosti = torreInstanciadaFrosti.GetComponent<Disparo_base>();
+                    if (torreComponenteFrosti != null)
+                    {
+                        torreComponenteFrosti.mejoraA = t.MejoraA;
+                        torreComponenteFrosti.mejoraB = t.MejoraB;
+                    }
+                    break;
+                case "Granja":
+                    GameObject torreInstanciadaGranja = Instantiate(prefab[2], posicion, Quaternion.identity);
+                    // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+                    Granja torreComponenteGranja = torreInstanciadaGranja.GetComponent<Granja>();
+                    if (torreComponenteGranja != null)
+                    {
+                        torreComponenteGranja.mejoraA = t.MejoraA;
+                        torreComponenteGranja.mejoraB = t.MejoraB;
+                    }
+                    break;
+                case "Venom":
+                    GameObject torreInstanciadaVenom = Instantiate(prefab[3], posicion, Quaternion.identity);
+                    // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+                    Disparo_base torreComponenteVenom = torreInstanciadaVenom.GetComponent<Disparo_base>();
+                    if (torreComponenteVenom != null)
+                    {
+                        torreComponenteVenom.mejoraA = t.MejoraA;
+                        torreComponenteVenom.mejoraB = t.MejoraB;
+                    }
+                    break;
+                case "Trampa":
+                    GameObject torreInstanciadaTrampa = Instantiate(prefab[4], posicion, Quaternion.identity);
+                    // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+                    break;
+                case "Psycokiller":
+                    GameObject torreInstanciadaPsycokiller = Instantiate(prefab[5], posicion, Quaternion.identity);
+                    // Acceder al componente Torre del objeto instanciado y asignar la información específica 
+                    PsycoKiller torreComponentePsycokiller = torreInstanciadaPsycokiller.GetComponent<PsycoKiller>();
+                    if (torreComponentePsycokiller != null)
+                    {
+                        torreComponentePsycokiller.mejoraA = t.MejoraA;
+                        torreComponentePsycokiller.mejoraB = t.MejoraB;
+                    }
+                    break;
             }
         }
     }
@@ -146,7 +190,8 @@ public class ControlJuego : MonoBehaviour
             TextoFin.text = "Perdiste /n Puntos:" + Puntos;
         }
     }
-    public void SalirNivel(){
+    public void SalirNivel()
+    {
         SceneManager.LoadScene("Menu_niveles");
     }
 }

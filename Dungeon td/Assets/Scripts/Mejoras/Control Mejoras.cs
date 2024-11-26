@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class Control_mejoras : MonoBehaviour
     public Disparo_base db;
     public GameObject[] butons;
     private Color colorOriginal = Color.white;
+    public GameObject Apuntar;
+    public TextMeshProUGUI Modo;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,19 +31,19 @@ public class Control_mejoras : MonoBehaviour
     }
     public void MejoraShow()
     {
-        try
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-                foreach (GameObject e in GameObject.FindGameObjectsWithTag("Personaje"))
+            foreach (GameObject e in GameObject.FindGameObjectsWithTag("Personaje"))
+            {
+                // Si se hizo clic en este objeto
+                if (hit.collider != null && hit.collider.gameObject == e)
                 {
-                    // Si se hizo clic en este objeto
-                    if (hit.collider != null && hit.collider.gameObject == e)
+                    torre = hit.collider.gameObject;
+                    db = torre.GetComponent<Disparo_base>();
+                    if (torre.name!="Trampa(Clone)")
                     {
-                        torre = hit.collider.gameObject;
-                        db = torre.GetComponent<Disparo_base>();
                         canvas.SetActive(true);
                         Vaciar();
                         controlcanvas();
@@ -47,21 +51,91 @@ public class Control_mejoras : MonoBehaviour
                 }
             }
         }
-        catch (Exception e) { Debug.Log(e.Message); }
-
     }
     public void Sal()
     {
         canvas.SetActive(false);
     }
+    public void textos()
+    {
+        string[] NombreMA = new string[3];
+        string[] NombreMB = new string[3];
+        switch (torre.gameObject.name)
+        {
+            case "Granja(Clone)":
+                NombreMA = torre.GetComponent<Granja>().NombreMA;
+                NombreMB = torre.GetComponent<Granja>().NombreMB;
+                Apuntar.SetActive(false);
+                break;
+            default:
+                NombreMA = db.NombreMA;
+                NombreMB = db.NombreMB;
+                Apuntar.SetActive(true);
+                switch (db.ApuntadoDisparo)
+                {
+                    case 0:
+                        Modo.text = "Primero";
+                        break;
+                    case 1:
+                        Modo.text = "Ultimo";
+                        break;
+                    case 2:
+                        Modo.text = "Fuerte";
+                        break;
+                    case 3:
+                        Modo.text = "Debil";
+                        break;
+                    default:
+                        Modo.text = "Primero";
+                        break;
+                }
+                break;
+
+        }
+        int v = 0;
+        for (int e = 0; e < 6; e++)
+        {
+            if (e < 3)
+            {
+                butons[e].GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = NombreMA[e];
+            }
+            else
+            {
+                butons[e].GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = NombreMB[v];
+                v++;
+            }
+        }
+    }
     public void controlcanvas()
     {
-        if (db.mejoraB >= 2)
+        int MejoraA = 0;
+        int MejoraB = 0;
+        switch (torre.gameObject.name)
         {
-            switch (db.mejoraA)
+            case "Granja(Clone)":
+                MejoraA = torre.GetComponent<Granja>().mejoraA;
+                MejoraB = torre.GetComponent<Granja>().mejoraB;
+                break;
+            case "Trampa(Clone)":
+                break;
+            case "Psycokiller(Clone)":
+                MejoraA = torre.GetComponent<PsycoKiller>().mejoraA;
+                MejoraB = torre.GetComponent<PsycoKiller>().mejoraB;
+                break;
+            default:
+                MejoraA = db.mejoraA;
+                MejoraB = db.mejoraB;
+
+                break;
+        }
+        textos();
+        if (MejoraB >= 2)
+        {
+            switch (MejoraA)
             {
                 case 0:
                     butons[0].SetActive(true);
+
                     break;
                 default:
                     butons[1].SetActive(true);
@@ -72,7 +146,7 @@ public class Control_mejoras : MonoBehaviour
         }
         else
         {
-            switch (db.mejoraA)
+            switch (MejoraA)
             {
                 case 0:
                     butons[0].SetActive(true);
@@ -90,10 +164,10 @@ public class Control_mejoras : MonoBehaviour
                     break;
             }
         }
-        if (db.mejoraA >= 2)
+        if (MejoraA >= 2)
         {
 
-            switch (db.mejoraB)
+            switch (MejoraB)
             {
                 case 0:
                     butons[3].SetActive(true);
@@ -107,7 +181,7 @@ public class Control_mejoras : MonoBehaviour
         }
         else
         {
-            switch (db.mejoraB)
+            switch (MejoraB)
             {
                 case 0:
                     butons[3].SetActive(true);
@@ -128,6 +202,7 @@ public class Control_mejoras : MonoBehaviour
     }
     public void Vaciar()
     {
+        Apuntar.SetActive(false);
         foreach (GameObject b in butons)
         {
             b.SetActive(false);
