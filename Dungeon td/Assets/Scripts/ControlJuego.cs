@@ -30,6 +30,8 @@ public class ControlJuego : MonoBehaviour
     public bool Dificil = false;
     public bool Facil = false;
     public bool Guardar = false;
+    private const string Granja = "Granja(Clone)";
+    private const string Psycokiller = "Psycokiller(Clone)";
     public Stoper stoper;
     public GameObject ButtonSeguir;
     public TextMeshProUGUI TextoFin;
@@ -77,28 +79,62 @@ public class ControlJuego : MonoBehaviour
         dinerot.text = "Dinero:" + dinero;
         rondast.text = "Rondas:" + rondas;
 
-        if (control.canvas.activeSelf && control.db != null)
+        if (control.canvas.activeSelf)
         {
-            if (control.db.mejoraA < 3)
+            int MejoraA = 0;
+            int MejoraB = 0;
+            string[] mejoraA = new string[3];
+            string[] mejoraB = new string[3];
+            int[] DmejoraA = new int[3];
+            int[] DmejoraB = new int[3];
+            if (control.granja != null)
             {
-                DineroA.text = "Precio" + control.db.DmejoraA[control.db.mejoraA];
-                infoA.text = control.db.InfoA[control.db.mejoraA];
+                MejoraA = control.granja.mejoraA;
+                MejoraB = control.granja.mejoraB;
+                mejoraA = control.granja.InfoA;
+                mejoraB = control.granja.InfoB;
+                DmejoraA = control.granja.DmejoraA;
+                DmejoraB = control.granja.DmejoraB;
+            }
+            if (control.psycoKiller != null)
+            {
+                MejoraA = control.psycoKiller.mejoraA;
+                MejoraB = control.psycoKiller.mejoraB;
+                mejoraA = control.psycoKiller.InfoA;
+                mejoraB = control.psycoKiller.InfoB;
+                DmejoraA = control.psycoKiller.DmejoraA;
+                DmejoraB = control.psycoKiller.DmejoraB;
+            }
+            if (control.db != null)
+            {
+                MejoraA = control.db.mejoraA;
+                MejoraB = control.db.mejoraB;
+                mejoraA = control.db.InfoA;
+                mejoraB = control.db.InfoB;
+                DmejoraA = control.db.DmejoraA;
+                DmejoraB = control.db.DmejoraB;
+            }
+
+            if (MejoraA < 3)
+            {
+                DineroA.text = "Precio" + DmejoraA[MejoraA];
+                infoA.text = mejoraA[MejoraA];
             }
             else
             {
                 DineroA.text = "No mejorable";
-                infoA.text = control.db.InfoA[2];
+                infoA.text = mejoraA[2];
             }
-            if (control.db.mejoraB < 3)
+            if (MejoraB < 3)
             {
-                DineroB.text = "Precio" + control.db.DmejoraB[control.db.mejoraB];
-                infoB.text = control.db.InfoB[control.db.mejoraB];
+                DineroB.text = "Precio" + DmejoraB[MejoraB];
+                infoB.text = mejoraB[MejoraB];
 
             }
             else
             {
                 DineroA.text = "No mejorable";
-                infoB.text = control.db.InfoB[2];
+                infoB.text = mejoraB[2]; ;
             }
         }
     }

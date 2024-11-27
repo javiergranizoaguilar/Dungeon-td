@@ -10,8 +10,8 @@ public class Mejorasbasicas : MonoBehaviour
 
     private const string Firerer = "Firerer(Clone)";
     private const string Frosti = "Frosti(Clone)";
-    private const string Granja = "Granja(Clone)";
     private const string Venom = "Venom(Clone)";
+    private const string Granja = "Granja(Clone)";
     private const string Psycokiller = "Psycokiller(Clone)";
 
     // Start is called before the first frame update
@@ -27,25 +27,55 @@ public class Mejorasbasicas : MonoBehaviour
     }
     public void ButtonD()
     {
-        if (control.db.ApuntadoDisparo > 3)
+        if (control.psycoKiller != null)
         {
-            control.db.ApuntadoDisparo = 0;
+            if (control.psycoKiller.ApuntadoDisparo > 3)
+            {
+                control.psycoKiller.ApuntadoDisparo = 0;
+            }
+            else
+            {
+                control.psycoKiller.ApuntadoDisparo++;
+            }
         }
         else
         {
-            control.db.ApuntadoDisparo++;
+            if (control.db.ApuntadoDisparo > 3)
+            {
+                control.db.ApuntadoDisparo = 0;
+            }
+            else
+            {
+                control.db.ApuntadoDisparo++;
+            }
+
         }
         control.controlcanvas();
     }
     public void ButtonI()
     {
-        if (control.db.ApuntadoDisparo < 0)
+        if (control.psycoKiller != null)
         {
-            control.db.ApuntadoDisparo = 3;
+            if (control.psycoKiller.ApuntadoDisparo < 0)
+            {
+                control.psycoKiller.ApuntadoDisparo = 3;
+            }
+            else
+            {
+                control.psycoKiller.ApuntadoDisparo--;
+            }
         }
         else
         {
-            control.db.ApuntadoDisparo--;
+            if (control.db.ApuntadoDisparo < 0)
+            {
+                control.db.ApuntadoDisparo = 3;
+            }
+            else
+            {
+                control.db.ApuntadoDisparo--;
+            }
+
         }
         control.controlcanvas();
     }
@@ -57,17 +87,17 @@ public class Mejorasbasicas : MonoBehaviour
         int[] DmejoraB;
         switch (control.torre.gameObject.name)
         {
-            case "Granja(Clone)":
-                MejoraA = control.torre.GetComponent<Granja>().mejoraA;
-                MejoraB = control.torre.GetComponent<Granja>().mejoraB;
-                DmejoraA = control.torre.GetComponent<Granja>().DmejoraA;
-                DmejoraB = control.torre.GetComponent<Granja>().DmejoraB;
+            case Granja:
+                MejoraA = control.granja.mejoraA;
+                MejoraB = control.granja.mejoraB;
+                DmejoraA = control.granja.DmejoraA;
+                DmejoraB = control.granja.DmejoraB;
                 break;
-            case "Psycokiller(Clone)":
-                MejoraA = control.torre.GetComponent<PsycoKiller>().mejoraA;
-                MejoraB = control.torre.GetComponent<PsycoKiller>().mejoraB;
-                DmejoraA = control.torre.GetComponent<PsycoKiller>().DmejoraA;
-                DmejoraB = control.torre.GetComponent<PsycoKiller>().DmejoraB;
+            case Psycokiller:
+                MejoraA = control.psycoKiller.mejoraA;
+                MejoraB = control.psycoKiller.mejoraB;
+                DmejoraA = control.psycoKiller.DmejoraA;
+                DmejoraB = control.psycoKiller.DmejoraB;
                 break;
             default:
                 MejoraA = control.db.mejoraA;
@@ -78,7 +108,7 @@ public class Mejorasbasicas : MonoBehaviour
         }
         if (pathA)
         {
-            if (DmejoraA[n] >= controlJuego.dinero)
+            if (DmejoraA[n] <= controlJuego.dinero)
             {
                 return true;
             }
@@ -86,7 +116,7 @@ public class Mejorasbasicas : MonoBehaviour
         }
         else
         {
-            if (DmejoraB[n] >= controlJuego.dinero)
+            if (DmejoraB[n] <= controlJuego.dinero)
             {
                 return true;
             }
@@ -125,8 +155,21 @@ public class Mejorasbasicas : MonoBehaviour
                     p.danio += 2;
                     break;
             }
-            controlJuego.dinero -= control.db.DmejoraA[0];
-            control.db.mejoraA += 1;
+            if (control.torre.GetComponent<Disparo_base>() != null)
+            {
+                controlJuego.dinero -= control.db.DmejoraA[0];
+                control.db.mejoraA += 1;
+            }
+            if (control.torre.GetComponent<Granja>() != null)
+            {
+                controlJuego.dinero -= control.granja.DmejoraA[0];
+                control.granja.mejoraA += 1;
+            }
+            if (control.torre.GetComponent<PsycoKiller>() != null)
+            {
+                controlJuego.dinero -= control.psycoKiller.DmejoraA[0];
+                control.psycoKiller.mejoraA += 1;
+            }
             control.controlcanvas();
         }
     }
@@ -154,13 +197,26 @@ public class Mejorasbasicas : MonoBehaviour
                 case Venom:
                     control.db.danio++;
                     break;
-                    case Psycokiller:
-                        PsycoKiller p =control.torre.GetComponent<PsycoKiller>();
-                        p.danio+=2;
+                case Psycokiller:
+                    PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
+                    p.danio += 2;
                     break;
             }
-            controlJuego.dinero -= control.db.DmejoraA[1];
-            control.db.mejoraA += 1;
+            if (control.torre.GetComponent<Disparo_base>() != null)
+            {
+                controlJuego.dinero -= control.db.DmejoraA[1];
+                control.db.mejoraA += 1;
+            }
+            if (control.torre.GetComponent<Granja>() != null)
+            {
+                controlJuego.dinero -= control.granja.DmejoraA[1];
+                control.granja.mejoraA += 1;
+            }
+            if (control.torre.GetComponent<PsycoKiller>() != null)
+            {
+                controlJuego.dinero -= control.psycoKiller.DmejoraA[1];
+                control.psycoKiller.mejoraA += 1;
+            }
             control.controlcanvas();
         }
     }
@@ -187,14 +243,27 @@ public class Mejorasbasicas : MonoBehaviour
                 case Venom:
                     control.db.danio += 3;
                     break;
-                    case Psycokiller:
-                        PsycoKiller p =control.torre.GetComponent<PsycoKiller>();
-                        p.danio+=3;
+                case Psycokiller:
+                    PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
+                    p.danio += 3;
                     break;
 
             }
-            controlJuego.dinero -= control.db.DmejoraA[2];
-            control.db.mejoraA += 1;
+            if (control.torre.GetComponent<Disparo_base>() != null)
+            {
+                controlJuego.dinero -= control.db.DmejoraA[2];
+                control.db.mejoraA += 1;
+            }
+            if (control.torre.GetComponent<Granja>() != null)
+            {
+                controlJuego.dinero -= control.granja.DmejoraA[2];
+                control.granja.mejoraA += 1;
+            }
+            if (control.torre.GetComponent<PsycoKiller>() != null)
+            {
+                controlJuego.dinero -= control.psycoKiller.DmejoraA[2];
+                control.psycoKiller.mejoraA += 1;
+            }
             control.controlcanvas();
         }
     }
@@ -226,13 +295,26 @@ public class Mejorasbasicas : MonoBehaviour
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoPoison++;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoEntrePoison--;
                     break;
-                    case Psycokiller:
-                        PsycoKiller p =control.torre.GetComponent<PsycoKiller>();
-                        p.fireRate/=1.25f;
+                case Psycokiller:
+                    PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
+                    p.fireRate /= 1.25f;
                     break;
             }
-            control.db.mejoraB += 1;
-            controlJuego.dinero -= control.db.DmejoraB[0];
+            if (control.torre.GetComponent<Disparo_base>() != null)
+            {
+                controlJuego.dinero -= control.db.DmejoraB[0];
+                control.db.mejoraB += 1;
+            }
+            if (control.torre.GetComponent<Granja>() != null)
+            {
+                controlJuego.dinero -= control.granja.DmejoraB[0];
+                control.granja.mejoraB += 1;
+            }
+            if (control.torre.GetComponent<PsycoKiller>() != null)
+            {
+                controlJuego.dinero -= control.psycoKiller.DmejoraB[0];
+                control.psycoKiller.mejoraB += 1;
+            }
             control.controlcanvas();
         }
     }
@@ -260,13 +342,26 @@ public class Mejorasbasicas : MonoBehaviour
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoPoison++;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoEntrePoison--;
                     break;
-                    case Psycokiller:
-                        PsycoKiller p =control.torre.GetComponent<PsycoKiller>();
-                        p.fireRate/=1.5f;
+                case Psycokiller:
+                    PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
+                    p.fireRate /= 1.5f;
                     break;
             }
-            controlJuego.dinero -= control.db.DmejoraB[1];
-            control.db.mejoraB += 1;
+            if (control.torre.GetComponent<Disparo_base>() != null)
+            {
+                controlJuego.dinero -= control.db.DmejoraB[1];
+                control.db.mejoraB += 1;
+            }
+            if (control.torre.GetComponent<Granja>() != null)
+            {
+                controlJuego.dinero -= control.granja.DmejoraB[1];
+                control.granja.mejoraB += 1;
+            }
+            if (control.torre.GetComponent<PsycoKiller>() != null)
+            {
+                controlJuego.dinero -= control.psycoKiller.DmejoraB[1];
+                control.psycoKiller.mejoraB += 1;
+            }
             control.controlcanvas();
         }
     }
@@ -294,13 +389,26 @@ public class Mejorasbasicas : MonoBehaviour
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoPoison += 40;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoEntrePoison--;
                     break;
-                    case Psycokiller:
-                        PsycoKiller p =control.torre.GetComponent<PsycoKiller>();
-                        p.fireRate/=2;
+                case Psycokiller:
+                    PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
+                    p.fireRate /= 2;
                     break;
             }
-            controlJuego.dinero -= control.db.DmejoraB[2];
-            control.db.mejoraB += 1;
+            if (control.torre.GetComponent<Disparo_base>() != null)
+            {
+                controlJuego.dinero -= control.db.DmejoraB[2];
+                control.db.mejoraB += 1;
+            }
+            if (control.torre.GetComponent<Granja>() != null)
+            {
+                controlJuego.dinero -= control.granja.DmejoraB[2];
+                control.granja.mejoraB += 1;
+            }
+            if (control.torre.GetComponent<PsycoKiller>() != null)
+            {
+                controlJuego.dinero -= control.psycoKiller.DmejoraB[2];
+                control.psycoKiller.mejoraB += 1;
+            }
             control.controlcanvas();
         }
     }

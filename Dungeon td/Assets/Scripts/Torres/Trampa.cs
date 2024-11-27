@@ -10,12 +10,14 @@ public class Trampa : MonoBehaviour
     public string informacion;
     public ControlJuego controlJuego;
     public TowerDragHandler towerDragHandler;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         GameObject gameObject = GameObject.Find("GameManager");
 
         controlJuego = (ControlJuego)gameObject.GetComponent("ControlJuego");
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,15 @@ public class Trampa : MonoBehaviour
                 towerDragHandler = (TowerDragHandler)buttonObject.GetComponent("TowerDragHandler");
 
             }
+        }
+        if (towerDragHandler.isDragging)
+        {
+            animator.SetBool("Isdraging",true);;
+
+        }
+        else
+        {
+            animator.SetBool("Isdraging",false);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

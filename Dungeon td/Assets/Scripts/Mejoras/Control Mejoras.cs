@@ -11,6 +11,8 @@ public class Control_mejoras : MonoBehaviour
     public GameObject canvas;
     public GameObject torre;
     public Disparo_base db;
+    public Granja granja;
+    public PsycoKiller psycoKiller;
     public GameObject[] butons;
     private Color colorOriginal = Color.white;
     public GameObject Apuntar;
@@ -42,7 +44,9 @@ public class Control_mejoras : MonoBehaviour
                 {
                     torre = hit.collider.gameObject;
                     db = torre.GetComponent<Disparo_base>();
-                    if (torre.name!="Trampa(Clone)")
+                    granja = torre.GetComponent<Granja>();
+                    psycoKiller = torre.GetComponent<PsycoKiller>();
+                    if (torre.name != "Trampa(Clone)")
                     {
                         canvas.SetActive(true);
                         Vaciar();
@@ -63,9 +67,14 @@ public class Control_mejoras : MonoBehaviour
         switch (torre.gameObject.name)
         {
             case "Granja(Clone)":
-                NombreMA = torre.GetComponent<Granja>().NombreMA;
-                NombreMB = torre.GetComponent<Granja>().NombreMB;
+                NombreMA = granja.NombreMA;
+                NombreMB = granja.NombreMB;
                 Apuntar.SetActive(false);
+                break;
+            case "Psycokiller(Clone)":
+                NombreMA = psycoKiller.NombreMA;
+                NombreMB = psycoKiller.NombreMB;
+                Apuntar.SetActive(true);
                 break;
             default:
                 NombreMA = db.NombreMA;
@@ -113,14 +122,14 @@ public class Control_mejoras : MonoBehaviour
         switch (torre.gameObject.name)
         {
             case "Granja(Clone)":
-                MejoraA = torre.GetComponent<Granja>().mejoraA;
-                MejoraB = torre.GetComponent<Granja>().mejoraB;
+                MejoraA = granja.mejoraA;
+                MejoraB = granja.mejoraB;
                 break;
             case "Trampa(Clone)":
                 break;
             case "Psycokiller(Clone)":
-                MejoraA = torre.GetComponent<PsycoKiller>().mejoraA;
-                MejoraB = torre.GetComponent<PsycoKiller>().mejoraB;
+                MejoraA = psycoKiller.mejoraA;
+                MejoraB = psycoKiller.mejoraB;
                 break;
             default:
                 MejoraA = db.mejoraA;

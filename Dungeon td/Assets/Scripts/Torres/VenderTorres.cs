@@ -30,7 +30,7 @@ public class VenderTorres : MonoBehaviour
                 break;
             case "Trampa":
                 break;
-            case "Psucokiller":
+            case "Psycokiller(Clone)":
                 PsycoKiller p = mejorasbasicas.control.torre.GetComponent<PsycoKiller>();
                 VenderTorreBasica(p.mejoraA, p.mejoraB, p.DmejoraA, p.DmejoraB);
                 break;
