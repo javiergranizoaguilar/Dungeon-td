@@ -1,13 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class ControlJuego : MonoBehaviour
 {
@@ -53,6 +47,9 @@ public class ControlJuego : MonoBehaviour
     }
     void Start()
     {
+        int resolucionIndex = PlayerPrefs.GetInt("ResolucionIndex", 0); 
+        Resolution resolucion = Screen.resolutions[resolucionIndex]; 
+        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
         if (Guardar)
         {
             dinero = oleadas.baseDatos.ObtenerPrimerNivelPorUsuarioNivelDificultad(oleadas.Dificultad).Dinero;

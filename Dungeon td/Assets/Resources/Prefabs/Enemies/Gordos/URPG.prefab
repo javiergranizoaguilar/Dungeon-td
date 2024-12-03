@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1289932067501902127}
   - component: {fileID: 4579579221562442826}
   - component: {fileID: 8516133029940007237}
-  - component: {fileID: 2102858158908768929}
   - component: {fileID: 3127369749545491367}
+  - component: {fileID: 3005715608882530317}
+  - component: {fileID: 7015612110039615211}
   m_Layer: 0
   m_Name: URPG
   m_TagString: Enemy 1
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.4668209, g: 0.8867924, b: 0.7678005, a: 1}
+  m_Sprite: {fileID: 353797460, guid: e953df9082a83694e9606bd1af4ab5f6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,8 +115,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2102858158908768929
-CircleCollider2D:
+--- !u!114 &3127369749545491367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714084487393325696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  vida: 40
+  vidb: 0
+  speed: 10
+  currentWaypoint: 0
+  dar: 16
+  acorazado: 0
+  grande: 1
+  invisible: 1
+  regenerable: 0
+  pausa: 0
+  puntoC: 0
+--- !u!95 &3005715608882530317
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714084487393325696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0eb4153661b02b45b668f45acc63f5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &7015612110039615211
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,28 +192,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &3127369749545491367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714084487393325696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  vida: 40
-  vidb: 0
-  speed: 10
-  dar: 16
-  acorazado: 0
-  grande: 1
-  invisible: 1
-  regenerable: 0
-  controlJuego: {fileID: 0}
+  m_Offset: {x: 0.069405004, y: -0.030285835}
+  m_Size: {x: 0.396714, y: 0.45644444}
+  m_Direction: 0

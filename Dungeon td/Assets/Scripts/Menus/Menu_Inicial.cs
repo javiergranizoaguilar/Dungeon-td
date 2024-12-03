@@ -25,6 +25,9 @@ public class Menu_Inicial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int resolucionIndex = PlayerPrefs.GetInt("ResolucionIndex", 0);
+        Resolution resolucion = Screen.resolutions[resolucionIndex];
+        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
     }
     // Update is called once per frame
     void Update()
@@ -97,7 +100,7 @@ public class Menu_Inicial : MonoBehaviour
     }
     public void CambiarContrasenia()
     {
-        
+
         if (user_Password.ComprobarChangePassword(OldPassword.text, NewPassword.text, RepeatNewPassword.text))
         {
             user_Password.CambiarContrasenia(NewPassword.text);
@@ -111,7 +114,7 @@ public class Menu_Inicial : MonoBehaviour
     }
     public void CambiarNombre()
     {
-        
+
         if (user_Password.ComprobarChangeName(Password.text, RepeatPassword.text))
         {
             user_Password.CambiarName(NewName.text);
@@ -131,7 +134,7 @@ public class Menu_Inicial : MonoBehaviour
         RepeatNewPassword.text = "";
         NewName.text = "";
         Password.text = "";
-        RepeatPassword.text = ""; 
+        RepeatPassword.text = "";
         TextoErrorC.text = "";
         TextoErrorN.text = "";
     }

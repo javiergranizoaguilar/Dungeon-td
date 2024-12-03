@@ -17,6 +17,9 @@ public class Menu_User : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int resolucionIndex = PlayerPrefs.GetInt("ResolucionIndex", 0); 
+        Resolution resolucion = Screen.resolutions[resolucionIndex]; 
+        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
     }
 
     // Update is called once per frame

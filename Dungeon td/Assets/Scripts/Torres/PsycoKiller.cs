@@ -19,8 +19,9 @@ public class PsycoKiller : MonoBehaviour
     public float fireRate = 8f;
     public int danio = 1;
     // Número de segmentos (cuanto más alto, más suave será el círculo)
-    public bool verIn = false;
+    public bool verIn = true;
     public bool antiA = false;
+    public bool animd = false;
     // Start is called before the first frame update
     public int dar = 20;
     public int mejoraA = 0;
@@ -204,7 +205,11 @@ public class PsycoKiller : MonoBehaviour
                 // busca si hay enemigos en pantalla
                 if (targetEnemy != null)
                 {
-                    yield return new WaitForSeconds(fireRate);
+                    yield return new WaitForSeconds(fireRate - 1);
+                    animd = true;
+                    yield return new WaitForSeconds(1);
+                    // Instanciar un proyectil
+                    animd = false;
                     //si los hay busca la distancia si es menor a la indicada dispara si es mallor no 
                     Movement movement = (Movement)targetEnemy.GetComponent("Movement");
                     movement.vida -= danio;

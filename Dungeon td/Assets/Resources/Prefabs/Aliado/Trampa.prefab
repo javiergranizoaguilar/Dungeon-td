@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 137593873, guid: d7a7f2702b1d85c4393748cb1819b2bb, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   informacion: 
   controlJuego: {fileID: 0}
   towerDragHandler: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!95 &2869576081067405773
 Animator:
   serializedVersion: 5

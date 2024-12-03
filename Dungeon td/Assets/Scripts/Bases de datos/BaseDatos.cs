@@ -1,10 +1,7 @@
 using UnityEngine;
-using System.Data;
 using SQLite; // Necesitas importar esta librería
 using System.IO;
 using System;
-using UnityEngine.UI;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using TMPro;

@@ -32,14 +32,19 @@ public class Trampa : MonoBehaviour
 
             }
         }
-        if (towerDragHandler.isDragging)
-        {
-            animator.SetBool("Isdraging",true);;
-
-        }
         else
         {
-            animator.SetBool("Isdraging",false);
+            if (animator != null)
+            {
+                if (towerDragHandler.isDragging)
+                {
+                    animator.SetBool("Isdraging", true); ;
+                }
+                else
+                {
+                    animator.SetBool("Isdraging", false);
+                }
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

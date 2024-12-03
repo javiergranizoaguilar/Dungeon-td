@@ -49,6 +49,9 @@ public class Nivel : MonoBehaviour
     {
         baseDatos.CrearDB();
         niveles = baseDatos.ObtenerNivelesPorUsuario();
+        int resolucionIndex = PlayerPrefs.GetInt("ResolucionIndex", 0); 
+        Resolution resolucion = Screen.resolutions[resolucionIndex]; 
+        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
 
     }
 

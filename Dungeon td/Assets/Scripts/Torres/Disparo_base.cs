@@ -23,11 +23,13 @@ public class Disparo_base : MonoBehaviour
     public float fireRate = 4f;
     public float speedB = 5;
     public float fireDistance = 3;
+    float distanciacirculo;
     public int danio = 1;
     private int segments = 50;          // Número de segmentos (cuanto más alto, más suave será el círculo)
     private bool isCircleVisible = false;
     public bool verIn = false;
     public bool antiA = false;
+    public bool animd=false;
     // Start is called before the first frame update
     public int mejoraA = 0;
     public int mejoraB = 0;
@@ -231,8 +233,10 @@ public class Disparo_base : MonoBehaviour
 
                     if (distance <= fireDistance)
                     {
-
+                        animd=true;
+                        yield return new WaitForSeconds(1);
                         // Instanciar un proyectil
+                        animd=false;
                         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
                         Movimien_Bala movimien_Bala = projectile.GetComponent<Movimien_Bala>();
                         if (movimien_Bala != null)
@@ -246,7 +250,7 @@ public class Disparo_base : MonoBehaviour
 
                         // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
                         //yield return new proboca una espera dependiendo de cietos parametros ya sa una condicion se cunpla o pase un tiempo
-                        yield return new WaitForSeconds(fireRate);
+                        yield return new WaitForSeconds(fireRate-1);
                     }
                     else
                     {
@@ -266,13 +270,14 @@ public class Disparo_base : MonoBehaviour
     }
     void DrawCircle()
     {
+        distanciacirculo=fireDistance/6;
         lineRenderer.positionCount = segments + 1;
         // Dibujar los puntos del círculo alrededor del objeto
         float angle = 0f;
         for (int i = 0; i < segments + 1; i++) // +1 para cerrar el círculo
         {
-            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * fireDistance;
-            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * fireDistance;
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * distanciacirculo;
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * distanciacirculo;
             lineRenderer.SetPosition(i, new Vector3(x, y, 0));
             angle += (360f / segments);
         }

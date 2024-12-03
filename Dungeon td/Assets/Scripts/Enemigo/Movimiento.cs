@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     public bool grande = false;
     public bool invisible = false;
     public bool regenerable = false;
+    private bool miraderecha = true;
     public bool pausa = false;
     public float puntoC = 0;
     private ControlJuego controlJuego;
@@ -40,7 +41,9 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         movimiento();
+        Flip();
         regenerar();
     }
     public void movimiento()
@@ -74,6 +77,34 @@ public class Movement : MonoBehaviour
                 new WaitForSeconds(TRegener);
                 vida += 1;
                 regenerable = true;
+            }
+        }
+    }
+    void Flip()
+    {
+        if (waypoints[currentWaypoint] != null)
+        {
+            if (gameObject.transform.position.x - waypoints[currentWaypoint].transform.position.x < 0)
+            {
+                if (!miraderecha)
+                {
+                    miraderecha = !miraderecha;
+                    Vector3 theScale = transform.localScale;
+                    theScale.x *= -1;
+                    // Invertir la escala en el eje x 
+                    transform.localScale = theScale;
+                }
+            }
+            if (gameObject.transform.position.x - waypoints[currentWaypoint].transform.position.x > 0)
+            {
+                if (miraderecha)
+                {
+                    miraderecha = !miraderecha;
+                    Vector3 theScale = transform.localScale;
+                    theScale.x *= -1;
+                    // Invertir la escala en el eje x 
+                    transform.localScale = theScale;
+                }
             }
         }
     }
