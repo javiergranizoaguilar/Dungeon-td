@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundPlayOnes: {fileID: 0}
+  soundPlayOnes2: {fileID: 0}
   waypoints: []
   vida: 75
   vidb: 0
@@ -134,7 +136,7 @@ MonoBehaviour:
   currentWaypoint: 0
   dar: 16
   acorazado: 0
-  grande: 0
+  grande: 1
   invisible: 0
   regenerable: 0
   pausa: 0

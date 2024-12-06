@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundPlayOnes: {fileID: 0}
+  soundPlayOnes2: {fileID: 0}
   waypoints: []
   vida: 4
   vidb: 0

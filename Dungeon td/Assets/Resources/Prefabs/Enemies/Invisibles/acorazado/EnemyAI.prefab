@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7943725006322965824}
   - component: {fileID: 4030013935555199301}
   - component: {fileID: 875920063081142001}
-  - component: {fileID: 5748061238328687081}
   - component: {fileID: 5977477223898162732}
   - component: {fileID: 6746232754426602018}
+  - component: {fileID: -3005305256082443873}
   m_Layer: 0
   m_Name: EnemyAI
   m_TagString: Enemy 1
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7565074552707600675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.80177, y: 8.013921, z: 0}
+  m_LocalPosition: {x: 10.89, y: 7.98, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,8 +115,55 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &5748061238328687081
-CapsuleCollider2D:
+--- !u!114 &5977477223898162732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565074552707600675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPlayOnes: {fileID: 0}
+  soundPlayOnes2: {fileID: 0}
+  waypoints: []
+  vida: 20
+  vidb: 0
+  speed: 1
+  currentWaypoint: 0
+  dar: 16
+  acorazado: 1
+  grande: 1
+  invisible: 1
+  regenerable: 0
+  pausa: 0
+  puntoC: 0
+--- !u!95 &6746232754426602018
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565074552707600675}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c6b5d52feafac449b9fc105bc01964f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &-3005305256082443873
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,51 +194,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.045305442, y: 0.0036481859}
-  m_Size: {x: 0.26329383, y: 0.40219042}
-  m_Direction: 0
---- !u!114 &5977477223898162732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7565074552707600675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7967765e80e1547449c32a5ddf7376b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  vida: 20
-  vidb: 0
-  speed: 1
-  currentWaypoint: 0
-  dar: 16
-  acorazado: 1
-  grande: 0
-  invisible: 1
-  regenerable: 0
-  pausa: 0
-  puntoC: 0
---- !u!95 &6746232754426602018
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7565074552707600675}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5c6b5d52feafac449b9fc105bc01964f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Offset: {x: 0.0317101, y: -0.015402055}
+  serializedVersion: 2
+  m_Radius: 0.1400681
