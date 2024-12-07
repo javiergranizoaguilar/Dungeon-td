@@ -75,6 +75,24 @@ public class Control_mejoras : MonoBehaviour
                 NombreMA = psycoKiller.NombreMA;
                 NombreMB = psycoKiller.NombreMB;
                 Apuntar.SetActive(true);
+                switch (psycoKiller.ApuntadoDisparo)
+                {
+                    case 0:
+                        Modo.text = "Primero";
+                        break;
+                    case 1:
+                        Modo.text = "Ultimo";
+                        break;
+                    case 2:
+                        Modo.text = "Fuerte";
+                        break;
+                    case 3:
+                        Modo.text = "Debil";
+                        break;
+                    default:
+                        Modo.text = "Primero";
+                        break;
+                }
                 break;
             default:
                 NombreMA = db.NombreMA;

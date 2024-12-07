@@ -29,7 +29,7 @@ public class Disparo_base : MonoBehaviour
     private bool isCircleVisible = false;
     public bool verIn = false;
     public bool antiA = false;
-    public bool animd=false;
+    public bool animd = false;
     // Start is called before the first frame update
     public int mejoraA = 0;
     public int mejoraB = 0;
@@ -103,10 +103,10 @@ public class Disparo_base : MonoBehaviour
             case 1:
                 listado = ordenaMenorMayor(listado);
                 break;
-                case 2:
+            case 2:
                 listado = MasVida(listado);
                 break;
-                case 3:
+            case 3:
                 listado = MenosVida(listado);
                 break;
             default:
@@ -119,6 +119,10 @@ public class Disparo_base : MonoBehaviour
             targetEnemy = listado[0]; // Seleccionar el primer objeto enemigo encontrado
             distance = Vector2.Distance(firePoint.transform.position, targetEnemy.transform.position);
             listado.Clear();
+        }
+        else
+        {
+            distance = 100000;
         }
     }//Mas Vida
     public List<GameObject> MasVida(List<GameObject> listador)
@@ -233,10 +237,14 @@ public class Disparo_base : MonoBehaviour
 
                     if (distance <= fireDistance)
                     {
-                        animd=true;
+                        animd = true;
                         yield return new WaitForSeconds(1);
                         // Instanciar un proyectil
-                        animd=false;
+                        animd = false;
+                        if (targetEnemy == null)
+                        {
+                            yield return new WaitUntil(() => (targetEnemy != null));
+                        }
                         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
                         Movimien_Bala movimien_Bala = projectile.GetComponent<Movimien_Bala>();
                         if (movimien_Bala != null)
@@ -250,7 +258,7 @@ public class Disparo_base : MonoBehaviour
 
                         // Espera un tiempo definido por fireRate antes de disparar el siguiente proyectil 
                         //yield return new proboca una espera dependiendo de cietos parametros ya sa una condicion se cunpla o pase un tiempo
-                        yield return new WaitForSeconds(fireRate-1);
+                        yield return new WaitForSeconds(fireRate - 1);
                     }
                     else
                     {
@@ -270,7 +278,7 @@ public class Disparo_base : MonoBehaviour
     }
     void DrawCircle()
     {
-        distanciacirculo=fireDistance/6;
+        distanciacirculo = fireDistance / 6;
         lineRenderer.positionCount = segments + 1;
         // Dibujar los puntos del círculo alrededor del objeto
         float angle = 0f;

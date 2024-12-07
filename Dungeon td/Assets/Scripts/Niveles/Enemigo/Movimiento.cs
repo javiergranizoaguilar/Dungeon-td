@@ -55,11 +55,15 @@ public class Movement : MonoBehaviour
         {
             // Mueve el objeto hacia el siguiente waypoint
             transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, speed * Time.deltaTime);
+            if (currentWaypoint + 1 < waypoints.Length)
+            {
+                puntoC = Vector2.Distance(transform.position, waypoints[currentWaypoint + 1].position);
+            }
 
             // Si el objeto alcanza el waypoint actual, pasa al siguiente
             if (Vector2.Distance(transform.position, waypoints[currentWaypoint].position) < 0.1f)
             {
-                puntoC = Vector2.Distance(transform.position, waypoints[currentWaypoint].position);
+
                 currentWaypoint++;
             }
         }

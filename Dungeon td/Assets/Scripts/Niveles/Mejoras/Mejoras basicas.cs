@@ -29,25 +29,21 @@ public class Mejorasbasicas : MonoBehaviour
     {
         if (control.psycoKiller != null)
         {
+            control.psycoKiller.ApuntadoDisparo++;
             if (control.psycoKiller.ApuntadoDisparo > 3)
             {
                 control.psycoKiller.ApuntadoDisparo = 0;
-            }
-            else
-            {
-                control.psycoKiller.ApuntadoDisparo++;
+
             }
         }
         else
         {
+            control.db.ApuntadoDisparo++;
             if (control.db.ApuntadoDisparo > 3)
             {
                 control.db.ApuntadoDisparo = 0;
             }
-            else
-            {
-                control.db.ApuntadoDisparo++;
-            }
+
 
         }
         control.controlcanvas();
@@ -56,24 +52,19 @@ public class Mejorasbasicas : MonoBehaviour
     {
         if (control.psycoKiller != null)
         {
+            control.psycoKiller.ApuntadoDisparo--;
             if (control.psycoKiller.ApuntadoDisparo < 0)
             {
                 control.psycoKiller.ApuntadoDisparo = 3;
-            }
-            else
-            {
-                control.psycoKiller.ApuntadoDisparo--;
+
             }
         }
         else
         {
+            control.db.ApuntadoDisparo--;
             if (control.db.ApuntadoDisparo < 0)
             {
                 control.db.ApuntadoDisparo = 3;
-            }
-            else
-            {
-                control.db.ApuntadoDisparo--;
             }
 
         }

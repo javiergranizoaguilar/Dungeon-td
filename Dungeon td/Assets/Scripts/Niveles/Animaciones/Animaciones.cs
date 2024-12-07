@@ -52,7 +52,7 @@ public class Animaciones : MonoBehaviour
                 y = disparo_Base.gameObject.transform.position.y - disparo_Base.targetEnemy.gameObject.transform.position.y;
                 seter(x, y);
             }
-            if (psycoKiller != null && psycoKiller.animd)
+            if (psycoKiller != null && psycoKiller.animd && psycoKiller.targetEnemy != null)
             {
                 x = psycoKiller.gameObject.transform.position.x - psycoKiller.targetEnemy.gameObject.transform.position.x;
                 y = psycoKiller.gameObject.transform.position.y - psycoKiller.targetEnemy.gameObject.transform.position.y;

@@ -37,7 +37,7 @@ public class PsycoKiller : MonoBehaviour
     public string[] NombreMB;
     public string informacion;
 
-    private List<GameObject> listadores = new List<GameObject>();
+    public List<GameObject> listadores = new List<GameObject>();
     void Awake()
     {
         soundPlayOnes = GameObject.Find("DeathEnemiesSoundManager").GetComponent<SoundPlayOnes>();
@@ -105,7 +105,8 @@ public class PsycoKiller : MonoBehaviour
             targetEnemy = listado[0]; // Seleccionar el primer objeto enemigo encontrado
             listado.Clear();
         }
-    }//Mas Vida
+    }
+    //Mas Vida
     public List<GameObject> MasVida(List<GameObject> listador)
     {
         listador = listador.OrderByDescending(e => e.GetComponent<Movement>().vida).ToList();
@@ -157,7 +158,7 @@ public class PsycoKiller : MonoBehaviour
         }
         if (listadores.Count > 1)
         {
-            listadores = listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC).ToList();
+            listadores = listadores.OrderBy(e => e.GetComponent<Movement>().puntoC).ToList();
         }
         return listadores;
 
@@ -176,7 +177,7 @@ public class PsycoKiller : MonoBehaviour
         }
         if (listadores.Count > 1)
         {
-            listadores = listadores.OrderBy(e => e.GetComponent<Movement>().puntoC).ToList();
+            listadores = listadores.OrderByDescending(e => e.GetComponent<Movement>().puntoC).ToList();
         }
         return listadores;
 
@@ -206,19 +207,24 @@ public class PsycoKiller : MonoBehaviour
         stop = GameObject.Find("Stop");
         while (true)
         {
+
             if (!stop.GetComponent<Stoper>().stoped)
             {
 
                 // busca si hay enemigos en pantalla
                 if (targetEnemy != null)
                 {
+
                     yield return new WaitForSeconds(fireRate - 1);
                     animd = true;
                     yield return new WaitForSeconds(1);
                     // Instanciar un proyectil
                     animd = false;
-                    //si los hay busca la distancia si es menor a la indicada dispara si es mallor no 
-                    Movement movement = (Movement)targetEnemy.GetComponent("Movement");
+                    if (targetEnemy == null)
+                    {
+                        yield return new WaitUntil(() => (targetEnemy != null));
+                    }
+                    Movement movement = targetEnemy.GetComponent<Movement>();
                     movement.vida -= danio;
                     if (antiA && movement.acorazado)
                     {
@@ -231,20 +237,20 @@ public class PsycoKiller : MonoBehaviour
                         controlJuego.dineroF += dar;
                         Destroy(targetEnemy);
                     }
-                    else{
+                    else
+                    {
                         soundPlayOnes2.PlaySound();
                     }
-
-
-
                 }
                 else
                 {
+                    Debug.Log("x");
                     yield return new WaitUntil(() => (targetEnemy != null));
                 }
             }
             else
             {
+                Debug.Log("z");
                 yield return new WaitUntil(() => (stop.GetComponent<Stoper>().stoped == false));
             }
         }

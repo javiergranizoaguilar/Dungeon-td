@@ -214,6 +214,7 @@ public class ControlJuego : MonoBehaviour
         oleadas.baseDatos.EliminarTorresYGuardadosPorNivelYDificultad(oleadas.Dificultad);
         stoper.Stop();
         ButtonSeguir.SetActive(false);
+        Puntos=vidas*dinero;
         if (g)
         {
             TextoFin.text = "Ganaste /n Puntos:" + Puntos;

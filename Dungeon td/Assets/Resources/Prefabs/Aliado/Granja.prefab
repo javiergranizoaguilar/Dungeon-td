@@ -150,8 +150,8 @@ MonoBehaviour:
   controlJuego: {fileID: 0}
   mejoraA: 0
   mejoraB: 0
-  DmejoraA: 000000000000000000000000
-  DmejoraB: 000000000000000000000000
+  DmejoraA: e8030000a00f0000401f0000
+  DmejoraB: e8030000a00f0000401f0000
   InfoA:
   - Dinero
   - Mucho Dinero

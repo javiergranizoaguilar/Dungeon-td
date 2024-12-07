@@ -42,7 +42,7 @@ public class Stoper : MonoBehaviour
         oleadas.parado = false;
         foreach (GameObject enemy in enemies) { enemy.GetComponent<Movement>().stop(); }
         foreach (GameObject bala in balas) { bala.GetComponent<Movimien_Bala>().speed = 0; }
-        foreach (GameObject granja in GranjasR) { granja.GetComponent<Granja>().pausa = false; }
+        foreach (GameObject granja in GranjasR) { granja.GetComponent<Granja>().pausa = true; }
         canvas.SetActive(true);
     }
     public void unStop()
