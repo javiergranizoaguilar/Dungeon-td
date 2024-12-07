@@ -1299,8 +1299,9 @@ public class oleadas : MonoBehaviour
     {
         for (int i = 0; i < cantidadEnemigos; i++)
         {
-            InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn1); // Instancia un enemigo del tipo especificado
             yield return new WaitUntil(() => parado);
+            InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn1); // Instancia un enemigo del tipo especificado
+
             yield return new WaitForSeconds(spawnDelay);
 
         }
@@ -1311,14 +1312,16 @@ public class oleadas : MonoBehaviour
         {
             if (i % 2 == 0)
             {
-                InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn2); // Instancia un enemigo del tipo especificado
                 yield return new WaitUntil(() => parado);
+                InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn2); // Instancia un enemigo del tipo especificado
+
                 yield return new WaitForSeconds(spawnDelay);
             }
             else
             {
-                InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn1); // Instancia un enemigo del tipo especificado
                 yield return new WaitUntil(() => parado);
+                InstanciarEnemigo(tipoEnemigo, spawnPointToSpawn1); // Instancia un enemigo del tipo especificado
+
                 yield return new WaitForSeconds(spawnDelay);
             }
 
