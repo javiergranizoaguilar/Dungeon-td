@@ -35,7 +35,6 @@ public class Ajustes : MonoBehaviour
 
         resolucionDropdown.onValueChanged.AddListener(delegate { CambiarResolucion(resolucionDropdown.value); });
     }
-
     public void CambiarResolucion(int resolucionIndex)
     {
         Resolution resolucion = resoluciones[resolucionIndex];

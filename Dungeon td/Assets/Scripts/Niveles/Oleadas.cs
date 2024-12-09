@@ -656,21 +656,22 @@ public class oleadas : MonoBehaviour
         yield return null;
         todosFuerea = true;
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
-        if (controlJuego.Facil && todosFuerea && GameObject.FindGameObjectsWithTag(enemyTag).Length == 0)
+        if (controlJuego.Facil)
         {
             stoper.Stop();
             List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioNivel();
-            if (n[0].nivel < 6)
+            if (n[0].nivel <=6)
             {
                 foreach (BaseDatos.Nivel niv in n)
                 {
                     if (niv.Dificultad >= 2)
                     {
-                        niv.Desbloqueado = true;
+                        baseDatos.Jugable(niv);
                     }
                 }
             }
         }
+        yield return new WaitUntil(()=>stoper.stoped);
     }
     IEnumerator ronda41()
     {
@@ -985,11 +986,12 @@ public class oleadas : MonoBehaviour
                 {
                     if (niv.Dificultad == 1)
                     {
-                        niv.Desbloqueado = true;
+                        baseDatos.Jugable(niv);
                     }
                 }
             }
         }
+        yield return new WaitUntil(()=>stoper.stoped);
     }
     IEnumerator ronda81()
     {
@@ -1189,7 +1191,7 @@ public class oleadas : MonoBehaviour
                 {
                     if (niv.Dificultad == 1)
                     {
-                        niv.Desbloqueado = true;
+                        baseDatos.Jugable(niv);
                         baseDatos.Poner(Dificultad, controlJuego.dinero * controlJuego.vidas, true);
                     }
                 }

@@ -508,4 +508,8 @@ public class BaseDatos : MonoBehaviour
         db.Update(n);
     }
 
+    public void Jugable(Nivel nivel){
+        nivel.Desbloqueado=true;
+        db.Update(nivel);
+    }
 }

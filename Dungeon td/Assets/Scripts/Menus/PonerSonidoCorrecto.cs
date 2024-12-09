@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PonerSonidoCorrecto : MonoBehaviour
 {
@@ -40,5 +41,9 @@ public class PonerSonidoCorrecto : MonoBehaviour
         AudioSource[] audioSources = FindObjectsOfType<AudioSource>(); // Ajustar el volumen de todos los AudioSource 
         foreach (AudioSource audioSource in audioSources) { audioSource.volume = volume; } // Guardar el nuevo volumen 
         PlayerPrefs.SetFloat("Volume", volume);
+    }
+    public void ElejirUsuario()
+    {
+        SceneManager.LoadScene("Menu_Inicial");
     }
 }
