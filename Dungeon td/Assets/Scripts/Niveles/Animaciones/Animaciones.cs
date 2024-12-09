@@ -46,7 +46,7 @@ public class Animaciones : MonoBehaviour
             animator.SetBool("Atras", false);
             animator.SetBool("Derecha", false);
             animator.SetBool("Izquierda", false);
-            if (disparo_Base != null && disparo_Base.animd)
+            if (disparo_Base != null && disparo_Base.animd && disparo_Base.targetEnemy!=null)
             {
                 x = disparo_Base.gameObject.transform.position.x - disparo_Base.targetEnemy.gameObject.transform.position.x;
                 y = disparo_Base.gameObject.transform.position.y - disparo_Base.targetEnemy.gameObject.transform.position.y;

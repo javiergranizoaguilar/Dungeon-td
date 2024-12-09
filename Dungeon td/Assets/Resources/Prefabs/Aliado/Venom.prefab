@@ -189,11 +189,11 @@ MonoBehaviour:
   DmejoraB: e8030000a00f0000401f0000
   InfoA:
   - Veneno fuerte
-  - Veneno mas fuete
+  - Veneno mas fuete y Vision de invisibles
   - Veneno letal
   InfoB:
   - Efecto rapido
-  - Efecto muy rapido
+  - Efecto muy rapido Y antiAcorazado
   - "Aumenta la velocidad del da\xF1o y el tiempo de esfecto"
   NombreMA:
   - Poison
@@ -204,6 +204,8 @@ MonoBehaviour:
   - Cientifico Jefe
   - El Duende Negro
   informacion: Derrite el cielo
+  InvalidZonesTilemap: {fileID: 0}
+  Bloqueado: {fileID: 11400000, guid: c1c9ae1e9cd34cf499f5f8b287e33a5d, type: 2}
 --- !u!120 &5499263214056331586
 LineRenderer:
   serializedVersion: 2

@@ -35,7 +35,8 @@ public class Movement : MonoBehaviour
     }
     void Start()
     {
-        if (controlJuego.Medio) { dar *= vida * 1.1; }
+        if (controlJuego.Medio) { dar *= vida * 1.5; }
+        if (controlJuego.Medio) { dar *= vida * 1.25; }
         if (controlJuego.Dificil) { dar *= vida; }
         if (!grande) { putSpeeds(); }
         if (acorazado) { vida *= 8; }

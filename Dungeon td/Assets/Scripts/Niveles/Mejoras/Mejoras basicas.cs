@@ -180,6 +180,7 @@ public class Mejorasbasicas : MonoBehaviour
                     control.db.fireDistance *= 1.5f;
                     control.db.fireRate -= 1;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza -= 0.3f;
+                    control.db.verIn = true;
                     break;
                 case Granja:
                     Granja g = control.torre.GetComponent<Granja>();
@@ -187,10 +188,12 @@ public class Mejorasbasicas : MonoBehaviour
                     break;
                 case Venom:
                     control.db.danio++;
+                    control.db.verIn = true;
                     break;
                 case Psycokiller:
                     PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
                     p.danio += 2;
+                    p.verIn = true;
                     break;
             }
             if (control.torre.GetComponent<Disparo_base>() != null)
@@ -366,11 +369,13 @@ public class Mejorasbasicas : MonoBehaviour
                     control.db.fireRate -= 3;
                     control.db.fireDistance += 1;
                     control.db.danio = 5;
+                    control.db.antiA = true;
                     break;
                 case Frosti:
                     control.db.fireDistance += 2;
                     control.db.danio = 4;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoR += 2;
+                    control.db.antiA = true;
                     break;
                 case Granja:
                     Granja g = control.torre.GetComponent<Granja>();
@@ -379,10 +384,12 @@ public class Mejorasbasicas : MonoBehaviour
                 case Venom:
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoPoison += 40;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoEntrePoison--;
+                    control.db.antiA = true;
                     break;
                 case Psycokiller:
                     PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
                     p.fireRate /= 2;
+                    p.antiA = true;
                     break;
             }
             if (control.torre.GetComponent<Disparo_base>() != null)

@@ -140,9 +140,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5372925, y: -0.3070984}
-      - {x: 0, y: 0.626843}
-      - {x: -0.54330444, y: -0.30617982}
+    - - {x: 0.1860199, y: -0.16738638}
+      - {x: 0.19668627, y: 0.1612635}
+      - {x: -0.15966798, y: 0.16379976}
+      - {x: -0.18005371, y: -0.15449473}
   m_UseDelaunayMesh: 0
 --- !u!222 &6873291486569642805
 CanvasRenderer:
@@ -188,11 +189,11 @@ MonoBehaviour:
   DmejoraB: e8030000a00f0000401f0000
   InfoA:
   - Ralenti
-  - Ralentiza y velocidad
-  - Ralentizacion enorme
+  - Ralentiza y velocidad y vision de invisibles
+  - 'Ralentizacion enorme '
   InfoB:
   - Aumenta el tiempo ralentizado
-  - Incrementa el tiempo ralentizado
+  - Incrementa el tiempo ralentizado y es antiAcorazados
   - "Incrementa el tiempo ralentizado da\xF1o y rango"
   NombreMA:
   - Frezeer
@@ -203,6 +204,8 @@ MonoBehaviour:
   - Ici
   - Iceberg
   informacion: Conjela el Fuego
+  InvalidZonesTilemap: {fileID: 0}
+  Bloqueado: {fileID: 11400000, guid: c1c9ae1e9cd34cf499f5f8b287e33a5d, type: 2}
 --- !u!120 &5499263214056331586
 LineRenderer:
   serializedVersion: 2

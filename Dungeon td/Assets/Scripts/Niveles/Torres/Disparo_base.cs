@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(LineRenderer))]
 public class Disparo_base : MonoBehaviour
@@ -41,10 +42,12 @@ public class Disparo_base : MonoBehaviour
     public string[] NombreMA;
     public string[] NombreMB;
     public string informacion;
-
+    public Tilemap InvalidZonesTilemap;
+    public TileBase Bloqueado;
     private List<GameObject> listadores = new List<GameObject>();
     void Start()
     {
+        InvalidZonesTilemap=GameObject.Find("Tilemap").GetComponent<Tilemap>();
         firePoint = gameObject.transform;
         // Obtener el LineRenderer
         lineRenderer = GetComponent<LineRenderer>();
@@ -89,7 +92,7 @@ public class Disparo_base : MonoBehaviour
             float distances = Vector2.Distance(firePoint.transform.position, e.transform.position);
             if (distances <= fireDistance)
             {
-                if (!(e.GetComponent<Movement>().invisible && !verIn))
+                if ((!(e.GetComponent<Movement>().invisible && !verIn)) && ObjetoEnMedio(gameObject.transform.position, e.transform.position))
                 {
                     listado.Add(e);
                 }
@@ -124,7 +127,28 @@ public class Disparo_base : MonoBehaviour
         {
             distance = 100000;
         }
-    }//Mas Vida
+    }
+    private bool ObjetoEnMedio(Vector3 positionA, Vector3 positionB)
+    {
+        // Obtener todas las posiciones de celda entre el objeto A y el objeto B 
+        Vector2 direction = (positionB - positionA).normalized;
+        Vector2 currentPosition = positionA;
+        while (Vector2.Distance(currentPosition, positionB) > 0.1f)
+        {
+            currentPosition += direction * 0.1f;
+            Vector3Int cellPositionvalid = InvalidZonesTilemap.WorldToCell(currentPosition);
+
+            // Obtener el tile en esa posición de celda
+            TileBase tileAtPosition = InvalidZonesTilemap.GetTile(cellPositionvalid);
+            // Verificar si el tile es el permitido para colocar el personaje
+            if (tileAtPosition == Bloqueado)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    //Mas Vida
     public List<GameObject> MasVida(List<GameObject> listador)
     {
         listador = listador.OrderByDescending(e => e.GetComponent<Movement>().vida).ToList();

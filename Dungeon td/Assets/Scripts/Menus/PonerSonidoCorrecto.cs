@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PonerSonidoCorrecto : MonoBehaviour
 {
     // Start is called before the first frame update
-    private AudioSource[] audioSourcesA;
+    public AudioSource[] audioSourcesA;
     void Start()
     {
         audioSourcesA = FindObjectsOfType<AudioSource>();
@@ -15,8 +17,16 @@ public class PonerSonidoCorrecto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AudioSource[] audioSourcesP = FindObjectsOfType<AudioSource>();
-        if (audioSourcesA.Length>audioSourcesP.Length)
+        List<AudioSource> a = FindObjectsOfType<AudioSource>().ToList<AudioSource>();
+        if(GameObject.FindGameObjectsWithTag("Personaje")!=null){
+           foreach(GameObject audio in GameObject.FindGameObjectsWithTag("Personaje")){
+            if(audio.GetComponents<AudioSource>()!=null){
+                a.Add(audio.GetComponent<AudioSource>());
+            }
+           }
+        }
+        AudioSource[] audioSourcesP =a.ToArray();
+        if (audioSourcesA.Length<audioSourcesP.Length)
         {
             SetVolume();
             audioSourcesA=audioSourcesP;

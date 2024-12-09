@@ -377,302 +377,276 @@ public class oleadas : MonoBehaviour
     IEnumerator ronda1()
     {
 
-        yield return StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 0)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda2()
     {
-        yield return StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda3()
     {
-        yield return StartCoroutine(Ronda(10, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda4()
     {
-        StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 1)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda5()
     {
-        StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda6()
     {
-        StartCoroutine(Ronda(10, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda7()
     {
         yield return StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 2)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 2)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda8()
     {
         StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
         yield return StartCoroutine(Ronda(3, 2)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda9()
     {
-        StartCoroutine(Ronda(5, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
         yield return StartCoroutine(Ronda(5, 2)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda10()
     {
-        StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 1)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 2)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 2)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 3)); // Instancia un enemigo
         todosFuerea = true;
 
     }
     IEnumerator ronda11()
     {
-        StartCoroutine(Ronda(4, 4)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 0)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 2)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 3)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda12()
     {
-
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(6, 2)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 2)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda13()
     {
-        StartCoroutine(Ronda(7, 2)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 2)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 3)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(2, 4)); // Instancia un enemigo
         todosFuerea = true;
 
     }
     IEnumerator ronda14()
     {
-        StartCoroutine(Ronda(4, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 2)); // Instancia un enemigo
         yield return StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 4)); // Instancia un enemigo
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda15()
     {
-        StartCoroutine(Ronda(5, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
+
+        yield return StartCoroutine(Ronda(3, 3)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 4)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 5)); // Instancia un enemigo
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda16()
     {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 6)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 3)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 5)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
         StartCoroutine(Ronda(3, 4)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(8, 1)); // Instancia un enemigo
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda17()
     {
-        StartCoroutine(Ronda(10, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(7, 6)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 7)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 5)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 4)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
+        yield return null;
+        todosFuerea = true;
     }
     IEnumerator ronda18()
     {
-        StartCoroutine(Ronda(4, 6)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 7)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(1, 6)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 5)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 4)); // Instancia un enemigo
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda19()
     {
-        StartCoroutine(Ronda(10, 6)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 7)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(7, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 6)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 5)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 4)); // Instancia un enemigo
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda20()
     {
-        StartCoroutine(Ronda(7, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 5)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 6)); // Instancia un enemigo
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda21()
     {
-        yield return StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 9)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(3, 5)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 6)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 7)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda22()
     {
-        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 5)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 6)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 7)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda23()
     {
-        StartCoroutine(Ronda(7, 2)); // Instancia un enemigo 
-        yield return StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 7)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 5)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 6)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 7)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda24()
     {
-        StartCoroutine(Ronda(7, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 6)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 8)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 6)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 8)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda25()
     {
-        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 6)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 8)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda26()
     {
-        yield return StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 6)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 7)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 8)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda27()
     {
-        StartCoroutine(Ronda(9, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 8)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 9)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda28()
     {
-        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 7)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 9)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda29()
     {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 11)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 7)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 8)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 9)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda30()
     {
-        yield return StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(2, 12)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 9)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 10)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda31()
     {
-        yield return StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(6, 12)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 9)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 10)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda32()
     {
-        yield return StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 12)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 9)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 10)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda33()
     {
-        yield return StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 12)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 9)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 11)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda34()
     {
-        yield return StartCoroutine(Ronda(6, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 13)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 9)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda35()
     {
-        yield return StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(6, 12)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 13)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 9)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 11)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda36()
     {
-        yield return StartCoroutine(Ronda(7, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 11)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 12)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 13)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 12)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda37()
     {
-        yield return StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 13)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 12)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda38()
     {
-        yield return StartCoroutine(Ronda(20, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(13, 12)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(22, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 12)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda39()
     {
-        yield return StartCoroutine(Ronda(32, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(30, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(14, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(12, 3)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 12)); // Instancia un enemig 
+        StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 4)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(4, 9)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda40()
@@ -700,317 +674,264 @@ public class oleadas : MonoBehaviour
     }
     IEnumerator ronda41()
     {
-        yield return StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 9)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 12)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 13)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda42()
     {
-        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 12)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 13)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda43()
     {
-        StartCoroutine(Ronda(7, 2)); // Instancia un enemigo 
-        StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 7)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 12)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 13)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda44()
     {
-        StartCoroutine(Ronda(7, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 6)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 8)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(3, 12)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 13)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 14)); // Instancia un enemig 
         todosFuerea = true;
     }
     IEnumerator ronda45()
     {
-        yield return StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 12)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 13)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 14)); // Instancia un enemig 
         yield return null; todosFuerea = true;
     }
     IEnumerator ronda46()
     {
-        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 12)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 13)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 14)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda47()
     {
-        StartCoroutine(Ronda(9, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 8)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(3, 13)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 14)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 15)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda48()
     {
-        yield return StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 13)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 14)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 15)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda49()
     {
-        yield return StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 23)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 11)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
+        StartCoroutine(Ronda(5, 13)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 14)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 15)); // Instancia un enemig 
+        todosFuerea = true;
     }
     IEnumerator ronda50()
+    {
+        StartCoroutine(Ronda(3, 14)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 15)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 16)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda51()
+    {
+        StartCoroutine(Ronda(5, 14)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 15)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 16)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda52()
+    {
+        StartCoroutine(Ronda(5, 14)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 15)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 16)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda53()
+    {
+        StartCoroutine(Ronda(3, 15)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 16)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(1, 17)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda54()
+    {
+        StartCoroutine(Ronda(5, 15)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 16)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(3, 17)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda55()
+    {
+        StartCoroutine(Ronda(5, 15)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 16)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(5, 17)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda56()
+    {
+        yield return StartCoroutine(Ronda(10, 0)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda57()
+    {
+        StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 1)); // Instancia un enemigo
+        todosFuerea = true;
+    }
+    IEnumerator ronda58()
+    {
+        StartCoroutine(Ronda(10, 0)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 2)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda59()
+    {
+        StartCoroutine(Ronda(5, 0));
+        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 2)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 3)); // Instancia un enemig 
+        todosFuerea = true;
+    }
+    IEnumerator ronda60()
+    {
+        yield return StartCoroutine(Ronda(1, 19)); // Instancia un enemigo
+        todosFuerea = true;
+    }
+    IEnumerator ronda61()
+    {
+        StartCoroutine(Ronda(5, 1));
+        StartCoroutine(Ronda(7, 2)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 4)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda62()
+    {
+        StartCoroutine(Ronda(5, 2));
+        StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 4)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 5)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda63()
+    {
+        StartCoroutine(Ronda(5, 3));
+        StartCoroutine(Ronda(7, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 6)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda64()
+    {
+        StartCoroutine(Ronda(5, 4));
+        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 6)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 7)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda65()
+    {
+        StartCoroutine(Ronda(5, 5));
+        StartCoroutine(Ronda(7, 6)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 8)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda66()
+    {
+        StartCoroutine(Ronda(5, 6));
+        StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 8)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 9)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda67()
+    {
+        StartCoroutine(Ronda(5, 7));
+        StartCoroutine(Ronda(7, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 9)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 10)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda68()
+    {
+        StartCoroutine(Ronda(5, 8));
+        StartCoroutine(Ronda(7, 9)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 10)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 11)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda69()
+    {
+        StartCoroutine(Ronda(5, 9));
+        StartCoroutine(Ronda(7, 10)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 11)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(7, 12)); // Instancia un enemig
+        todosFuerea = true;
+    }
+    IEnumerator ronda70()
     {
         StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
         yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
         StartCoroutine(Ronda(2, 18)); // Instancia un enemigo
         StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
         yield return StartCoroutine(Ronda(2, 12)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
-    }
-    IEnumerator ronda51()
-    {
-        StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 14)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda52()
-    {
-        StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 14)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda53()
-    {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 14)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 18)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda54()
-    {
-        yield return StartCoroutine(Ronda(6, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 14)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda55()
-    {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(6, 12)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 14)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda56()
-    {
-        StartCoroutine(Ronda(7, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 11)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 12)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 15)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda57()
-    {
-        yield return StartCoroutine(Ronda(7, 8)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 14)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 15)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda58()
-    {
-        StartCoroutine(Ronda(5, 18)); // Instancia un enemigo
-        StartCoroutine(Ronda(20, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(13, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(22, 14)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(3, 15)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda59()
-    {
-        yield return StartCoroutine(Ronda(32, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(30, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(14, 14)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(12, 15)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda60()
-    {
-        yield return StartCoroutine(Ronda(2, 19)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda61()
-    {
-        yield return StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 9)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 8)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda62()
-    {
-        yield return StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda63()
-    {
-        yield return StartCoroutine(Ronda(7, 2)); // Instancia un enemigo 
-        yield return StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 7)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda64()
-    {
-        StartCoroutine(Ronda(7, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 6)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 8)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 10)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda65()
-    {
-        yield return StartCoroutine(Ronda(30, 1)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(15, 10)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(4, 9)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda66()
-    {
-        yield return StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(22, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda67()
-    {
-        yield return StartCoroutine(Ronda(9, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 8)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(5, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda68()
-    {
-        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 11)); // Instancia un enemigo
-        yield return null;
-        todosFuerea = true;
-    }
-    IEnumerator ronda69()
-    {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        yield return StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 11)); // Instancia un enemigo
-        StartCoroutine(Ronda(20, 0)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 13)); // Instancia un enemigo
-        yield return null; todosFuerea = true;
-    }
-    IEnumerator ronda70()
-    {
-        StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(2, 18)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(2, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(2, 19)); // Instancia un enemigo
-        yield return null;
         todosFuerea = true;
     }
     IEnumerator ronda71()
     {
-        StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 14)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(5, 4)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 5)); // Instancia un enemigo
+        StartCoroutine(Ronda(2, 18)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 17)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(2, 12)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda72()
     {
-        StartCoroutine(Ronda(7, 7)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 23)); // Instancia un enemigo
-        StartCoroutine(Ronda(5, 11)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 14)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(7, 1)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
+        StartCoroutine(Ronda(2, 8)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 9)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(2, 11)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda73()
     {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
-        StartCoroutine(Ronda(2, 19)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 11)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 14)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 18)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(7, 0)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(4, 14)); // Instancia un enemigo
+        StartCoroutine(Ronda(7, 10)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(2, 1)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda74()
     {
-        StartCoroutine(Ronda(6, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(3, 14)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 18)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 13)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(2, 12)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda75()
     {
-        StartCoroutine(Ronda(7, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 14)); // Instancia un enemigo
-        StartCoroutine(Ronda(4, 19)); // Instancia un enemigo
-        yield return null;
+        StartCoroutine(Ronda(7, 3)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(10, 4)); // Instancia un enemigo
+        StartCoroutine(Ronda(2, 18)); // Instancia un enemigo
+        StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
+        yield return StartCoroutine(Ronda(2, 12)); // Instancia un enemigo
         todosFuerea = true;
     }
     IEnumerator ronda76()
@@ -1034,20 +955,17 @@ public class oleadas : MonoBehaviour
     IEnumerator ronda78()
     {
         StartCoroutine(Ronda(5, 18)); // Instancia un enemigo
-        StartCoroutine(Ronda(20, 5)); // Instancia un enemigo
-        StartCoroutine(Ronda(13, 12)); // Instancia un enemigo
-        StartCoroutine(Ronda(22, 14)); // Instancia un enemigo
         StartCoroutine(Ronda(3, 15)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 19)); // Instancia un enemigo
+        StartCoroutine(Ronda(2, 19)); // Instancia un enemigo
         yield return null;
         todosFuerea = true;
     }
     IEnumerator ronda79()
     {
-        StartCoroutine(Ronda(32, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(30, 12)); // Instancia un enemigo
+        StartCoroutine(Ronda(20, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(5, 12)); // Instancia un enemigo
         StartCoroutine(Ronda(14, 14)); // Instancia un enemigo
-        StartCoroutine(Ronda(12, 15)); // Instancia un enemigo
+        StartCoroutine(Ronda(10, 15)); // Instancia un enemigo
         yield return null;
         todosFuerea = true;
     }
@@ -1154,8 +1072,6 @@ public class oleadas : MonoBehaviour
         StartCoroutine(Ronda(10, 9)); // Instancia un enemigo
         StartCoroutine(Ronda(3, 10)); // Instancia un enemigo
         StartCoroutine(Ronda(8, 11)); // Instancia un enemigo
-        StartCoroutine(Ronda(20, 0)); // Instancia un enemigo
-        StartCoroutine(Ronda(10, 7)); // Instancia un enemigo
         StartCoroutine(Ronda(3, 12)); // Instancia un enemigo
         StartCoroutine(Ronda(8, 13)); // Instancia un enemigo
         yield return null;
@@ -1178,8 +1094,7 @@ public class oleadas : MonoBehaviour
         StartCoroutine(Ronda(3, 7)); // Instancia un enemigo
         StartCoroutine(Ronda(5, 3)); // Instancia un enemigo
         StartCoroutine(Ronda(8, 10)); // Instancia un enemigo
-        StartCoroutine(Ronda(6, 14)); // Instancia un enemigo
-        yield return null;
+        yield return StartCoroutine(Ronda(6, 14)); // Instancia un enemig
         todosFuerea = true;
     }
     IEnumerator ronda92()
@@ -1252,8 +1167,8 @@ public class oleadas : MonoBehaviour
     }
     IEnumerator ronda99()
     {
-        StartCoroutine(Ronda(32, 1)); // Instancia un enemigo
-        StartCoroutine(Ronda(30, 12)); // Instancia un enemigo
+        StartCoroutine(Ronda(20, 1)); // Instancia un enemigo
+        StartCoroutine(Ronda(20, 12)); // Instancia un enemigo
         StartCoroutine(Ronda(14, 17)); // Instancia un enemigo
         StartCoroutine(Ronda(8, 21)); // Instancia un enemigo
         StartCoroutine(Ronda(12, 15)); // Instancia un enemigo

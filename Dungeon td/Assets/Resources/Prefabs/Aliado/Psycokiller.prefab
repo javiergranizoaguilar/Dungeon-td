@@ -139,9 +139,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5372925, y: -0.3070984}
-      - {x: 0, y: 0.626843}
-      - {x: -0.54330444, y: -0.30617982}
+    - - {x: 0.005472839, y: -0.16559091}
+      - {x: 0.0046386723, y: 0.045475483}
+      - {x: -0.07763624, y: 0.044096343}
+      - {x: -0.17009985, y: -0.16467234}
   m_UseDelaunayMesh: 0
 --- !u!114 &8064635365176625408
 MonoBehaviour:
@@ -155,6 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3769dc3b37cb23479e97b1dfa6c1c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundPlayOnes: {fileID: 0}
+  soundPlayOnes2: {fileID: 0}
   firePoint: {fileID: 0}
   enemies: []
   stop: {fileID: 0}
@@ -177,11 +180,11 @@ MonoBehaviour:
   DmejoraB: e8030000a00f0000401f0000
   InfoA:
   - Incrento damage
-  - Aumento damage
+  - Aumento damage ve invisibles
   - Mucho DAMAGE
   InfoB:
   - Incremento velocidad
-  - Aunmento de Velocidad
+  - Aunmento de Velocidad es antiAcorazados
   - Mucho Cerebro
   NombreMA:
   - El Mas Guapo
@@ -192,6 +195,7 @@ MonoBehaviour:
   - El artista
   - La Maeb
   informacion: Soy un incubo
+  listadores: []
 --- !u!222 &6873291486569642805
 CanvasRenderer:
   m_ObjectHideFlags: 0

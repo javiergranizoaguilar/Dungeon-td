@@ -192,7 +192,7 @@ public class BaseDatos : MonoBehaviour
         {
             for (int d = 1; d <= 3; d++)
             {
-                if ((n == 1 && d == 1)||IdNombre.Equals("Juan"))
+                if ((n == 1 && d == 1) || usuarioEjemplo.Nombre.Equals("Juan"))
                 {
                     Nivel nivelEjemplo = new Nivel
                     {
@@ -305,11 +305,31 @@ public class BaseDatos : MonoBehaviour
     public Nivel ObtenerPrimerNivelPorUsuarioNivelDificultad(int Dificultad)
     {
         int idNombre = IdNombre;
-        Acceso primerAcceso = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).OrderBy(a => a.Id).FirstOrDefault();
-        if (primerAcceso == null) { Debug.LogError("No se encontró ningún acceso para el usuario especificado."); return null; }
-        Nivel primerNivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == primerAcceso.NivelId) && (n.Dificultad == Dificultad));
-        if (primerNivel == null) { Debug.LogError("No se encontró ningún nivel para la dificultad especificada."); }
-        return primerNivel;
+        List<Acceso> Acceso = db.Table<Acceso>().Where(a => a.UsuarioId == idNombre).ToList();
+        if (Acceso == null)
+        {
+            Debug.LogError("No se encontró ningún acceso para el usuario especificado.");
+            return null;
+        }
+        Nivel primerNivel = null;
+        foreach (Acceso primerAcceso in Acceso)
+        {
+            Nivel saver = db.Table<Nivel>().FirstOrDefault(n => (n.Id == primerAcceso.NivelId) && (n.Dificultad == Dificultad) && (n.nivel == Nivel_Juego));
+            if (saver != null)
+            {
+                primerNivel = saver;
+            }
+
+        }
+        if (primerNivel != null)
+        {
+            return primerNivel;
+        }
+        else
+        {
+            Debug.LogError("No se encontró ningún nivel para el usuario especificado y la dificultad");
+            return null;
+        }
     }
     public void EliminarTorresYGuardadosPorNivelYDificultad(int dificultad)
     {
@@ -434,33 +454,8 @@ public class BaseDatos : MonoBehaviour
         int idNombre = IdNombre;
         List<Torres> torres = new List<Torres>();
 
-        // Verificar que la conexión a la base de datos está inicializada
-        if (db == null)
-        {
-            Debug.LogError("La conexión a la base de datos no está inicializada.");
-            return torres; // Retornar lista vacía
-        }
 
-        // Obtener el primer acceso para el usuario especificado
-        Acceso accesos = null;
-        try
-        {
-            accesos = db.Table<Acceso>().FirstOrDefault(a => a.UsuarioId == idNombre);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("Error al acceder a la tabla Acceso: " + ex.Message);
-            return torres; // Retornar lista vacía
-        }
-
-        if (accesos == null)
-        {
-            Debug.LogError("No se encontró ningún acceso para el usuario especificado.");
-            return torres; // Retornar lista vacía
-        }
-
-        // Obtener el primer nivel con la dificultad especificada
-        Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => n.Id == accesos.NivelId && n.Dificultad == Dificultad);
+        Nivel nivel = ObtenerPrimerNivelPorUsuarioNivelDificultad(Dificultad);
         if (nivel == null)
         {
             Debug.LogError("No se encontró ningún nivel con la dificultad especificada.");
@@ -490,9 +485,7 @@ public class BaseDatos : MonoBehaviour
     public Boolean SaberLasTorresPorUsuarioNivelDificultad(int Dificultad)
     {
         bool a = false;
-        int idNombre = IdNombre;
-        Acceso accesos = db.Table<Acceso>().FirstOrDefault(a => a.UsuarioId == idNombre);
-        Nivel nivel = db.Table<Nivel>().FirstOrDefault(n => (n.Id == accesos.NivelId) && (n.nivel == Nivel_Juego) && (n.Dificultad == Dificultad));
+        Nivel nivel = ObtenerPrimerNivelPorUsuarioNivelDificultad(Dificultad);
         if (nivel != null)
         {
             List<Guardados> guardados = db.Table<Guardados>().Where(g => g.NivelId == nivel.Id).ToList();

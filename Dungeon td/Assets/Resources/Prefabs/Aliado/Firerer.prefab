@@ -140,9 +140,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5372925, y: -0.3070984}
-      - {x: 0, y: 0.626843}
-      - {x: -0.54330444, y: -0.30617982}
+    - - {x: 0.16537987, y: -0.16972351}
+      - {x: 0.16753134, y: 0.114198506}
+      - {x: -0.122817524, y: 0.11950019}
+      - {x: -0.11777753, y: -0.16545562}
   m_UseDelaunayMesh: 0
 --- !u!222 &6873291486569642805
 CanvasRenderer:
@@ -203,6 +204,8 @@ MonoBehaviour:
   - Hig hit
   - Doom shoter
   informacion: Un fuegpo sencillo pero increbrantable
+  InvalidZonesTilemap: {fileID: 0}
+  Bloqueado: {fileID: 11400000, guid: c1c9ae1e9cd34cf499f5f8b287e33a5d, type: 2}
 --- !u!120 &5499263214056331586
 LineRenderer:
   serializedVersion: 2
