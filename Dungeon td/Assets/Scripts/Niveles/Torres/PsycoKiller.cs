@@ -81,6 +81,7 @@ public class PsycoKiller : MonoBehaviour
 
             }
         }
+        //Indica que tipo de apuntado se desea
         switch (ApuntadoDisparo)
         {
             case 0:
@@ -244,13 +245,11 @@ public class PsycoKiller : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("x");
                     yield return new WaitUntil(() => (targetEnemy != null));
                 }
             }
             else
             {
-                Debug.Log("z");
                 yield return new WaitUntil(() => (stop.GetComponent<Stoper>().stoped == false));
             }
         }

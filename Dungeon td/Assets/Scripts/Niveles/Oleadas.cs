@@ -54,7 +54,6 @@ public class oleadas : MonoBehaviour
             Debug.Log(baseDatos.getIdNombre());
             controlJuego.instanciarTorres(baseDatos.ObtenerTodosLasTorresPorUsuarioNivelDificultad(Dificultad));
         }
-
         while (true)
         {
             todosFuerea = false;
@@ -365,12 +364,15 @@ public class oleadas : MonoBehaviour
                     break;
             }
 
-            // Esperar hasta que todos los enemigos sean destruidos
+            // Espera hasta que todos los enemigos allan salido
             yield return new WaitUntil(() => todosFuerea);
+            // Esperar hasta que todos los enemigos sean destruidos
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
-
+            
             GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Personaje");
+            
             controlJuego.MasRonda();
+            // Guarda los datos de la ronda
             baseDatos.guardarPartida(gameObjects, Dificultad, controlJuego.dineroF, controlJuego.vidas, controlJuego.getRonda());
         }
     }
@@ -651,14 +653,16 @@ public class oleadas : MonoBehaviour
     }
     IEnumerator ronda40()
     {
-
         yield return StartCoroutine(Ronda(1, 18)); // Instancia un enemigo
         yield return null;
         todosFuerea = true;
+        //Espera a que mueran todos los enemigos
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
         if (controlJuego.Facil)
         {
+            //Metodo que para todo y activa el canvas de pausa
             stoper.Stop();
+            //Metodo que avilita el siguiente nivel
             List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioNivel();
             if (n[0].nivel <=6)
             {
@@ -671,7 +675,7 @@ public class oleadas : MonoBehaviour
                 }
             }
         }
-        yield return new WaitUntil(()=>stoper.stoped);
+    yield return new WaitUntil(()=>!stoper.stoped);
     }
     IEnumerator ronda41()
     {
@@ -975,10 +979,13 @@ public class oleadas : MonoBehaviour
         StartCoroutine(Ronda(1, 20)); // Instancia un enemigo
         yield return null;
         todosFuerea = true;
+        //Espera a que mueran todos los enemigos
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
-        if (controlJuego.Medio && todosFuerea && GameObject.FindGameObjectsWithTag(enemyTag).Length == 0)
+        if (controlJuego.Medio)
         {
+            //Metodo que para todo y activa el canvas de pausa
             stoper.Stop();
+            //Metodo que avilita el siguiente nivel
             List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioSigienteNivel();
             if (n[0].nivel < 6)
             {
@@ -991,7 +998,7 @@ public class oleadas : MonoBehaviour
                 }
             }
         }
-        yield return new WaitUntil(()=>stoper.stoped);
+        yield return new WaitUntil(()=>!stoper.stoped);
     }
     IEnumerator ronda81()
     {
@@ -1181,9 +1188,14 @@ public class oleadas : MonoBehaviour
     IEnumerator ronda100()
     {
         yield return StartCoroutine(Ronda(1, 22));
+        todosFuerea = true;
+        //Espera a que mueran todos los enemigos
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag(enemyTag).Length == 0);
-        if (controlJuego.Dificil && todosFuerea && GameObject.FindGameObjectsWithTag(enemyTag).Length == 0)
+        if (controlJuego.Dificil)
         {
+            //Metodo que para todo y activa el canvas de pausa
+            stoper.Stop();
+            //Metodo que avilita el siguiente nivel
             List<BaseDatos.Nivel> n = baseDatos.ObtenerTodosLosNivelesPorUsuarioSigienteNivel();
             if (n[0].nivel < 6)
             {
@@ -1199,19 +1211,23 @@ public class oleadas : MonoBehaviour
         }
         controlJuego.final(true);
     }
+    // Activa la Ronda
     IEnumerator Ronda(int cantidadEnemigos, int tipoEnemigo)
     {
         if (spawnPointToSpawn2.Length > 0)
         {
+            //Se activa si salen por dos path
             yield return DosPath(cantidadEnemigos, tipoEnemigo);
         }
         else
         {
+            //Se activa si salen por un path
             yield return UnPath(cantidadEnemigos, tipoEnemigo);
         }
         // Instanciar enemigos con un retraso entre ellos
 
     }
+    //Instancia enemigos igual a la cantidad indicada y al enemigo indicado
     IEnumerator UnPath(int cantidadEnemigos, int tipoEnemigo)
     {
         for (int i = 0; i < cantidadEnemigos; i++)
@@ -1223,6 +1239,7 @@ public class oleadas : MonoBehaviour
 
         }
     }
+    //Instancia enemigos igual a la cantidad indicada y al enemigo indicado, cada cantidad de enemigo path va a un lado y si es inpar para el otro path
     IEnumerator DosPath(int cantidadEnemigos, int tipoEnemigo)
     {
         for (int i = 0; i < cantidadEnemigos; i++)
@@ -1244,6 +1261,7 @@ public class oleadas : MonoBehaviour
 
         }
     }
+    //Instancia un enemigo en X posicion y se le añaade su path correspondiente
     public void InstanciarEnemigo(int tipoEnemigo, Transform[] spawnPointToSpawn)
     {
         if (tipoEnemigo >= 0 && tipoEnemigo < prefabToSpawn.Length)

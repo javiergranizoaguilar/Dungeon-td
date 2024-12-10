@@ -36,6 +36,7 @@ public class Animaciones : MonoBehaviour
     {
         animfin = !animfin;
     }
+    //Controla la direccion de la animacion
     public void ChangeAnimation()
     {
 
@@ -62,6 +63,7 @@ public class Animaciones : MonoBehaviour
         }
 
     }
+    //Canvia la direccion de la animacion
     public void flipo()
     {
         if (izquierda)
@@ -73,6 +75,7 @@ public class Animaciones : MonoBehaviour
             transform.localScale = theScale;
         }
     }
+    //Canvia la direccion de la animacion
     public void flipoI()
     {
         if (!izquierda)
@@ -84,6 +87,7 @@ public class Animaciones : MonoBehaviour
             transform.localScale = theScale;
         }
     }
+    //Dependiendo de x e y indica a la animacion que hacer
     public void seter(float x, float y)
     {
         if (y < 0)

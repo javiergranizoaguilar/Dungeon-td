@@ -23,6 +23,7 @@ public class Trampa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Asocia los conponeetes ecesarios a este script
         if (towerDragHandler == null)
         {
             GameObject buttonObject = GameObject.Find("Trampa");
@@ -36,6 +37,7 @@ public class Trampa : MonoBehaviour
         {
             if (animator != null)
             {
+                //Le indica a la aimacion cuando deve de funcionar
                 if (towerDragHandler.isDragging)
                 {
                     animator.SetBool("Isdraging", true); ;
@@ -47,6 +49,7 @@ public class Trampa : MonoBehaviour
             }
         }
     }
+    //Colision con Enemigos
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!towerDragHandler.isDragging)
@@ -65,7 +68,6 @@ public class Trampa : MonoBehaviour
                     controlJuego.dineroF += dar;
                     Destroy(other.gameObject);
                 }
-                Debug.Log("a");
             }
         }
     }

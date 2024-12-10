@@ -727,13 +727,13 @@ MonoBehaviour:
   m_text: Create User
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74a496d957d53ed469dff4a68edf7080, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -1246953209857210115, guid: 74a496d957d53ed469dff4a68edf7080, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82be29c3f4045a3489be01273e89c88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSourcesA: []
 --- !u!4 &240448887
 Transform:
   m_ObjectHideFlags: 0
@@ -1362,7 +1363,7 @@ MonoBehaviour:
   BotonVerificar: {fileID: 1064157810}
   BotonCrear: {fileID: 1967385281}
   BotonBack: {fileID: 139483890}
-  TextNoUser: {fileID: 0}
+  TextNoUser: {fileID: 726669759}
   user_Password: {fileID: 1049184420}
   textoError: {fileID: 726669762}
 --- !u!114 &1049184420

@@ -60,8 +60,10 @@ public class Nivel : MonoBehaviour
     {
 
     }
+    //Coloca los puntos
     public void NivelI()
     {
+        
         button = GetComponent<Button>();
         // Extrae el número del nivel del nombre del botón 
         string buttonName = button.name;
@@ -87,6 +89,7 @@ public class Nivel : MonoBehaviour
     {
         CanvasD.GetComponent<Canvas>().enabled = false;
     }
+    //Devuelve los puntos
     public int Puntos(int i)
     {
         int index = (nivel * 3) - i;

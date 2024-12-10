@@ -60,6 +60,7 @@ public class Granja : MonoBehaviour
             controlJuego.dineroF += Dinero;
         }
     }
+    //Proceso que guarda el tiempo de espera apesar de que se pare
     IEnumerator ProcesoConEspera(float duracion)
     {
         float tiempoTranscurrido = 0f;

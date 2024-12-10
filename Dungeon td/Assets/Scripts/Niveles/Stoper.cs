@@ -24,6 +24,7 @@ public class Stoper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Consige todos los objetos a editar
         enemies = GameObject.FindGameObjectsWithTag("Enemy 1");
         balas = GameObject.FindGameObjectsWithTag("Bala");
         GranjasF = GameObject.FindGameObjectsWithTag("Personaje");
@@ -35,9 +36,9 @@ public class Stoper : MonoBehaviour
             }
         }
     }
+    //Parar Todo
     public void Stop()
     {
-
         stoped = true;
         oleadas.parado = false;
         foreach (GameObject enemy in enemies) { enemy.GetComponent<Movement>().stop(); }
@@ -45,9 +46,9 @@ public class Stoper : MonoBehaviour
         foreach (GameObject granja in GranjasR) { granja.GetComponent<Granja>().pausa = true; }
         canvas.SetActive(true);
     }
+    //Desparar Todo
     public void unStop()
     {
-
         stoped = false;
         oleadas.parado = true;
         foreach (GameObject enemy in enemies) { enemy.GetComponent<Movement>().unStop(); }
@@ -57,10 +58,12 @@ public class Stoper : MonoBehaviour
     }
     public void ajustes()
     {
+        //Activa Canvas
         canvasAjustes.SetActive(true);
     }
     public void Salirajustes()
     {
+        //Desactiva Canvas
         canvasAjustes.SetActive(false);
     }
 }

@@ -175,8 +175,8 @@ MonoBehaviour:
   enemyTag: Enemy 1
   mono: Basic
   distance: 0
-  fireRate: 4
-  speedB: 5
+  fireRate: 3.5
+  speedB: 7
   fireDistance: 3
   danio: 1
   verIn: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
   mejoraA: 0
   mejoraB: 0
   ApuntadoDisparo: 0
-  DmejoraA: e8030000a00f0000401f0000
-  DmejoraB: e8030000a00f0000401f0000
+  DmejoraA: f4010000e8030000a00f0000
+  DmejoraB: f4010000e8030000a00f0000
   InfoA:
   - Aumento de velocidad de ataque
   - Vision de invisibles

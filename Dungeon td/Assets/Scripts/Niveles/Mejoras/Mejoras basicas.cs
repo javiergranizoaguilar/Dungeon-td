@@ -131,8 +131,9 @@ public class Mejorasbasicas : MonoBehaviour
                     break;
                 case Frosti:
                     control.db.fireDistance *= 2;
+                    control.db.speedB += 1;
                     control.db.fireRate -= 1;
-                    control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza -= 0.3f;
+                    control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza = 0.6f;
                     break;
                 case Granja:
                     Granja g = control.torre.GetComponent<Granja>();
@@ -140,6 +141,7 @@ public class Mejorasbasicas : MonoBehaviour
                     break;
                 case Venom:
                     control.db.danio++;
+                    control.db.speedB += 1;
                     break;
                 case Psycokiller:
                     PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
@@ -179,8 +181,9 @@ public class Mejorasbasicas : MonoBehaviour
                 case Frosti:
                     control.db.fireDistance *= 1.5f;
                     control.db.fireRate -= 1;
-                    control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza -= 0.3f;
+                    control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza = 0.3f;
                     control.db.verIn = true;
+                    control.db.speedB += 1;
                     break;
                 case Granja:
                     Granja g = control.torre.GetComponent<Granja>();
@@ -228,7 +231,8 @@ public class Mejorasbasicas : MonoBehaviour
                 case Frosti:
                     control.db.fireDistance *= 1.5f;
                     control.db.fireRate -= 1;
-                    control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza -= 0.3f;
+                    control.db.projectilePrefab.GetComponent<Movimien_Bala>().ralentiza -= 0.1f;
+                    control.db.speedB += 1;
                     break;
                 case Granja:
                     Granja g = control.torre.GetComponent<Granja>();
@@ -236,6 +240,7 @@ public class Mejorasbasicas : MonoBehaviour
                     break;
                 case Venom:
                     control.db.danio += 3;
+                    control.db.speedB += 1;
                     break;
                 case Psycokiller:
                     PsycoKiller p = control.torre.GetComponent<PsycoKiller>();
@@ -272,14 +277,14 @@ public class Mejorasbasicas : MonoBehaviour
                     control.db.fireRate += 2;
                     control.db.fireDistance += 1;
                     control.db.danio = 3;
-
+                    control.db.speedB += 1;
                     break;
                 case Frosti:
 
                     control.db.fireDistance += 2;
                     control.db.danio = 2;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoR += 2;
-
+                    control.db.speedB += 1;
                     break;
                 case Granja:
                     Granja g = control.torre.GetComponent<Granja>();
@@ -288,6 +293,7 @@ public class Mejorasbasicas : MonoBehaviour
                 case Venom:
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoPoison++;
                     control.db.projectilePrefab.GetComponent<Movimien_Bala>().TiempoEntrePoison--;
+                    control.db.speedB += 1;
                     break;
                 case Psycokiller:
                     PsycoKiller p = control.torre.GetComponent<PsycoKiller>();

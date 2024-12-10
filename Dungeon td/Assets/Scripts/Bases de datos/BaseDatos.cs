@@ -192,7 +192,7 @@ public class BaseDatos : MonoBehaviour
         {
             for (int d = 1; d <= 3; d++)
             {
-                if ((n == 1 && d == 1) || usuarioEjemplo.Nombre.Equals("Juan"))
+                if ((n == 1 && d == 1) || usuarioEjemplo.Nombre=="Juan")
                 {
                     Nivel nivelEjemplo = new Nivel
                     {

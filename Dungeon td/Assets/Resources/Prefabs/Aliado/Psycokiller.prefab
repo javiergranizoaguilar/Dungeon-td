@@ -176,8 +176,8 @@ MonoBehaviour:
   mejoraA: 0
   mejoraB: 0
   ApuntadoDisparo: 0
-  DmejoraA: e8030000a00f0000401f0000
-  DmejoraB: e8030000a00f0000401f0000
+  DmejoraA: 20030000d0070000581b0000
+  DmejoraB: 20030000d0070000581b0000
   InfoA:
   - Incrento damage
   - Aumento damage ve invisibles

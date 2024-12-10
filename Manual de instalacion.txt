@@ -1,0 +1,6 @@
+Dirijirse al repositorio de github: 
+https://github.com/javiergranizoaguilar/Dungeon-td/tree/main 
+
+Descargar el zip llamado: DundeonTDGame.zip
+
+Extraerlo e iniciar Doom TD.exe

@@ -34,7 +34,7 @@ public class ControlJuego : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        // Recupera un valor int desde PlayerPrefs usando la clave "MiBooleano". 
+        // Recupera un valor int desde PlayerPrefs 
         // Si la clave no existe, se devuelve el valor predeterminado 0.
         Medio = PlayerPrefs.GetInt("Medio", 0) == 1;
         Dificil = PlayerPrefs.GetInt("Dificil", 0) == 1;
@@ -47,9 +47,12 @@ public class ControlJuego : MonoBehaviour
     }
     void Start()
     {
+        //Pone la Resolucion indicada anteriormente o la predeterminada de tu pc
         int resolucionIndex = PlayerPrefs.GetInt("ResolucionIndex", 0);
         Resolution resolucion = Screen.resolutions[resolucionIndex];
         Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
+
+        //Instancia en caso de tener guardado una partida esos datos
         if (Guardar)
         {
             dinero = oleadas.baseDatos.ObtenerPrimerNivelPorUsuarioNivelDificultad(oleadas.Dificultad).Dinero;
@@ -135,21 +138,25 @@ public class ControlJuego : MonoBehaviour
             }
         }
     }
+    //Devuelve la ronda
     public int getRonda()
     {
         return rondas;
     }
+    //Incrementa la ronda
     public void MasRonda()
     {
         rondas++;
     }
+    //Instancia las torres si se tenian guardadas y asin lo desea el jugador
     public void instanciarTorres(List<BaseDatos.Torres> torre)
     {
         foreach (var t in torre)
         {
             string resultado = t.Nombre.Substring(0, t.Nombre.Length - 7);
-
+            //Consigue la posicion del objeto
             Vector3 posicion = new Vector3(t.PosX, t.PosY, 0.0f);
+            //Mira cual es y le asocia sus cosas
             switch (resultado)
             {
                 case "Firerer":
@@ -209,21 +216,26 @@ public class ControlJuego : MonoBehaviour
             }
         }
     }
+    //Se activa cuando se acaba una partida tanto gnada como perdida 
+    // g== Ganada ease que si g =true as ganado la partida
     public void final(bool g)
     {
         oleadas.baseDatos.EliminarTorresYGuardadosPorNivelYDificultad(oleadas.Dificultad);
         stoper.Stop();
         ButtonSeguir.SetActive(false);
-        Puntos=vidas*dinero;
+        
         if (g)
         {
-            TextoFin.text = "Ganaste /n Puntos:" + Puntos;
+            Puntos=vidas*dinero;
+            TextoFin.text = "Ganaste Puntos:" + Puntos;
         }
         else
         {
-            TextoFin.text = "Perdiste /n Puntos:" + Puntos;
+            Puntos=1*dinero;
+            TextoFin.text = "Perdiste Puntos:" + Puntos;
         }
     }
+    //Te devuelve a el Menu de niveles
     public void SalirNivel()
     {
         SceneManager.LoadScene("Menu_niveles");

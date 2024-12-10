@@ -18,9 +18,9 @@ public class VenderTorres : MonoBehaviour
     {
 
     }
+    //Dependiendo del tipo de torre llama a un metodo el cual calcula el dinero que devolvera la torre 
     public void Vender()
     {
-        Debug.Log("Nombre de la torre: " + mejorasbasicas.control.torre.name);
         Dineros = 0;
         switch (mejorasbasicas.control.torre.name)
         {
@@ -44,6 +44,7 @@ public class VenderTorres : MonoBehaviour
         mejorasbasicas.controlJuego.dinero += Dineros;
 
     }
+    //Calcula el dinero a devolver de una torre
     public void VenderTorreBasica(int MejoraA, int MejoraB, int[] a, int[] b)
     {
         switch (MejoraA)

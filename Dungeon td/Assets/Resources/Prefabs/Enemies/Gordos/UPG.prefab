@@ -132,7 +132,7 @@ MonoBehaviour:
   waypoints: []
   vida: 50
   vidb: 0
-  speed: 2
+  speed: 4
   currentWaypoint: 0
   dar: 16
   acorazado: 0

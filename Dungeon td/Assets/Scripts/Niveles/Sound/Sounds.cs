@@ -26,10 +26,12 @@ public class Sounds : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    //Cuando carga la escena hace esto
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name.StartsWith("Nivel"))
@@ -37,6 +39,7 @@ public class Sounds : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //Inicia la musica
     public void PlayMusic()
     {
         if (audioSource != null && !audioSource.isPlaying)
@@ -44,6 +47,7 @@ public class Sounds : MonoBehaviour
             audioSource.Play();
         }
     }
+    //Para la musica
     public void StopMusic()
     {
         if (audioSource != null && audioSource.isPlaying)

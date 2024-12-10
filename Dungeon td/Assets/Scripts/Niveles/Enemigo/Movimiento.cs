@@ -48,7 +48,10 @@ public class Movement : MonoBehaviour
 
         movimiento();
         Flip();
-        regenerar();
+        if (regenerable)
+        {
+            StartCoroutine(regenerar());
+        }
     }
     public void movimiento()
     {
@@ -75,14 +78,14 @@ public class Movement : MonoBehaviour
             Destroy(gameObject); // Destruye el GameObject actual
         }
     }
-    public void regenerar()
+    public IEnumerator regenerar()
     {
         if (regenerable)
         {
             if (vidb > vida)
             {
                 regenerable = false;
-                new WaitForSeconds(TRegener);
+                yield return new WaitForSeconds(Time.deltaTime*TRegener);
                 vida += 1;
                 regenerable = true;
             }

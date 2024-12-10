@@ -175,8 +175,8 @@ MonoBehaviour:
   enemyTag: Enemy 1
   mono: Frost
   distance: 0
-  fireRate: 4
-  speedB: 5
+  fireRate: 3.5
+  speedB: 7
   fireDistance: 3
   danio: 1
   verIn: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
   mejoraA: 0
   mejoraB: 0
   ApuntadoDisparo: 0
-  DmejoraA: e8030000a00f0000401f0000
-  DmejoraB: e8030000a00f0000401f0000
+  DmejoraA: 580200000807000094110000
+  DmejoraB: 58020000d007000094110000
   InfoA:
   - Ralenti
   - Ralentiza y velocidad y vision de invisibles

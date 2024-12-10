@@ -1,0 +1,86 @@
+1. Introducción al Juego
+Te damos la bienvenida a Doom TD, un emocionante y desafiador juego del tipo Tower Defense. En este manual podrás encontrar instrucciones precisas sobre los pasos y, así pues, podrás comenzar a jugar, comprender las mecánicas más importantes del juego y mejorar tu propio conocimiento sobre cómo conseguir mejor tus habilidades estratégicas y defender tu base de las diferentes oleadas de enemigos.
+
+2. Interfaz Principal
+
+Cuando abras el juego te encontrarás con las siguientes secciones:
+Menú de usuario:
+
+Log in: coloca tu usuario y contraseña.
+Crear Usuario: Crea un usuario.
+
+Menú Principal:
+
+Jugar: Accede al mapa de niveles para poder ya iniciar una partida, entre otras cosas.
+Configuración: Ajusta el volumen, los gráficos.
+Perfil: Puedes editar el nombre y contraseña de tu usuario.
+
+Menú Niveles:
+
+
+Visión del juego:
+
+Mapa del Nivel: Este es el mapa que muestra el recorrido de los enemigos y las zonas en donde puedes situar la torre, por lo tanto.
+Barra de Recursos: Indica la cantidad actual que tienes de Dinero, Rondas y Vidas.
+Barra de Torretas: Contiene las torres que te encuentras disponible para colocar, entre otras cosas.
+3. Cómo Empezar a Jugar
+
+Al iniciar el juego por primera vez, crea un usuario.
+
+Entra en tu susario.
+
+Dele a jugar.
+
+Pulsa Jugar en el menú principal para abrir el mapa de niveles.
+
+Los niveles se desbloquean progresivamente a medida que avanzas.
+
+
+4.	Mecánicas Principales
+
+4.1 Colocar Torres:
+Elige una torre en la barra derecha
+Arrastrar y soltar la torre en una de las zonas válidas del mapa.
+Asegúrate de que los enemigos estén en el rango de ataque de la torre para su función.
+
+
+4.2 Mejorar la Torre, Vender la Torre
+Mejorar:
+
+Presiona una torre que ya esté colocada.
+Pulsa el botón Mejorar -> Aumenta el daño, el alcance o la velocidad.
+Cada mejora tiene el precio en monedas.
+Solo se puede seguir uno de los dos path hasta segunda o tercera mejora y el otro solo al primero.
+Vender:
+Mientras sujetas una torre clic derecha.
+Presiona una torre que ya no necesites.
+Pulsa el botón Vender -> Para ti, el precio de volver a tu parte de recursos gastados.
+
+4.3 Gestionar los Recursos:
+Ganar monedas al vencer a los enemigos, o a través de completar las oleadas.
+Las monedas se gastan en colocar torres o en mejorarlas, pero no gastes toda tu utilidad de una vez, algunos enemigos requieren estrategias muy avanzadas. 
+
+
+5. Consejos Básicos para Progresar en el Juego
+
+Se ha de planificar con anterioridad:
+Hay que observar el camino de los rivales y colocar torres en lugares estratégicos.
+
+Hay que diversificar tus torres:
+Se debe utilizar torres diferentes (daño rápido, ataque fuerte, lentificación, veneno) para adaptarse a los enemigos.
+
+Hay que gestionar tus recursos:
+No gastes todas tus monedas de una vez, pero ahorrarlas para oleadas más duras.
+
+Hay que mejorar prudentemente:
+Hay que mejorar primero las torres bien situadas antes de añadir otras torres nuevas.
+
+Hay que conocer a los enemigos:
+Hay enemigos inmunes a ciertos efectos; revisa las habilidades de los enemigos para decidir tu estrategia.
+
+
+6. Resolución de Problemas Comunes
+
+No puedes colocar una torre: Asegúrate de que esté en una zona válida (marcada en verde) y de tener suficientes recursos.
+
+Perdiste la partida rápidamente: Prueba diferentes combinaciones de torres y analiza el recorrido de los enemigos.

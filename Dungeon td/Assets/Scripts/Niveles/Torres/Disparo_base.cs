@@ -98,6 +98,7 @@ public class Disparo_base : MonoBehaviour
                 }
             }
         }
+        //Indica que tipo de enemigo quiere el jugador
         switch (ApuntadoDisparo)
         {
             case 0:
@@ -245,7 +246,7 @@ public class Disparo_base : MonoBehaviour
             shootingCoroutine = null;
         }
     }
-    //el IEnumerator define una corrutina 
+    //Dispara 
     IEnumerator Shoot()
     {
         stop = GameObject.Find("Stop");
@@ -262,7 +263,7 @@ public class Disparo_base : MonoBehaviour
                     if (distance <= fireDistance)
                     {
                         animd = true;
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(Time.deltaTime*0.1f);
                         // Instanciar un proyectil
                         animd = false;
                         if (targetEnemy == null)

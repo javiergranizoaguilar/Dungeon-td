@@ -21,15 +21,18 @@ public class TowerDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     void Update()
     {
+        //Si le ds clic derecho se borra la torre mietras la arrrastras y no cuesta dinero
         if (isDragging)
         {
             if (Input.GetMouseButtonDown(1))
             {
-                Destroy(currentTower); // Eliminar la torre si no es válida
-                currentTower = null; // Limpiar referencia
+                Destroy(currentTower); 
+                currentTower = null; 
             }
         }
     }
+    //Si pones el raton encima hace lo indicado para cada torre dependiendo de su componente
+    //pero todos muestran la informacion y el precio
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (towerPrefab.GetComponent<Disparo_base>() != null)
@@ -49,25 +52,28 @@ public class TowerDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             controlJuego.infot.text = towerPrefab.GetComponent<PsycoKiller>().informacion + " Precio " + precio;
         }
     }
+    //Metodo que se activas si empiezas a arrastrar el objeto asociado en este caso un button
     public void OnBeginDrag(PointerEventData eventData)
     {
-
+        //Si el precio es menor que el dinero que tiene el jugador deja que se arrastre
         if (precio <= controlJuego.dinero)
         {
             // Instanciar la torre en la posición del mouse
             isDragging = true;
             currentTower = Instantiate(towerPrefab);
-            currentTower.transform.position = GetMouseWorldPosition();
+            currentTower.transform.position = GetMouseWorldPosition();//coloca la torre encima del cursor
             currentTower.SetActive(true); // Mostrar la torre al empezar a arrastrar
-            original = currentTower.GetComponent<SpriteRenderer>().color;
+            original = currentTower.GetComponent<SpriteRenderer>().color;//Coje su color
         }
     }
-
+    //Se activa mientras se arrastra
     public void OnDrag(PointerEventData eventData)
     {
         if (currentTower != null)
         {
             currentTower.transform.position = GetMouseWorldPosition();
+            //Si la posicion no es valida se colorea de color rojo
+            //Si es valida se colorea de blanco
             if (IsPositionValid(currentTower.transform.position))
             {
                 currentTower.GetComponent<SpriteRenderer>().color = Color.white;
@@ -80,12 +86,13 @@ public class TowerDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             }
         }
     }
-
+    //Se activa cundo sueltas el objeto arastrado
     public void OnEndDrag(PointerEventData eventData)
     {
         if (currentTower != null)
         {
-            // Aquí puedes verificar si la posición es válida
+            // Si la posicion es valida se coloca y se le coloca su color orijinal
+            //Si no se elimina
             if (IsPositionValid(currentTower.transform.position))
             {
                 isDragging = false;
@@ -100,14 +107,14 @@ public class TowerDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             currentTower = null; // Limpiar referencia
         }
     }
-
+    //Devuelve un vector3 con la posicion del mouse
     private Vector3 GetMouseWorldPosition()
     {
         Vector3 mouseScreenPosition = Input.mousePosition;
         mouseScreenPosition.z = 10f; // Distancia desde la cámara
         return Camera.main.ScreenToWorldPoint(mouseScreenPosition);
     }
-
+    //Mediante diferentes metodos detecta si la posicion es valida o no
     private bool IsPositionValid(Vector3 position)
     {
         // Convertir la posición del mundo a la posición de celda del Tilemap
